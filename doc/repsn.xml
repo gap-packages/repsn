@@ -1,0 +1,482 @@
+ <?xml version="1.0" encoding="ISO-8859-1"?>
+
+ <!DOCTYPE Book SYSTEM "gapdoc.dtd">
+
+ <Book Name="repsn">                                        <!-- REQUIRED -->
+
+  <!--
+                          The title page
+                                                                      -->
+  <TitlePage>    
+                                         <!-- REQUIRED -->
+    <Title>                                             
+        <Package>Repsn</Package>
+    </Title>
+	
+    <Subtitle>     	                                     <!-- OPTIONAL -->
+       A &GAP;4 Package<Br/>
+       for constructing representations of finite groups
+       &nbsp;
+    </Subtitle>
+
+    <Version>Version 1.0</Version> 
+    <!-- OPTIONAL -->
+    <Author> 
+	    Vahid Dabbaghian-Abdoly<Br/>                 <!-- REQUIRED -->
+        &nbsp;
+         <Address>
+	 School of Mathematics and Statistics,<Br/>
+	 Carleton University,<Br/>
+	 Ottawa, Ontario,<Br/>
+         K1S 5B6 Canada.
+	 </Address>
+      <Email> vdabbagh@math.carleton.ca</Email> 
+     <Homepage>http://www.math.carleton.ca/~vdabbagh</Homepage>
+   </Author> 
+   
+   <Date>May 2004</Date> 
+   <!-- OPTIONAL -->
+   
+    <Copyright> 
+    <!-- OPTIONAL -->
+    &copyright; 2004 Vahid Dabbaghian-Abdoly.
+	</Copyright> 
+	
+	<Acknowledgements> 
+   <!-- OPTIONAL -->
+   <P/>This package was obtained during my Ph.D. studies at Carleton University. I would like to
+ express deep gratitude to my supervisor Professor John D. Dixon whose guidance and
+ support were crucial for the successful completion of this project. I also thank Professor 
+ Charles Wright and referees for pointing out some important comments to improve <Package>Repsn</Package>.
+
+      <P/>This documentation was prepared with the <Package>GAPDoc</Package> package 
+        by Frank Lübeck and Max Neunhöffer. 
+   </Acknowledgements>
+   
+ </TitlePage>
+
+
+
+  <TableOfContents/>                                    <!-- OPTIONAL -->
+
+
+
+  <!--
+                            The document
+                                                                      -->
+  <Body>                                                <!-- REQUIRED -->
+
+
+<Chapter><Heading>Introduction</Heading>
+
+
+ <P/>This manual describes the <Package>Repsn</Package> package for computing matrix representations in 
+characteristic zero of finite groups. Most of the functions in <Package>Repsn</Package>
+ have been written according to the algorithm described in the author's
+ Ph.D thesis <Cite Key="Dab"/>.
+
+ <P/>For constructing representations of simple groups and their covers
+  we use the algorithm described in <Cite Key="Dix93"/>. To use this
+  algorithm for constructing a representation of a group <M>G</M>
+  affording an irreducible character <M>chi</M> of <M>G</M>, we need to have
+  a subgroup <M>H</M> of <M>G</M> such that the restriction of <M>chi</M> to <M>H</M>
+  has a linear constituent with multiplicity one. In this case we
+  say <M>H</M> is a <E>character subgroup</E> relative to <M>chi</M> (or a
+ <M>chi</M>-subgroup). A <M>chi</M>-subgroup for each irreducible character
+ <M>chi</M> of degree less than 32 of simple groups and their covers are
+ listed in <Cite Key="Dab"/>.
+  
+ <P/>All <Package>Repsn</Package> functions are written entirely in the &GAP; language. It
+ is proved in <Cite Key="Dab"/> that the algorithm is correct for any
+ group with a character of degree less than 32. Indeed, if the group is
+ solvable, there is no restriction on the character degree. In
+ practice the program is quite fast when the degree is small, but
+ can be very slow when it is necessary to call one of the
+ subprograms which extend irreducible representations. In the
+ latter case the number of element wise operations required to
+ extend a representation of degree <M>d</M> is proportional to <M>d^6</M>.
+
+ <P/><Package>Repsn</Package> is implemented in the &GAP; language, and runs on any
+ system supporting &GAP;4. The <Package>Repsn</Package> package is loaded into the current &GAP; session with the command
+
+   <Verb> gap> LoadPackage( "repsn" ); </Verb>
+
+ (see section <E>Loading a GAP Package</E> in the &GAP; Reference Manual). One could install 
+the <Package>Repsn</Package> package on &GAP;4.3. In this case it is loaded with the command
+
+
+  <Verb> gap> RequirePackage( "repsn" ); </Verb>
+
+<P/> 
+<Package>Repsn</Package> has been developed by<Br/>
+
+Vahid Dabbaghian-Abdoly <Br/>
+School of Mathematics and Statistics<Br/>
+Carleton University<Br/>
+Ottawa, Ontario,<Br/>
+K1S 5B6 Canada.<Br/>
+e-mail: vdabbagh@math.carleton.ca<Br/>
+
+<P/>
+
+Please send bug reports, suggestions and other comments to this
+e-mail address.
+
+ 
+</Chapter>
+
+
+<Chapter><Heading>Irreducible Representations</Heading>
+
+Let <M>G</M> be a finite group and <M>chi</M> be an ordinary irreducible character of
+<M>G</M>.  In this chapter we introduce some functions to construct a complex representation
+<M>R</M> of <M>G</M> affording <M>chi</M>. We proceed recursively, reducing the problem to smaller
+subgroups of <M>G</M> or characters of smaller degree until we obtain a problem which we
+can deal with directly.
+
+Inputs of most of the functions are a given group <M>G</M>, and an irreducible character
+<M>chi</M>. The output is a mapping (representation) which assigns to each generator <M>x</M>
+of <M>G</M> a matrix <M>R(x)</M>. We can use these functions for
+all groups and all irreducible characters <M>chi</M> of degree less than 32 although in
+principle the same methods can be extended to characters of larger degree.
+
+The main methods in these functions which are used to construct representations 
+of finite groups are induction, extension, tensor product and Dixon's method 
+(for constructing representations of simple groups and their covers).
+
+
+  <Section>
+  <Heading>Constructing Representations</Heading>
+  
+   This section introduces the main function to compute a representation of a finite group 
+ <M>G</M> affording an irreducible character <M>chi</M> of <M>G</M>.  
+    
+  <ManSection>
+           <Func Name="IrreducibleAffordingRepresentation" Arg=" chi "/>
+		   
+        <Description>
+		called with an irreducible character <A>chi</A> of a group <M>G</M>,
+ this function returns a mapping
+(representation) which maps each generator of <M>G</M> to a <M>d*d</M> 
+matrix, where <M>d</M> is the degree of <A>chi</A>. 
+The group generated by these matrices (the image of the
+map) is a matrix group which is isomorphic to <M>G</M> modulo the
+ kernel of the map. If <M>G</M> is a solvable group then there is no restriction 
+on the degree of <A>chi</A>. In the case that <M>G</M> is not solvable and the character <A>chi</A>
+has degree bigger than 31
+the output maybe is not correct. In this case sometimes the output mapping does not 
+afford the given character or it does not return any mapping.
+        </Description>
+      </ManSection>			  
+
+      <ManSection>
+
+           <Func Name="IsAffordingRepresentation" Arg=" chi, rep "/>
+		   
+        <Description>
+
+If <A>chi</A> and <A>rep</A> are a character and a representation of a group <M>G</M>, respectively,  
+then <Code>IsAffordingRepresentation</Code> returns <Code>true</Code> if the trace of <A>rep(x)</A> equals 
+<A>chi(x)</A> for all elements  <M>x</M> in <M>G</M>.
+
+ <Example>
+gap> G := GL(2,7);:
+gap> chi := Irr(G)[ 29 ];;
+gap> rep := IrreducibleAffordingRepresentation( chi );
+CompositionMapping( [(8,15,22,29,36,43)(9,16,23,30,37,44)
+(10,17,24,31,38,45)(11,18,25,32,39,46)(12,19,26,33,40,47)
+(13,20,27,34,41,48)(14,21,28,35,42,49), (2,29,12)(3,36,20)
+(4,43,28)(5,8,30)(6,15,38)(7,22,46)(9,44,14)(10,16,17)
+(11,37,27)(13,23,39)(18,24,25)(19,45,35)(21,31,47)
+(26,32,33)(34,40,41)(42,48,49) ] ->
+[ [ [ 0, 0, 0, -1, 0, 0, 0 ],
+    [ 1, 0, -1, -1, 1, 0, -1 ] 
+    [ 2, -1, -2, -2, 1, 2, -1 ],
+    [ 0, 0, -1, 0, 0, 0, 0 ],
+    [ 1, 0, -2, 0, 0, 1, -1 ],
+    [ 1, 0, -2, -1, 1, 1, -1 ],
+    [ -2, 1, 1, 1, -1, -1, 0 ] ],
+  [ [ 1, -1, -1, -1, 0, 2, -1 ],
+    [ 0, 0, 1, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 1, -1, 0, 0, 0, -1 ],
+    [ 0, 1, 0, 1, 0, -1, 0 ],
+    [ 0, 1, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, -1, 0, 0 ] ] ], (action isomorphism) )
+gap> IsAffordingRepresentation( chi, rep );
+true
+ </Example>
+
+	
+	<P/>We can obtain the size of the image of this
+     representation by <Code>Size(Image(rep))</Code> and compute  the value for
+     an arbitrary element <M>x</M> in <M>G</M> by <Code>x</Code>&circum;<Code>rep</Code>.
+        </Description>
+      </ManSection>
+  </Section>
+
+  <Section>
+  <Heading>Induction</Heading>
+   <ManSection>
+        <Func Name="InducedSubgroupRepresentation" Arg=" G, rep "/>
+    <Description>
+	computes a representation of <A>G</A> induced from the
+representation  <A>rep</A> of a subgroup <M>H</M> of <A>G</A>. If <A>rep</A> has degree <M>d</M> then the 
+degree of the output representation is <M>d*|G:H|</M>.
+	
+		  
+     <Example>
+gap> G := SymmetricGroup( 6 );;
+gap> H := AlternatingGroup( 6 );;
+gap> chi := Irr( H )[ 2 ];;
+gap> rep := IrreducibleAffordingRepresentation( chi );;
+gap> InducedSubgroupRepresentation( G, rep ); 
+[ (1,2,3,4,5,6), (1,2) ] ->
+[ [ [ 0, 0, 0, 0, 0, 1, 1, -1, -1, -1 ],
+    [ 0, 0, 0, 0, 0, 1, 0, -1, 0, -1 ],
+    [ 0, 0, 0, 0, 0, 1, 0, 0, -1, -1 ],
+    [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 1, -1, 0, -1 ],
+    [ 1, 1, -1, -1, -1, 0, 0, 0, 0, 0 ],
+    [ 1, 0, 0, -1, -1, 0, 0, 0, 0, 0 ],
+    [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 1, 0, -1, 0, -1, 0, 0, 0, 0, 0 ],
+    [ 0, 1, 0, -1, -1, 0, 0, 0, 0, 0 ] ],
+  [ [ 0, 0, 0, 0, 0, 1, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 1, 1, -1, -1, -1 ],
+    [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 1, 1, -1, -1, -1, 0, 0, 0, 0, 0 ] ] ]
+	</Example>
+   </Description>
+  </ManSection>
+ </Section>
+  
+  <Section>
+  <Heading>Extension</Heading>
+  In this section we introduce some functions for extending a representation
+of a subgroup to the whole group.
+   <ManSection>
+   
+           <Func Name="ExtendedRepresentation" Arg=" chi, rep "/>
+		   
+           		   
+    <Description>
+
+		
+        Suppose <M>H</M> is a subgroup of a group <M>G</M> and
+        <A>chi</A> is an irreducible character of <M>G</M> such that the
+        restriction of <A>chi</A> to <M>H</M>, <M>phi</M> say, is
+        irreducible. If <A>rep</A> is an irreducible  representation of <M>H</M>
+        affording <M>phi</M> then  <Code>ExtendedRepresentation</Code> extends
+        the representation <A>rep</A> of <M>H</M> to a representation of
+        <M>G</M> affording <A>chi</A>. This function call can be quite expensive when
+        the representation <A>rep</A> has a large degree.
+
+	    <Example>	
+gap> G := AlternatingGroup( 6 );;
+gap> H := Group([ (1,2,3,4,6), (1,4)(5,6) ]);;
+gap> chi := Irr( G )[ 2 ];;
+gap> phi := RestrictedClassFunction( chi, H );;
+gap> IsIrreducibleCharacter( phi );
+true
+gap> rep := IrreducibleAffordingRepresentation( phi );;
+gap> ext := ExtendedRepresentation( chi, rep );
+#I  Need to extend a representation of degree 5. This may take a while.
+[ (1,2,3,4,5), (4,5,6) ] -> [
+[ [ 0, 1, 0, -1, -1 ],
+  [ 0, 0, 0, 1, 0 ],
+  [ -1, -1, -1, 0, 0 ],
+  [ 0, 0, 0, 0, -1 ],
+  [ 0, 0, 1, 1, 1 ] ],
+[ [ 1, 0, 1, 0, 1 ],
+  [ 0, 1, 0, 0, 0 ],
+  [ -1, -1, 0, 1, 0 ],
+  [ 1, 1, 1, 0, 0 ],
+  [ 0, 0, -1, 0, 0 ] ] ]
+gap> IsAffordingRepresentation( chi, ext );
+true
+		    </Example>
+		</Description>
+		
+</ManSection>
+	 
+<ManSection>
+		<Func Name="ExtendedRepresentationNormal" Arg=" chi, rep "/>
+		
+		<Description>
+		
+        Suppose <M>H</M> is a normal subgroup of a group <M>G</M> and
+        <A>chi</A> is an irreducible character of <M>G</M> such that the
+        restriction of <A>chi</A> to <M>H</M>, <M>phi</M> say, is
+        irreducible. If <A>rep</A> is an irreducible representation of <M>H</M>
+        affording <M>phi</M> then  <Code>ExtendedRepresentationNormal</Code> extends
+        the representation <A>rep</A> of <M>H</M> to a representation of
+        <M>G</M> affording <A>chi</A>. This function is more
+                efficient than <Code>ExtendedRepresentation</Code>.
+		
+    <Example>
+gap> G := GL(2,7);;
+gap> chi := Irr( G )[ 29 ];;
+gap> H := SL(2,7);;
+gap> phi := RestrictedClassFunction( chi, H );;
+gap> IsIrreducibleCharacter( phi );
+true
+gap> rep := IrreducibleAffordingRepresentation( phi );;
+gap> ext := ExtendedRepresentationNormal( chi, rep );
+#I  Need to extend a representation of degree 7. This may take a while.
+CompositionMapping( [(8,15,22,29,36,43)(9,16,23,30,37,44)
+ (10,17,24,31,38,45)(11,18,25,32,39,46)(12,19,26,33,40,47)
+ (13,20,27,34,41,48)(14,21,28,35,42,49),(2,29,12)(3,36,20)
+ (4,43,28)(5,8,30)(6,15,38)(7,22,46)(9,44,14)(10,16,17)
+ (11,37,27)(13,23,39)(18,24,25)(19,45,35)(21,31,47)
+ (26,32,33)(34,40,41)(42,48,49) ] ->
+[ [ [ -1, 0, 0, 1, 0, -1, 0 ], [ -1, 0, 0, 0, 0, 0, 0 ],
+  [ -1, 1, 0, 0, -1, 0, 0 ], [ 0, -1, 0, 0, 0, 0, 0 ],
+  [ -1, -1, 1, 0, 1, -1, 0 ], [ 0, 0, 0, -1, 0, 0, 0 ],
+  [ -1, 0, 1, -1, 1, 0, -1 ] ],
+  [ [ 1, -1, 0, 1, 0, -1, 1 ], [ 1, 0, -1, 1, -1, 0, 1 ],
+  [ 1, -1, 0, 1, -1, 0, 1 ], [ 0, 0, -1, 0, 0, 0, 0 ],
+  [ -1, 0, 0, 1, 0, -1, 0 ], [ -1, 0, 0, 0, 0, 0, 0 ],
+  [ -1, 1, 0, 0, -1, 0, 0 ] ] ], (action isomorphism) )	
+gap> IsAffordingRepresentation( chi, ext );
+true
+	  </Example>	
+	 </Description>
+    </ManSection>
+  </Section>
+
+  <Section>
+  <Heading>Character Subgroups</Heading>
+  If <M>chi</M> is an irreducible character of a group <M>G</M> and <M>H</M> is a subgroup of <M>G</M> such that 
+  the restriction of <M>chi</M> to <M>H</M> has a linear constituent with multiplicity one, then we call <M>H</M>
+  a character subgroup relative to <M>chi</M> or a <M>chi</M>-subgroup.
+   <ManSection>
+   
+           <Func Name="CharacterSubgroupRepresentation" Arg=" G, chi "/>
+           <Func Name="CharacterSubgroupRepresentation" Arg=" G, chi, H "/>		   
+     <Description>
+	 
+	 returns a representation of <A>G</A> affording <A>chi</A> by finding a <A>chi</A>-subgroup and using 
+  the method described in <Cite Key="Dix93"/>. If the third argument is a <A>chi</A>-subgroup then 
+  it returns a representation of <A>G</A> affording <A>chi</A> without searching for a <A>chi</A>-subgroup. 
+  In this case an error is signalled if no <A>chi</A>-subgroup exists.
+	 </Description>
+	 
+</ManSection>
+	 
+<ManSection>
+  <Func Name="IsCharacterSubgroup" Arg=" chi, H "/>
+		
+	<Description>
+		is <Code>true</Code> if <A>H</A> is a <A>chi</A>-subgroup and <Code>false</Code> otherwise. 
+		 
+	<Example>	
+gap> G := AlternatingGroup( 8 );;
+gap> chi := Irr( G )[ 2 ];;
+gap> H := AlternatingGroup( 3 );;
+gap> IsCharacterSubgroup( chi, H );
+true
+gap> rep := CharacterSubgroupRepresentation( G, chi, H );
+[ (1,2,3,4,5,6,7), (6,7,8) ] -> [ [ [
+ 1/3*E(3)+2/3*E(3)^2, 0, 0, -E(3), 0, -1/3*E(3)-2/3*E(3)^2, 1 ],
+   [ 2/3*E(3)+4/3*E(3)^2, 0, 1, 0, 0, 1/3*E(3)-1/3*E(3)^2, 0 ],
+   [ 2/3*E(3)+4/3*E(3)^2, 0, 0, 1, 0, 1/3*E(3)-1/3*E(3)^2, 0 ],
+   [ E(3)^2, 0, 0, 0, 0, 0, 0 ],
+   [ 2/3*E(3)+4/3*E(3)^2, 0, 0, 0, 1, 1/3*E(3)-1/3*E(3)^2, 0 ],
+   [ -2/3*E(3)-1/3*E(3)^2, 0, 0, -1, 0, 2/3*E(3)+1/3*E(3)^2, E(3)^2 ],
+   [ 0, 1, 0, 0, 0, 0, 0 ] ],
+ [ [ 1, 0, 0, 0, 0, 0, 0 ], [ 0, 1, 0, 0, 0, 0, 0 ],
+   [ 0, 0, 0, 1, 0, 0, 0 ], [ 0, 0, 0, 0, 1, 0, 0 ],
+   [ 0, 0, 1, 0, 0, 0, 0 ], [ 0, 0, 0, 0, 0, 1, 0 ],
+   [ 0, 0, 0, -E(3), E(3), 0, 1 ] ] ]
+	</Example>
+			  
+	</Description>
+	 
+</ManSection>
+	 
+
+
+
+<ManSection>
+
+  <Func Name="AllCharacterPSubgroups" Arg=" G, chi "/>
+		
+	<Description>
+
+	returns a list of all <M>p</M>-subgroups of <A>G</A> which are <A>chi</A>-subgroups. 
+The subgroups are chosen up to conjugacy in <A>G</A>.
+			
+	</Description>
+   </ManSection>
+	 
+<ManSection>
+  <Func Name="AllCharacterSubgroups" Arg=" G, chi "/>
+		
+	<Description>
+	returns a list of all <A>chi</A>-subgroups of <A>G</A> among the lattice of subgroups.
+This function call can be quite expensive for larger groups. The call is expensive in
+                particular if the lattice of subgroups of the given group
+                is not yet known.
+			 
+	 </Description>
+   </ManSection>
+
+ </Section>
+  
+  
+
+  <Section><Heading>Equivalent Representation</Heading>
+  
+   <ManSection>
+           <Func Name="EquivalentRepresentation" Arg=" rep "/>	   
+		   
+    <Description>
+	
+	computes an equivalent representation to an irreducible representation <A>rep</A> by 
+transforming <A>rep</A> to a new basis by spinning up one vector (i.e. getting the other
+basis vectors as images under the first one under words in the generators). If the input representation, <A>rep</A>, 
+is not irreducible
+then <Code>EquivalentRepresentation</Code> does not return any mapping.
+
+	<Example>
+gap> G := SymmetricGroup( 7 );;
+gap> chi := Irr( G )[ 2 ];;
+gap> rep := CharacterSubgroupRepresentation( G, chi );;
+gap> equ := EquivalentRepresentation( rep );
+[ (1,2,3,4,5,6,7), (1,2) ] ->
+[ [ [ 0, 0, 0, E(5)+E(5)^2+E(5)^3+2*E(5)^4, -1, -E(5)-E(5)^2-E(5)^3-2*E(5)^4 ],
+   [ E(5)^3-E(5)^4, E(5)^2+E(5)^3+E(5)^4, E(5)+E(5)^3-E(5)^4, -E(5)+E(5)^2
+          -3*E(5)^3-E(5)^4, -E(5)-E(5)^3+E(5)^4, 2*E(5)-2*E(5)^2+2*E(5)^3 ]
+    , [ 0, 0, 0, 1, 0, 0 ],
+   [ 0, 4/5*E(5)+3/5*E(5)^2+2/5*E(5)^3+1/5*E(5)^4, E(5), 1, -E(5),
+       6/5*E(5)+2/5*E(5)^2+3/5*E(5)^3+4/5*E(5)^4 ], [ 0, 1, 0, 0, 0, 0 ],
+   [ 0, 0, E(5), 1, -E(5), 2*E(5)+E(5)^2+E(5)^3+E(5)^4 ] ],
+ [ [ -1, 0, E(5)+E(5)^2+E(5)^3+2*E(5)^4, -E(5)-E(5)^2-3*E(5)^4,
+    -E(5)-E(5)^2-E(5)^3-2*E(5)^4, E(5)+E(5)^2+3*E(5)^4 ],
+  [ 0, -1, 0, 0, 0, 0 ],
+  [ 0, 0, 0, E(5)+E(5)^2+E(5)^3+2*E(5)^4, -1, -E(5)-E(5)^2-E(5)^3-2*E(5)^4
+     ], [ 0, 0, -1, -E(5)^4, 1, E(5)+E(5)^2+E(5)^3+2*E(5)^4 ],
+  [ 0, 0, -E(5)^4, -E(5)^3+E(5)^4, E(5)+E(5)^2+E(5)^3+2*E(5)^4,
+      E(5)^3-E(5)^4 ], [ 0, 0, 0, 0, 0, -1 ] ] ]
+gap> IsAffordingRepresentation( chi, equ );
+true
+	</Example>
+    </Description>
+   </ManSection>  
+  </Section>
+</Chapter>
+  
+</Body>
+  <Bibliography Databases="repsn"/>
+  <TheIndex/>                                               
+  </Book>
+
+
+
