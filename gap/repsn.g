@@ -53,14 +53,14 @@
       rep := InducedSubgroupRepresentation( g, IrreducibleAffordingRepresentation( n[2] ) ); 
     fi;
     if n[2][1] = c[1][1] then 
-      if IsPerfect(n[1]) and PerfectRepresentation(n[1], n[2], 1 ) = true then 
+      if IsPerfect(n[1]) and PerfectRepresentation( n[1], n[2], 1 ) = true then 
         return CharacterSubgroupRepresentation( G, chi );
       fi;
-      rep := ExtendedRepresentationNormal( c[1], IrreducibleAffordingRepresentation( n[2]) ); 
+      rep := ExtendedRepresentationNormal( c[1], IrreducibleAffordingRepresentation( n[2] ) ); 
     fi;
  fi;
  return CompositionMapping( rep, k );
- end);
+ end );
 
 
 
@@ -143,7 +143,7 @@
 ## In this program the following programs and subroutines are called,
 ## 1. LinearConstituentWithMultiplicityOne
 ############################################################################################
-
+ 
  InstallGlobalFunction( IsCharacterSubgroup,
  function( chi, H )
  local l;
@@ -151,7 +151,7 @@
  if  l = fail then return false;
  else return true;
  fi;
- end);
+ end );
 
 
 
@@ -221,7 +221,7 @@
 ## 5. CharacterSubgroupRepresentation
 ############################################################################################
 
- InstallGlobalFunction( CharacterSubgroupRepresentation,           
+ InstallGlobalFunction( CharacterSubgroupRepresentation,
  function ( arg )        
     local  G, U, r, chi, s, S, H, f, M, m1, Y, rep;
     G := arg[1];
@@ -386,43 +386,42 @@
 
  InstallGlobalFunction( ExtendedRepresentationNormal,
  function( chi, rep )                                             
- local R, S, C, G, x, M1, M2, M, Mat, i, l, s, u, U, Uh, h, b, w, o, n, dim;
+ local R, S, C, G, x, M1, M2, M, Mat, i, s, u, U, Uh, h, b, w, o, n, dim;
  C := [ ];  
  n := chi[1];
- h := PreImagesRange( rep );
- Mat := GeneratorsOfGroup(Image(rep));
+ h := PreImage( rep );;
+ Uh:= GeneratorsOfGroup( h );;
+ U := ShallowCopy( Uh );;
+ Mat := List( [1..Length(U)], i -> U[i]^rep );;
+ Mat := ShallowCopy( Mat );;
  if Size( h ) = 1 then dim := 1;
    else
    dim := DimensionsMat( Mat[1] )[1];
    Info( InfoWarning, 1, "Need to extend a representation of degree ", dim, ". This may take a while." );
  fi;
- Uh:= GeneratorsOfGroup( h ); 
- U := ShallowCopy( Uh );
  G := UnderlyingGroup( chi );
- Mat := ShallowCopy( Mat );
  repeat 
    repeat x:= PseudoRandom( G );
    until not x in h and x^chi <> 0;
    for u in Uh do
      R := u^rep;
      S := ( x^(-1)*u*x )^rep;
-     l := List( [1..n], i->0 );
      M1 := KroneckerProduct( R, IdentityMat(n) );
      M2 := KroneckerProduct( IdentityMat(n), TransposedMat(S) );
      Append( C, M1 - M2);
    od;
      b := IdentityMat(n);
      b := Concatenation(b);
-     Add(C,b);
+     Add( C, b );
      w := List( [1..Length(Uh)*n^2] , i->0 );
      Add( w, x^chi );
      s := SolutionMat( TransposedMat(C), w );
      M:= List( [ 1 .. n ], i -> s{ [ (i-1)*n+1 .. i*n ] } );
      Add( Mat, M );
      C := [ ];
-     Add(U,x);
+     Add( U, x );
  until Size ( Group(U) ) = Size( G ); 
- return GroupHomomorphismByImagesNC( G, Group( Mat ), U, Mat );
+ return GroupHomomorphismByImagesNC( Group(U), Group( Mat ), U, Mat );
  end );
 
 
@@ -433,7 +432,7 @@
 ##
 ##
 
- InstallGlobalFunction( AlphaRepsn, 
+ InstallGlobalFunction( AlphaRepsn,
  function ( x, f, chi, H )
     local  z, sum, C, l, a, i, t;
     sum := 0; t:=0;
@@ -523,6 +522,7 @@
     od;
     return [ mat, X ];
  end );
+
 
 
 ############################################################################################
@@ -627,7 +627,7 @@
 ## The inputs of this program are a group $G$ and a representation rep of a subgroup
 ## $H$ of $G$ which is the restriction of a representation of $G$ to $H$.
 ## Using the Burnside's Theorem, this program finds a basis for the matrix algebra
-## of the image of $rep$.
+## of the image of rep.
 ## 
 
  InstallGlobalFunction( ModuleBasis,
@@ -662,6 +662,8 @@
  return [B,P];
  end );
 
+
+
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
@@ -688,11 +690,10 @@
 
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
-## This function finds the minimal normal subgroups of a group $G$.
+##This function finds the minimal normal subgroups of a group $G$.
 ##
 
  InstallGlobalFunction( MinimalNormalSubgps,
@@ -709,6 +710,7 @@
  od;
  return nt;
  end );
+
 
 
 ############################################################################################
@@ -770,7 +772,7 @@
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
-## This program lists all $p$-subgroups of $G$ up to conjugacy in $G$.
+## This program lists all $p$-subgroups of $G$ which are not $G$-conjugate.
 ##  
 
  InstallGlobalFunction( PSubgroups,
@@ -1004,9 +1006,9 @@
      if Rf = C[1] then 
         psi := Irr(G)[i]; 
         e1 := IrreducibleAffordingRepresentation( psi );
-        r1 := GeneratorsOfGroup(Image(e1));
+        r1 := List( [1..Length(U)], i->ImagesRepresentative( e1, U[i] ) );
+        break;
      fi;
- break;
  od;
  im := Image( h );
  for i in [1..Length( Irr(im) )] do
@@ -1016,10 +1018,10 @@
           e2 := IrreducibleAffordingRepresentation( Irr(im)[i] );
           l := List( [1..Length(U)], i->ImagesRepresentative( h, U[i] ) );
           r2 := List( [1..Length(l)], i->ImagesRepresentative( e2, l[i] ) );
-          r := List( [1..Length(r1)], i->KroneckerProduct( r1[i], r2[i] ) );   
+          r := List( [1..Length(r1)], i->KroneckerProduct( r1[i], r2[i] ) );  
+          break; 
        fi;
     fi;
- break;
  od;
  return GroupHomomorphismByImagesNC( G, Group( r ), U, r );
  end );
@@ -1038,18 +1040,8 @@
  G := arg[1];
  chi := arg[2];
  hom := NaturalHomomorphismByNormalSubgroup( G, Centre( G ) );
- if arg[3] <> 1 then
- M := arg[3];
- for i in [1..Length(M)] do
-    if Size(G) = M[i][1]  and Size(Centre(G)) = M[i][2] and chi[1] = M[i][3] and IsSimple( Image(hom) ) then
-          if Length[ M[i] ] = 5 then run := M[i][4]( G, chi, M[i][5], hom ); fi;
-          if Length[ M[i] ] = 4 then run := M[i][4]( chi, hom ); fi;
-        return run;
-    fi;
- od;
- fi; 
  L := [ ]; M := [ ];
- n := MinimalNormalSubgroups( Image(hom) );
+ n := MinimalNormalSubgroups( Image(hom) );;
  a := Filtered( n, IsAbelian );
  # Here program checks to find an abelian normal subgroup N not< Z(G).
  if a=n then 
@@ -1098,5 +1090,15 @@
         r := Concatenation( List( r, u -> List( L[i] , v -> KroneckerProduct( u, v ) ) ) );
       od;
  fi;
+ if arg[3] <> 1 then
+ M := arg[3];
+ for i in [1..Length(M)] do
+    if Size(G) = M[i][1]  and Size(Centre(G)) = M[i][2] and chi[1] = M[i][3] and IsSimple( Image(hom) ) then
+          if Length[ M[i] ] = 5 then run := M[i][4]( G, chi, M[i][5], hom ); fi;
+          if Length[ M[i] ] = 4 then run := M[i][4]( chi, hom ); fi;
+        return run;
+    fi;
+ od;
+ fi; 
  return GroupHomomorphismByImagesNC( G, Group( r ), Co, r );
- end);
+ end );
