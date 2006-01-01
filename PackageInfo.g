@@ -6,12 +6,12 @@
 
 SetPackageInfo( rec(
  PackageName    := "Repsn",
- MyVersion      := "1r1p0",
+ MyVersion      := "2r0p0",
  MyWWWHome      := "http://www.math.carleton.ca/~vdabbagh",
  Subtitle       := "A GAP4 Package for constructing representations of finite groups",
  Version        := JoinStringsWithSeparator( SplitString( ~.MyVersion, "rp" ), "." ),
  Autoload       := false,
- Date           := "25/04/2004",
+ Date           := "01/01/2006",
  PackageWWWHome := "http://www.math.carleton.ca/~vdabbagh/gap/repsn.html",
  ArchiveURL     := Concatenation( ~.MyWWWHome, "/gap/", LowercaseString( ~.PackageName ),~.MyVersion ),
  ArchiveFormats := "-win.zip",
@@ -65,6 +65,7 @@ Dependencies := rec(
 BannerString := Concatenation(
    "---------------------------------------------------------------\n",
    "Loading repsn for Constructing Representations of Finite Groups\n",
+   "                        Version 2.0                            \n",
    "                                                               \n",
    "            Written by Vahid Dabbaghian-Abdoly                 \n",
    "---------------------------------------------------------------\n" ),
