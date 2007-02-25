@@ -1,4 +1,4 @@
- <?xml version="2.0" encoding="ISO-8859-1"?>
+ <?xml version="2.1" encoding="ISO-8859-1"?>
 
  <!DOCTYPE Book SYSTEM "gapdoc.dtd">
 
@@ -19,22 +19,22 @@
        &nbsp;
     </Subtitle>
 
-    <Version>Version 2.0</Version> 
+    <Version>Version 2.1</Version> 
     <!-- OPTIONAL -->
     <Author> 
 	    Vahid Dabbaghian-Abdoly<Br/>                 <!-- REQUIRED -->
         &nbsp;
          <Address>
-	 School of Mathematics and Statistics,<Br/>
-	 Carleton University,<Br/>
-	 Ottawa, Ontario,<Br/>
-         K1S 5B6 Canada.
+	 Department of Mathematics,<Br/>
+	 Simon Fraser University,<Br/>
+	 Burnaby, British Columbia,<Br/>
+         V5A 1S6 Canada.
 	 </Address>
-      <Email> vdabbagh@math.carleton.ca</Email> 
-     <Homepage>http://www.math.carleton.ca/~vdabbagh</Homepage>
+      <Email> vdabbagh@sfu.ca</Email> 
+     <Homepage>http://www.sfu.ca/~vdabbagh</Homepage>
    </Author> 
    
-   <Date>January 2006</Date> 
+   <Date>February 2007</Date> 
    <!-- OPTIONAL -->
    
     <Copyright> 
@@ -111,11 +111,11 @@ the <Package>Repsn</Package> package on &GAP;4.3. In this case it is loaded with
 <Package>Repsn</Package> has been developed by<Br/>
 
 Vahid Dabbaghian-Abdoly <Br/>
-School of Mathematics and Statistics<Br/>
-Carleton University<Br/>
-Ottawa, Ontario,<Br/>
-K1S 5B6 Canada.<Br/>
-e-mail: vdabbagh@math.carleton.ca<Br/>
+Department of Mathematics<Br/>
+Simon Fraser University<Br/>
+Burnaby, British Columbia,<Br/>
+V5A 1S6 Canada.<Br/>
+e-mail: vdabbagh@sfu.ca<Br/>
 
 <P/>
 
@@ -540,7 +540,7 @@ returns a block diagonal representation of <M>G</M> containing the blocks <M>R1<
  <Example>
 gap> G := AlternatingGroup( 5 );;
 gap> H := SylowSubgroup( G, 2 );;
-gap> chi := TrivialCharacter( H );
+gap> chi := TrivialCharacter( H );;
 gap> Hrep := IrreducibleAffordingRepresentation( chi );;
 gap> rep := InducedSubgroupRepresentation( G, Hrep );;
 gap> IsReducibleRepresentation( rep );

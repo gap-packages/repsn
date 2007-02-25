@@ -1,5 +1,5 @@
 
-                   README file for REPSN - A GAP4 package - version 2.0
+                   README file for REPSN - A GAP4 package - version 2.1
                    ====================================================
 
 This is the README file for the GAP package ``REPSN''.
@@ -53,12 +53,13 @@ Author
 The REPSN package was written by:
  
 Vahid Dabbaghian-Abdoly,
-School of Mathematics and Statistics,
-Carleton University,
-Ottawa, Ontario,
-Canada K1S 5B6.
-E-mail: vdabbagh@math.carleton.ca
+Department of Mathematics,
+Simon Fraser University,
+Burnaby, British Columbia,
+Canada V5A 1S6.
+E-mail: vdabbagh@sfu.ca
 
-January 2006
+February 2007
+
 
 
