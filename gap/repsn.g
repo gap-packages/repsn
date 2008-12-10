@@ -6,14 +6,14 @@
 ##                                                                                         #
 ##                                     A GAP4 Packege                                      #
 ##                      for Constructing Representations of Finite Groups                  #
-##                                       Version 2.0                                       #
+##                                      Version 3.0.1                                      #
 ##                                                                                         #
-##                Developed by: Vahid Dabbaghian-Abdoly                                    #
-##                              School of Mathematics and Statistics,                      #
-##                              Carleton University,                                       #
-##                              Ottawa, Canada.                                            #
-##                              E-mail: vdabbagh@math.carleton.ca                          #
-##                              Home Page: www.math.carleton.ca/~vdabbagh                  #
+##                Developed by: Vahid Dabbaghian                                           #
+##                              Department of Mathematics,                                 #
+##                              Simon Fraser University,                                   #
+##                              Burnaby, BC, Canada.                                       #
+##                              E-mail: vdabbagh@sfu.ca                                    #
+##                              Home Page: www.sfu.ca/~vdabbagh                            #
 ##                                                                                         #
 ############################################################################################
 
@@ -239,8 +239,8 @@
 ## 5. CharacterSubgroupRepresentation
 ############################################################################################
 
- InstallGlobalFunction( CharacterSubgroupRepresentation,
- function ( arg )        
+    InstallGlobalFunction( CharacterSubgroupRepresentation,
+ function( arg )        
     local  G, U, r, chi, s, S, H, f, M, m1, Y, rep;
     chi := arg[1];
     G := UnderlyingGroup( chi );
@@ -448,7 +448,7 @@
 ## 1. IrreducibleAffordingRepresentation
 ############################################################################################
 
- InstallGlobalFunction( ConstituentsOfRepresentation,
+   InstallGlobalFunction( ConstituentsOfRepresentation,
  function( rep )
    local D, G, ctb, chi, con, R, C, m, i, r, UG, l;
    D := [ ];
@@ -479,7 +479,7 @@
 ## 1. DiagonalBlockMatrix
 ############################################################################################
 
- InstallGlobalFunction( EquivalentBlockRepresentation,
+   InstallGlobalFunction( EquivalentBlockRepresentation,
  function( reps )
    local G, UG, U, i, j, k, matlist, mat, Mat;
    Mat := [ ]; U := [ ];
@@ -552,7 +552,7 @@
 ##
 
  InstallGlobalFunction( AlphaRepsn,
- function ( x, f, chi, H )
+    function( x, f, chi, H )
     local  z, sum, C, l, a, i, t;
     sum := 0; t:=0;
     C := ConjugacyClasses(H);
@@ -593,7 +593,7 @@
 ##
 
  InstallGlobalFunction( CharacterSubgroupLinearConstituent,
- function ( chi, S )
+ function( chi, S )
  local  j, lin;
  for j  in [1..Length(S)]  do
     lin := LinearConstituentWithMultiplicityOne( chi, S[j]);
@@ -612,7 +612,7 @@
 ##
 
  InstallGlobalFunction( MatrixRepsn,
- function ( chi, G, H, f )
+    function( chi, G, H, f )
     local  mat, matn, X, Xinv, j, n, x, d, h, Y;
     h := Size(H);
     mat := [ [ h ] ];
@@ -646,7 +646,7 @@
 ##
 
  InstallGlobalFunction( CharacterSylowSubgroup,
- function ( G, chi )                                                    
+ function( G, chi )                                                    
  local   S, x, pair, coll, sizes, lin;
  coll:= Collected( Factors( Size( G ) ) );
  sizes:= List( coll, x -> x[1]^x[2] );
@@ -670,7 +670,7 @@
 ##
 
  InstallGlobalFunction( RepresentationMatrixGenerators,
- function ( U, Y, m1, f, chi, H )                                       
+    function( U, Y, m1, f, chi, H )                                       
     local  u, i, j, m2, L, X, inv, Yinv, lenY;
     L := [ ];
     lenY := Length( Y );
@@ -1046,25 +1046,95 @@
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
-## This program constructs a representation of degrees 16 or 28 of a 
-## group $G$ with abelian $Soc(G/Z(G))$ which contains 
-## a maximal subgroup M such that $\chi_M$ is irreducible.
+## For computing projective representations based on Minkwitz's method
 ##
 
- InstallGlobalFunction( RepresentationSpecialCharactersMaximal,
- function( G, chi , D )
- local f, h, max, m, H, R;
- f := FittingSubgroup( G );
- h := NaturalHomomorphismByNormalSubgroup( G, f );
- max := MaximalSubgroupClassReps( Image(h) );
- for m in max do 
-     if Size(m) = D[4] then
-     H := PreImage( h, m );
-     R := RestrictedClassFunction( chi, H );
-       if IsIrreducibleCharacter( R ) then 
-          return ExtendedRepresentation( chi, IrreducibleAffordingRepresentation( R ) );
-       fi;
+ InstallGlobalFunction( ProjectiveReps,
+ function( chi, rep, g )                                             
+ local d, N, mat, y, G, e, T, ZG;
+ G := UnderlyingGroup( chi );
+ ZG := Center(G);
+ N := PreImages( rep );
+ d := DimensionsMat( GeneratorsOfGroup( Image(rep) )[1] )[1];
+ e := chi[1]/d;
+ T := List(RightTransversal(N,ZG),i->CanonicalRightCosetElement(ZG,i));
+ mat := (d/(e*Size(T))) * Sum(List(T, y-> (g*(y^(-1)))^chi * ImagesRepresentative( rep,y ) ) );
+ return mat;
+ end );
+
+
+############################################################################################
+############################################################################################
+##################################### A Utility Function ###################################
+## Group generators for Minkwitz's method
+##
+
+ InstallGlobalFunction( GeneratorsProjective,
+ function( chi, rep )                                             
+ local z, N, U, g, e, ZG, G;
+ G := UnderlyingGroup( chi );
+ ZG := Center(G);
+ N := FittingSubgroup( G );
+ U := [];
+ z := Size(G);
+ repeat g:=Random( Difference( G, N ) );
+    if g^chi<>0 then
+       Add(U,g);
+    fi;
+ until U<>[] and Size(Group(U))=z;
+ return U;
+ end );
+
+
+############################################################################################
+############################################################################################
+##################################### A Utility Function ###################################
+## A program for finding suitable ordinary representation of the cover of G/F to use in 
+## Schur's theorem
+##
+
+ InstallGlobalFunction( FilteringCharacters,
+ function( chi, rep, U, Phi, h, EpiGf, IsoGf, SGf )
+ local LU, d, e, l, le, ls, conj, G, Uproj, Iso, phi, Iphi, lUSGf, mu, A, S3, WS, s, s1, s2, s3, g, cfp, a, WsGf, j, TrA, tst;
+ LU := Length(U);
+ d := DimensionsMat( GeneratorsOfGroup( Image(rep) )[1] )[1];
+ e := chi[1]/d;
+ G := Group(U);;                                                                  ###### G=<x1,...,xn> and U={x1...,xn} ######
+ Uproj := List( U, i-> ProjectiveReps( chi, rep, i) );;                           ###### [A1,...An] where Ai=V(xi) for a Proj. Reps V of G ######
+ l  := List( [1..LU], i->ImagesRepresentative( h, U[i] ) );        
+ le := List( [1..LU], i->PreImagesRepresentative( EpiGf, l[i] ) );   
+ ls := List( [1..LU], i->ImagesRepresentative( IsoGf, le[i] ) );                  ###### \bar{x1},...,\bar{xn} in the cover of G/F ######
+ conj := List( ConjugacyClasses(SGf), Representative );    
+ Iso := IsomorphismFpGroupByGenerators(G,U);;
+ for phi in Phi do
+   Iphi := IrreducibleAffordingRepresentation( phi );
+   lUSGf := List( [1..LU], i->ImagesRepresentative( Iphi, ls[i] ) );
+   mu := List(lUSGf, t -> Trace(t));
+   if ForAll(mu, t -> (t <> 0)) then
+     A:=[]; S3:=[]; WS:=[];
+     for s in conj do
+        s1:= PreImagesRepresentative( IsoGf, s ); 
+        s2:= ImagesRepresentative( EpiGf, s1 );
+        s3:= PreImagesRepresentative( h, s2 );                                   ####### \bar{s} in the cover ######
+        g := ImagesRepresentative( Iso, s3 );                                    ####### \bar{s}=w(x1,...xn)  ######
+        cfp := ExtRepOfObj(g);
+        Add(S3,s3);
+        a := IdentityMat( d ); 
+        for j in [1..Length(cfp)/2] do
+            a := a * (e/(mu[cfp[2*j-1]])*Uproj[cfp[2*j-1]])^cfp[2*j];            ####### A=w(A1,...,An) #######
+        od;
+        Add(A,a);
+        WsGf := Identity( SGf ); 
+        for j in [1..Length(cfp)/2] do
+            WsGf := WsGf * (ls[cfp[2*j-1]])^cfp[2*j];                            ####### WsGf=w(\bar{x1},...,\bar{xn})  #######
+        od;
+        Add(WS, WsGf);
+     od; 
+     TrA := List( [1..Length(conj)], i->Trace(A[i]) );
+     tst:= Filtered( [1..Length(conj)], i->TrA[i]<>0 );
+     if List( tst, i-> WS[i]^phi) = List( tst, i-> S3[i]^chi/TrA[i] ) then return [lUSGf, mu];
      fi;
+   fi; 
  od;
  end );
 
@@ -1072,23 +1142,72 @@
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
-## This program constructs a representation of degrees 16, 20, 24 or 30 of a group
-## $G$ with abelian $Soc(G/Z(G))$ which contains a $\chi$-subgroup.
+## A program for computing representation of a perfect group $G$ with abelian 
+## $Soc(G/Z(G))$ affording \chi, in the case that \chi_F=e*\theta and e not prime.
 ##
 
- InstallGlobalFunction( RepresentationSpecialCharactersSubgroup,
- function( G, chi , D )
- local L, h, C, c, H;
- L := [ ]; 
- h := NaturalHomomorphismByNormalSubgroup( G, Centre( G ) );   
- C := List( ConjugacyClassesSubgroups( Image( h ) ), Representative );
- for c in C do
- if Size( c ) = D[4] then 
-       Add( L, PreImage( h, c ) );
- fi;
+ InstallGlobalFunction( IrrRepsNotPrime,
+ function(chi,theta,f)
+ local G, h, e, Gf, EpiGf, SchurGf, IsoGf, SGf, chiSGf, Vf, U, lVG, SGfReps, r, i;
+    G := UnderlyingGroup( chi );;
+    h := NaturalHomomorphismByNormalSubgroup( G, f );;
+    e:= chi[1]/theta[1];;
+    Gf := Image(h);;
+    EpiGf := EpimorphismSchurCover( Gf, [2,3,5,7,11] );; 
+    SchurGf := PreImage(EpiGf);;
+    IsoGf := IsomorphismPermGroup(SchurGf);;
+    SGf := Image(IsoGf);;                                                   ####### SGf is a perm. reps of a cover of G/F #######
+    chiSGf:= Filtered( Irr(SGf), i->i[1] = e);
+    Vf := IrreducibleAffordingRepresentation( theta );
+## The following 2 lines is for computing a projective representation of G of degree \theta(1)
+## Here it computes the matrices V(x) for generators x in U
+   U := GeneratorsProjective( chi, Vf );
+   lVG := List( [1..Length(U)], i->ProjectiveReps( chi, Vf, U[i] ) );
+## The program "FilteringCharacters" checks to find the suitable representation of 
+## the central cover of G/F 
+   SGfReps := FilteringCharacters( chi, Vf, U, chiSGf, h, EpiGf, IsoGf, SGf );
+   r := List( [1..Length(U)], i->(e/SGfReps[2][i])*KroneckerProduct( SGfReps[1][i], lVG[i] ) ); 
+   return GroupHomomorphismByImagesNC( Group(U), Group( r ), U, r );
+ end );
+
+
+############################################################################################
+############################################################################################
+##################################### A Utility Function ###################################
+## This program returns a representation of a perfect group $G$ with abelian $Soc(G/Z(G))$ 
+## using Gallagher's Theorem
+##
+
+ InstallGlobalFunction( GallagherRepsn,
+ function( G, chi, h, f, C, m, U )
+ local IrrG, i, R, psi, e1, r1, im, Irrim, e2, r2, r, l;
+ IrrG := Irr(G);
+ psi:=0;
+ for i in [1..Length(IrrG)] do
+    R := RestrictedClassFunction( IrrG[i], f );
+    if R = C[1] then 
+       psi := IrrG[i]; 
+       e1 := IrreducibleAffordingRepresentation( psi );
+       r1 := List( [1..Length(U)], i->ImagesRepresentative( e1, U[i] ) );
+       break;
+    fi;
  od;
- H := CharacterSubgroupLinearConstituent( chi, L )[1];
- return CharacterSubgroupRepresentation( chi, H );
+ if psi <> 0 then
+   im := Image( h );
+   Irrim := Irr(im);
+   for i in [1..Length( Irrim )] do
+      if m[1][1] = Irrim[i][1] then  
+        R := RestrictedClassFunction( Irrim[i], h );
+        if chi = psi*R then 
+           e2 := IrreducibleAffordingRepresentation( Irrim[i] );
+           l := List( [1..Length(U)], i->ImagesRepresentative( h, U[i] ) );
+           r2 := List( [1..Length(l)], i->ImagesRepresentative( e2, l[i] ) );
+           r := List( [1..Length(r1)], i->KroneckerProduct( r1[i], r2[i] ) ); 
+           return GroupHomomorphismByImagesNC( G, Group( r ), U, r ); 
+        fi;
+      fi;
+   od;
+ fi;
  end );
 
 
@@ -1096,40 +1215,31 @@
 ############################################################################################
 ##################################### A Utility Function ###################################
 ## This program returns a representation of a perfect group $G$ with abelian 
-## $Soc(G/Z(G))$.
+## $Soc(G/Z(G))$. This function calls the following three functions:
+## 1. ExtendedRepresentationNormal
+## 2. InducedSubgroupRepresentation
+## 3. GallagherRepsn
 ##
 
  InstallGlobalFunction( PerfectAbelianSocleRepresentation,
- function( G, chi, SpecialAbelianSocleData )      
- local l, e1, e2, r, f, R, Rc, Cc, Ri, Rf, Ci, C, I, t, psi, i, h, im, r1, r2, U, P, m, run, D;
- U := GeneratorsOfGroup( G );;
- f := FittingSubgroup( G );
- R := RestrictedClassFunction( chi , f );
- C := ConstituentsOfCharacter( R );
+ function( G, chi )      
+ local Ug, U, f, R, C, m, I, t, Rc, Cc, h, P; 
+ Ug := GeneratorsOfGroup( G );;
+ U := ShallowCopy( Ug );;
+ f := FittingSubgroup( G );;
+ R := RestrictedClassFunction( chi , f );;
+ C := ConstituentsOfCharacter( R );;
  m := MatScalarProducts( C, [ R ] );
- D := SpecialAbelianSocleData;
+ ######### if \chi_F is irreducible #########
  if IsIrreducibleCharacter( R ) then 
     return ExtendedRepresentationNormal( chi, IrreducibleAffordingRepresentation( R ) );
  fi;
- for i in [1..Length(D)] do
- if chi[1] = D[i][1] and m[1][1] = D[i][2] and Length( C ) = 1 then 
-    run := D[i][5]( G, chi, D[i]);
-    return run; 
- fi;
- od;        
- h := NaturalHomomorphismByNormalSubgroup( G, f );
- if Length( C )=1  and IsPrime( m[1][1] ) then 
-    P := PreImage( h , SylowSubgroup( Image(h), m[1][1] ) );
-    R := RestrictedClassFunction( chi , P );
-    if IsIrreducibleCharacter( R ) then 
-       return ExtendedRepresentation( chi, IrreducibleAffordingRepresentation( R ) );  
-    fi; 
- fi;
+ ######### if \chi is imprimitive #########
  if Length( C ) > 1 then  
    I := InertiaSubgroup( G, C[1] );
-   Ri := RestrictedClassFunction( chi, I );
-   Ci := ConstituentsOfCharacter( Ri );
-   for t in Ci do
+   R := RestrictedClassFunction( chi, I );
+   C := ConstituentsOfCharacter( R );
+   for t in C do
      Rc := RestrictedClassFunction( t, f );
      Cc := ConstituentsOfCharacter( Rc );
      if C[1] in Cc then 
@@ -1137,29 +1247,70 @@
      fi;
    od;
  fi;
- for i in [1..Length(Irr(G))] do
-     Rf := RestrictedClassFunction( Irr(G)[i], f );
-     if Rf = C[1] then 
-        psi := Irr(G)[i]; 
-        e1 := IrreducibleAffordingRepresentation( psi );
-        r1 := List( [1..Length(U)], i->ImagesRepresentative( e1, U[i] ) );
-        break;
-     fi;
- od;
- im := Image( h );
- for i in [1..Length( Irr(im) )] do
-    if m[1][1] = Irr(im)[i][1] then  
-       R := RestrictedClassFunction( Irr(im)[i], h );
-       if chi = psi*R then 
-          e2 := IrreducibleAffordingRepresentation( Irr(im)[i] );
-          l := List( [1..Length(U)], i->ImagesRepresentative( h, U[i] ) );
-          r2 := List( [1..Length(l)], i->ImagesRepresentative( e2, l[i] ) );
-          r := List( [1..Length(r1)], i->KroneckerProduct( r1[i], r2[i] ) );  
-          break; 
-       fi;
+ h := NaturalHomomorphismByNormalSubgroup( G, f );
+ ######### if \chi_F=e*\theta for e prime #########       
+ if Length( C ) = 1  and IsPrime( m[1][1] ) then 
+    P := PreImage( h , SylowSubgroup( Image(h), m[1][1] ) );
+    R := RestrictedClassFunction( chi , P );
+    if IsIrreducibleCharacter( R ) then 
+       return ExtendedRepresentation( chi, IrreducibleAffordingRepresentation( R ) );  
+    else 
+       return GallagherRepsn( G, chi, h, f, C, m, U );
     fi;
- od;
- return GroupHomomorphismByImagesNC( G, Group( r ), U, r );
+ fi; 
+ ######### if \chi_F=e*\theta for e not prime #########
+ if Length( C ) = 1 and IsPrime( m[1][1] ) = false then    
+    return IrrRepsNotPrime( chi, C[1], f );; 
+ fi;
+ end );
+
+
+############################################################################################
+############################################################################################
+##################################### A Utility Function ###################################
+## This program returns a representation of a perfect group $G$ with abelian 
+## $Soc(G/Z(G))$. This function calls the following three functions:
+## 1. ExtendedRepresentationNormal3
+## 2. InducedSubgroupRepresentation3
+## 3. GallagherRepsn
+##
+
+ InstallGlobalFunction( SocleMoreComponents,
+ function( G, chi, S )      
+ local Ug, U, R, C, m, I, t, Rc, Cc, h, P; 
+ Ug := GeneratorsOfGroup( G );;
+ U := ShallowCopy( Ug );;
+ R := RestrictedClassFunction( chi , S );;
+ C := ConstituentsOfCharacter( R );;
+ m := MatScalarProducts( C, [ R ] );
+ ######### if \chi_S is irreducible #########
+ if IsIrreducibleCharacter( R ) then 
+    return ExtendedRepresentationNormal( chi, IrreducibleAffordingRepresentation( R ) );
+ fi;
+ ######### if \chi is imprimitive #########
+ if Length( C ) > 1 then  
+   I := InertiaSubgroup( G, C[1] );
+   R := RestrictedClassFunction( chi, I );
+   C := ConstituentsOfCharacter( R );
+   for t in C do
+     Rc := RestrictedClassFunction( t, S );
+     Cc := ConstituentsOfCharacter( Rc );
+     if C[1] in Cc then 
+        return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t ));; 
+     fi;
+   od;
+ fi;
+ h := NaturalHomomorphismByNormalSubgroup( G, S );
+ ######### if \chi_F=e*\theta for e in [ 2, 3] #########       
+ if Length( C ) = 1  and m[1][1] in [ 2, 3 ] then 
+    P := PreImage( h , SylowSubgroup( Image(h), m[1][1] ) );
+    R := RestrictedClassFunction( chi , P );
+    if IsIrreducibleCharacter( R ) then 
+       return ExtendedRepresentation( chi, IrreducibleAffordingRepresentation( R ) );  
+    fi;
+ else 
+    return GallagherRepsn( G, chi, h, S, C, m, U );
+ fi; 
  end );
 
 
@@ -1170,60 +1321,80 @@
 ##
                                                      
  InstallGlobalFunction( PerfectRepresentation,
- function ( arg )
- local  G, chi, hom, n, a, r, s, S, c, C, i, R, l, L, M, Co, cl, so, N, x, I, t, Ri, Ci, Rc, Cc, run;
+ function( arg )
+ local  G, chi, hom, n, a, r, s, S, c, C, i, R, l, L, M, Co, cl, so, N, x, I, t, Ri, Ci, Rc, Cc, run, ls, j, k, A;
  G := arg[1];
  chi := arg[2];
  hom := NaturalHomomorphismByNormalSubgroup( G, Centre( G ) );
  L := [ ]; M := [ ];
  n := MinimalNormalSubgroups( Image(hom) );;
  a := Filtered( n, IsAbelian );
- # Here program checks to find an abelian normal subgroup N not< Z(G).
+ ## First program checks to find an abelian normal subgroup N not < Z(G).
  if a=n then 
    cl := List( ConjugacyClasses( G ), Representative );
    so := Difference( cl, Centre( G) );
    for x in so do
-     N := NormalClosure( G, Group( x ) );
-     if IsAbelian(N) then 
-       R := RestrictedClassFunction( chi , N );
-       C := ConstituentsOfCharacter( R );
-       I := InertiaSubgroup( G, C[1] );
-       Ri := RestrictedClassFunction( chi, I );
-       Ci := ConstituentsOfCharacter( Ri );
-       for t in Ci do
-         Rc := RestrictedClassFunction( t, N );
-         Cc := ConstituentsOfCharacter( Rc );
-         if C[1] in Cc then 
-            return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t ));; 
-         fi;
-       od;
-     fi;
-   od;
-   return PerfectAbelianSocleRepresentation( G, chi, SpecialAbelianSocleData ); 
- # Here program finds a representation of the components of G.
- else S := Difference( n, a );
-         if Length( arg ) = 3 and Length( S ) = 1 and arg[3] = 1 then return true; 
-         fi;
-      for s in S do 
-        Append( M, GeneratorsOfGroup( s ) );
-      od;
-      c := Centralizer( Image( hom ), Group( M ) );
-      if Size(c) > 1 then Add( S, c ); fi;
-      S := List( S, i -> PreImage( hom, i ) );
-      Co := [1];
-      for i in [ 1..Length( S ) ] do
-        R := RestrictedClassFunction( chi, S[i] );
-        C := ConstituentsOfCharacter( R );
-        r := CharacterSubgroupRepresentation( C[1] );
-        Add( L, GeneratorsOfGroup( Image( r ) ) );
-        Co := Concatenation(List( Co, u->u*GeneratorsOfGroup( S[i] ) ) );
-      od;
-      if Length(L) = 1 then return r;
+      N := NormalClosure( G, Group( x ) );
+      if IsAbelian(N) then 
+         R := RestrictedClassFunction( chi , N );
+         C := ConstituentsOfCharacter( R );
+         I := InertiaSubgroup( G, C[1] );
+         Ri := RestrictedClassFunction( chi, I );
+         Ci := ConstituentsOfCharacter( Ri );
+         for t in Ci do
+           Rc := RestrictedClassFunction( t, N );
+           Cc := ConstituentsOfCharacter( Rc );
+           if C[1] in Cc then 
+              Info( InfoWarning, 1, " the given character of degree ", chi[1], " is imprimitive" );
+              return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t ));; 
+           fi;
+         od;
       fi;
-      r := L[1];
-      for i in [ 2..Length( L ) ] do 
-        r := Concatenation( List( r, u -> List( L[i] , v -> KroneckerProduct( u, v ) ) ) );
-      od;
+   od;
+   return PerfectAbelianSocleRepresentation( G, chi ); 
+   else S := Difference( n, a );
+ ## S is the non-abelian part of the soc(G/Z) which is the direct product of simple groups
+ ## if Length( S ) = 1 then G is a central cover of a simple group and we use Dixon's method
+   if Length( arg ) = 3 and Length( S ) = 1 and arg[3] = 1 then 
+       return true; 
+   fi;
+ ## if Length( S ) >= 5 then we apply Gallaghe's method.
+ ## For checking the components of S we only use the size of these components.
+   ls := List(S,Size);
+   A := 0;
+   Sort(ls);
+   for k in [1..Length(ls)] do
+      if ls[k] > A then 
+         A:=ls[k]; 
+         j := 0; 
+      fi;
+      j:=j+1; 
+      if j > 4 then;
+         return  SocleMoreComponents( G, chi, S ); 
+      fi;
+   od;
+ ## if Length( S ) > 1 then, if number of isomorphic components of S is <= 5 then we use
+ ## the Tensor Product method.
+   for s in S do 
+      Append( M, GeneratorsOfGroup( s ) );
+   od;
+   c := Centralizer( Image( hom ), Group( M ) );
+   if Size(c) > 1 then Add( S, c ); fi;
+   S := List( S, i -> PreImage( hom, i ) );
+   Co := [1];
+   for i in [ 1..Length( S ) ] do
+      R := RestrictedClassFunction( chi, S[i] );
+      C := ConstituentsOfCharacter( R );
+      r := CharacterSubgroupRepresentation( C[1] );
+      Add( L, GeneratorsOfGroup( Image( r ) ) );
+      Co := Concatenation(List( Co, u->u*GeneratorsOfGroup( S[i] ) ) );
+   od;
+   if Length(L) = 1 then return r;
+   fi;
+   r := L[1];
+   for i in [ 2..Length( L ) ] do 
+     r := Concatenation( List( r, u -> List( L[i] , v -> KroneckerProduct( u, v ) ) ) );
+   od;
  fi;
  if arg[3] <> 1 then
  M := arg[3];

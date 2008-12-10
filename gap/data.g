@@ -29,27 +29,6 @@
 
 
 
-################################################################################################
-################################################################################################
-## Suppose $G$ is a group with abelian $Soc(G/Z(G))$ and $F$ is the Fitting subgroup of $G$.
-## If $\chi$ is an irreducible character of $G$ of degree 16, 20, 24, 28 and 30 such that
-## $\chi_F$ has a single constituent with multiplicity 4, 4, 6, 4, and 6, respectively, then
-## there exists a $\chi$-subgroup $H$ containing the centre of $G$.
-##                                                                                            
-##                          chi[1], m , |G/F|,|H/Z(G)|,          functions                    
-##                         --------------------------------------------------------------------
- SpecialAbelianSocleData:=[[  16  , 4 ,  60  ,   12   ,RepresentationSpecialCharactersSubgroup],
-                           [  16  , 4 ,  60  ,   16   ,RepresentationSpecialCharactersSubgroup],
-                           [  16  , 4 ,  60  ,   24   ,RepresentationSpecialCharactersSubgroup],
-                           [  16  , 4 ,  360 ,   36   ,RepresentationSpecialCharactersMaximal ],
-                           [  20  , 4 ,  120 ,   10   ,RepresentationSpecialCharactersSubgroup],
-                           [  24  , 6 ,  60  ,   24   ,RepresentationSpecialCharactersSubgroup],
-                           [  24  , 6 ,  360 ,   12   ,RepresentationSpecialCharactersSubgroup],
-                           [  24  , 6 ,  360 ,   16   ,RepresentationSpecialCharactersSubgroup],
-                           [  28  , 4 ,  336 ,   42   ,RepresentationSpecialCharactersMaximal ],
-                           [  28  , 4 ,  336 ,   48   ,RepresentationSpecialCharactersMaximal ],
-                           [  30  , 6 ,  120 ,   25   ,RepresentationSpecialCharactersSubgroup]];;
-
 
 
 

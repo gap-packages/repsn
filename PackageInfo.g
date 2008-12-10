@@ -2,23 +2,23 @@
 #############################################################################
 ##              PackageInfo.g for the GAP 4 package Repsn                  ##
 ##                                                                         ##
-##                      Vahid Dabbaghian-Abdoly                            ##
+##                          Vahid Dabbaghian                               ##
 
 SetPackageInfo( rec(
  PackageName    := "Repsn",
- MyVersion      := "2r1p0",
+ MyVersion      := "3r0p1",
  MyWWWHome      := "http://www.sfu.ca/~vdabbagh",
  Subtitle       := "A GAP4 Package for constructing representations of finite groups",
  Version        := JoinStringsWithSeparator( SplitString( ~.MyVersion, "rp" ), "." ),
  Autoload       := false,
- Date           := "25/02/2007",
+ Date           := "10/12/2008",
  PackageWWWHome := "http://www.sfu.ca/~vdabbagh/gap/repsn.html",
  ArchiveURL     := Concatenation( ~.MyWWWHome, "/gap/", LowercaseString( ~.PackageName ),~.MyVersion ),
  ArchiveFormats := "-win.zip",
 
 
 Persons := [rec(
- LastName       := "Dabbaghian-Abdoly",
+ LastName       := "Dabbaghian",
  FirstNames     := "Vahid",
  IsAuthor       := true,
  IsMaintainer   := true,
@@ -27,7 +27,7 @@ Persons := [rec(
  Place          := "Burnaby, Canada",
  Institution    := "Department of Mathematics, Simon Fraser University",
  PostalAddress  := Concatenation( [
-       "Vahid Dabbaghian-Abdoly\n",
+       "Vahid Dabbaghian\n",
        "Department of Mathematics\n",
        "Simon Fraser University\n",
        "Burnaby, British Columbia\n",
@@ -46,7 +46,7 @@ Persons := [rec(
 PackageDoc := rec(
  BookName         := "Repsn",
  ArchiveURLSubset := [ "doc", "html" ],
- HTMLStart        := "html/chap0.html",
+ HTMLStart        := "doc/chap0.html",
  PDFFile          := "doc/manual.pdf",
  SixFile          := "doc/manual.six",
  LongTitle        := "Constructing matrix representations of finite groups",
@@ -63,11 +63,12 @@ Dependencies := rec(
  Keywords         := ["group representations", "matrix representations", "Dixon's method"],
 
 BannerString := Concatenation(
-   "---------------------------------------------------------------\n",
-   "Loading repsn for Constructing Representations of Finite Groups\n",
-   "                        Version 2.1                            \n",
-   "                                                               \n",
-   "            Written by Vahid Dabbaghian-Abdoly                 \n",
-   "---------------------------------------------------------------\n" ),
+   "-------------------------------------------------------\n",
+   "Repsn for Constructing Representations of Finite Groups\n",
+   "                  Version 3.0.1                        \n",
+   "                                                       \n",
+   "                    Written by                         \n",
+   "                 Vahid Dabbaghian                      \n",
+   "-------------------------------------------------------\n" ),
 ) );
 
