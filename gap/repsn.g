@@ -6,7 +6,7 @@
 ##                                                                                         #
 ##                                     A GAP4 Packege                                      #
 ##                      for Constructing Representations of Finite Groups                  #
-##                                      Version 3.0.1                                      #
+##                                      Version 3.0.2                                      #
 ##                                                                                         #
 ##                Developed by: Vahid Dabbaghian                                           #
 ##                              Department of Mathematics,                                 #
