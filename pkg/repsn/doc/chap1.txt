@@ -1,39 +1,44 @@
   
-  [1m[4m[31m1. Introduction[0m
+  [1X1 Introduction[0X
   
-  This manual describes the [1mRepsn[0m package for computing matrix representations
-  in characteristic zero of finite groups. Most of the functions in [1mRepsn[0m have
+  This manual describes the [5XRepsn[0m package for computing matrix representations
+  in characteristic zero of finite groups. Most of the functions in [5XRepsn[0m have
   been  written  according  to  the  algorithm  described in the author's Ph.D
-  thesis [Dab-03] (see [Dab-05]).
+  thesis [Dab-03] and [DD-08] (see [Dab-05]).
   
   For  constructing  representations  of simple groups and their covers we use
   the  algorithm described in [Dix-93]. To use this algorithm for constructing
   a  representation  of a group G affording an irreducible character chi of G,
   we  need to have a subgroup H of G such that the restriction of chi to H has
   a  linear  constituent  with  multiplicity  one.  In this case we say H is a
-  [22m[36mcharacter  subgroup[0m  relative to chi (or a chi-subgroup). A chi-subgroup for
-  each  irreducible  character chi of degree less than 32 of simple groups and
-  their covers are listed in [Dab-03].
+  [13Xcharacter  subgroup[0m  relative to chi (or a chi-subgroup). A chi-subgroup for
+  each  irreducible character chi of degree less than 100 of simple groups and
+  their covers are listed in [Dab-06] and [Dab-07].
   
-  All  [1mRepsn[0m  functions are written entirely in the [1mGAP[0m language. It is proved
-  in  [Dab-05] that the algorithm is correct for any group with a character of
-  degree  less  than  32.  Indeed,  if  the  group  is  solvable,  there is no
-  restriction  on  the character degree. In practice the program is quite fast
-  when  the degree is small, but can be very slow when it is necessary to call
-  one  of  the  subprograms  which  extend irreducible representations. In the
+  All  [5XRepsn[0m  functions are written entirely in the [5XGAP[0m language. It is proved
+  in  [Dab-05]  and [DD-08] that the algorithm is correct for any group with a
+  character  of  degree less than 100. Indeed, if the group is solvable, there
+  is  no restriction on the character degree. In practice the program is quite
+  fast  when the degree is small, but can be very slow when it is necessary to
+  call one of the subprograms which extend irreducible representations. In the
   latter  case  the  number  of  element  wise operations required to extend a
   representation of degree d is proportional to d^6.
   
-  [1mRepsn[0m  is implemented in the [1mGAP[0m language, and runs on any system supporting
-  [1mGAP[0m4.  The  [1mRepsn[0m  package  is  loaded into the current [1mGAP[0m session with the
+  [5XRepsn[0m  is implemented in the [5XGAP[0m language, and runs on any system supporting
+  [5XGAP[0m4.  The  [5XRepsn[0m  package  is  loaded into the current [5XGAP[0m session with the
   command
   
-   gap> LoadPackage( "repsn" );   (see  section  [22m[36mLoading a GAP Package[0m in the [1mGAP[0m Reference Manual). One could
-  install  the  [1mRepsn[0m  package  on  [1mGAP[0m4.3. In this case it is loaded with the
+   gap> LoadPackage( "repsn" ); 
+  
+  (see  section  [13XLoading a GAP Package[0m in the [5XGAP[0m Reference Manual). One could
+  install  the  [5XRepsn[0m  package  on  [5XGAP[0m4.3. In this case it is loaded with the
   command
   
-   gap> RequirePackage( "repsn" );   [1mRepsn[0m has been developed by
-  Vahid Dabbaghian-Abdoly
+   gap> RequirePackage( "repsn" ); 
+  
+  [5XRepsn[0m has been developed by
+  
+  Vahid Dabbaghian
   Department of Mathematics
   Simon Fraser University
   Burnaby, British Columbia,

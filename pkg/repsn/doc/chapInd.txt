@@ -1,23 +1,23 @@
   
   
-  [1m[4m[31mIndex[0m
+  [1XIndex[0X
   
-  [1m[34mAllCharacterPSubgroups[0m  2.4-3
-  [1m[34mAllCharacterStandardSubgroups[0m  2.4-4
-  [1m[34mAllCharacterSubgroups[0m  2.4-5
-  [1m[34mCharacterSubgroupRepresentation[0m  2.4-1
-  [1m[34mCharacterSubgroupRepresentation[0m  2.4-1
-  [1m[34mConstituentsOfRepresentation[0m  3.1-1
-  [1m[34mEquivalentBlockRepresentation[0m  3.2-1
-  [1m[34mEquivalentBlockRepresentation[0m  3.2-1
-  [1m[34mEquivalentRepresentation[0m  2.5-1
-  [1m[34mExtendedRepresentation[0m  2.3-1
-  [1m[34mExtendedRepresentationNormal[0m  2.3-2
-  [1m[34mInducedSubgroupRepresentation[0m  2.2-1
-  [1m[34mIrreducibleAffordingRepresentation[0m  2.1-1
-  [1m[34mIsAffordingRepresentation[0m  2.1-2
-  [1m[34mIsCharacterSubgroup[0m  2.4-2
-  [1m[34mIsReducibleRepresentation[0m  3.1-2
+  [2XAllCharacterPSubgroups[0X  2.4-3
+  [2XAllCharacterStandardSubgroups[0X  2.4-4
+  [2XAllCharacterSubgroups[0X  2.4-5
+  [2XCharacterSubgroupRepresentation[0X  2.4-1
+  [2XCharacterSubgroupRepresentation[0X  2.4-1
+  [2XConstituentsOfRepresentation[0X  3.1-1
+  [2XEquivalentBlockRepresentation[0X  3.2-1
+  [2XEquivalentBlockRepresentation[0X  3.2-1
+  [2XEquivalentRepresentation[0X  2.5-1
+  [2XExtendedRepresentation[0X  2.3-1
+  [2XExtendedRepresentationNormal[0X  2.3-2
+  [2XInducedSubgroupRepresentation[0X  2.2-1
+  [2XIrreducibleAffordingRepresentation[0X  2.1-1
+  [2XIsAffordingRepresentation[0X  2.1-2
+  [2XIsCharacterSubgroup[0X  2.4-2
+  [2XIsReducibleRepresentation[0X  3.1-2
   
   
   -------------------------------------------------------

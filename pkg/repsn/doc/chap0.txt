@@ -1,24 +1,24 @@
   
   
-                                     [1m[4m[31m[1mRepsn[1m[4m[31m[0m
+                                    [1X [5XRepsn[0m[1X [0m
   
   
-      [1m[4m[31mA [1mGAP[1m[4m[31m4 Package for constructing representations of finite groups  [0m
+      [1X A [5XGAP[0m[1X4 Package for constructing representations of finite groups Â  [0m
   
   
-                                  Version 2.1
+                                 Version 3.0.1
   
   
-                                 February 2007
+                                 December 2008
   
   
-                           Vahid Dabbaghian-Abdoly  
+                               Vahid Dabbaghian Â 
   
   
   
-  Vahid Dabbaghian-Abdoly  
-      Email:    [34mmailto: vdabbagh@sfu.ca[0m
-      Homepage: [34mhttp://www.sfu.ca/~vdabbagh[0m
+  Vahid Dabbaghian Â 
+      Email:    [7Xmailto:vdabbagh@sfu.ca[0m
+      Homepage: [7Xhttp://www.sfu.ca/~vdabbagh[0m
       Address:  Department of Mathematics,
                 Simon Fraser University,
                 Burnaby, British Columbia,
@@ -27,29 +27,29 @@
   
   
   -------------------------------------------------------
-  [1m[4m[31mCopyright[0m
-  (C) 2004 Vahid Dabbaghian-Abdoly.
+  [1XCopyright[0m
+  Â© 2004 Vahid Dabbaghian.
   
   
   -------------------------------------------------------
-  [1m[4m[31mAcknowledgements[0m
-  This  package was obtained during my Ph.D. studies at Carleton University. I
-  would  like  to  express  deep  gratitude to my supervisor Professor John D.
-  Dixon  whose guidance and support were crucial for the successful completion
-  of  this  project.  I  also  thank Professor Charles Wright and referees for
-  pointing out some important comments to improve [1mRepsn[0m.
+  [1XAcknowledgements[0m
+  The  first  version  of this package was obtained during my Ph.D. studies at
+  Carleton University. I would like to express deep gratitude to my supervisor
+  Professor  John  D.  Dixon  whose  guidance and support were crucial for the
+  successful completion of this project. I also thank Professor Charles Wright
+  and referees for pointing out some important comments to improve [5XRepsn[0m.
   
-  This  documentation was prepared with the [1mGAPDoc[0m package by Frank Lübeck and
-  Max Neunhöffer.
+  This  documentation was prepared with the [5XGAPDoc[0m package by Frank LÃ¼beck and
+  Max NeunhÃ¶ffer.
   
   
   -------------------------------------------------------
   
   
-  [1m[4m[31mContent (repsn)[0m
+  [1XContents (repsn)[0X
   
-  1. Introduction
-  2. Irreducible Representations
+  1 Introduction
+  2 Irreducible Representations
     2.1 Constructing Representations
       2.1-1 IrreducibleAffordingRepresentation
       2.1-2 IsAffordingRepresentation
@@ -66,7 +66,7 @@
       2.4-5 AllCharacterSubgroups
     2.5 Equivalent Representation
       2.5-1 EquivalentRepresentation
-  3. Reducible Representations
+  3 Reducible Representations
     3.1 Constituents of Representations
       3.1-1 ConstituentsOfRepresentation
       3.1-2 IsReducibleRepresentation

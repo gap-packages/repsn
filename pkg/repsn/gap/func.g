@@ -24,8 +24,6 @@
  DeclareGlobalFunction( "CoversOfU43Representation" );
  DeclareGlobalFunction( "CoversOfO73Representation" );
  DeclareGlobalFunction( "CoversOfU62Representation" );
- DeclareGlobalFunction( "RepresentationSpecialCharactersMaximal" );
- DeclareGlobalFunction( "RepresentationSpecialCharactersSubgroup" );
  DeclareGlobalFunction( "PerfectAbelianSocleRepresentation" );
  DeclareGlobalFunction( "PerfectRepresentation" ); 
  DeclareGlobalFunction( "IrreducibleAffordingRepresentation" );
@@ -34,6 +32,13 @@
  DeclareGlobalFunction( "ConstituentsOfRepresentation" );
  DeclareGlobalFunction( "EquivalentBlockRepresentation" );
  DeclareGlobalFunction( "IsReducibleRepresentation" );
+## New to REPSN 3.0.1
+ DeclareGlobalFunction( "ProjectiveReps" );
+ DeclareGlobalFunction( "GeneratorsProjective" );
+ DeclareGlobalFunction( "FilteringCharacters" );
+ DeclareGlobalFunction( "IrrRepsNotPrime" );
+ DeclareGlobalFunction( "GallagherRepsn" );
+ DeclareGlobalFunction( "SocleMoreComponents" );
 
 
 

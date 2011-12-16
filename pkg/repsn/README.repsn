@@ -1,6 +1,6 @@
 
-                   README file for REPSN - A GAP4 package - version 2.1
-                   ====================================================
+                   README file for REPSN - A GAP4 package - version 3.0.1
+                   ======================================================
 
 This is the README file for the GAP package ``REPSN''.
 
@@ -19,7 +19,6 @@ following files (among others):
 
      * manual.dvi       dvi version of the manual
      * manual.pdf       pdf version of the manual
-     * manual.ps        ps version of the manual
 
 REMARKS.
 
@@ -44,7 +43,7 @@ gap> LoadPackage("repsn");
 
 ===========================================================================
 
-E-mail me if  there are any questions,  remarks,  suggestions. Also, I
+E-mail me if there are any questions, remarks, suggestions. Also, I
 would like to hear about applications of this package.
 
 Author
@@ -52,14 +51,14 @@ Author
  
 The REPSN package was written by:
  
-Vahid Dabbaghian-Abdoly,
+Vahid Dabbaghian,
 Department of Mathematics,
 Simon Fraser University,
 Burnaby, British Columbia,
 Canada V5A 1S6.
 E-mail: vdabbagh@sfu.ca
 
-February 2007
+December 2008
 
 
 

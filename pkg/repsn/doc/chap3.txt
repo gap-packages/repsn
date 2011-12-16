@@ -1,180 +1,180 @@
   
-  [1m[4m[31m3. Reducible Representations[0m
+  [1X3 Reducible Representations[0X
   
   In  this  chapter  we  introduce  some  functions  which deal with a complex
   reducible representation R of a finite group G.
   
   
-  [1m[4m[31m3.1 Constituents of Representations[0m
+  [1X3.1 Constituents of Representations[0X
   
-  [1m[4m[31m3.1-1 ConstituentsOfRepresentation[0m
+  [1X3.1-1 ConstituentsOfRepresentation[0m
   
-  [1m[34m> ConstituentsOfRepresentation( [0m[22m[34mrep[0m[1m[34m ) ______________________________[0mfunction
+  [2X> ConstituentsOfRepresentation( [0X[3Xrep[0X[2X ) ______________________________[0Xfunction
   
-  called  with a representation [22m[34mrep[0m of a group G. This function returns a list
-  of irreducible representations of G which are constituents of [22m[34mrep[0m, and their
-  corresponding  multiplicities.  For example, if [22m[34mrep[0m is a representation of G
+  called  with a representation [3Xrep[0m of a group G. This function returns a list
+  of irreducible representations of G which are constituents of [3Xrep[0m, and their
+  corresponding  multiplicities.  For example, if [3Xrep[0m is a representation of G
   affording a character X such that X = mY + nZ, where Y and Z are irreducible
   characters  of  G,  and  m  and n are the corresponding multiplicities, then
-  [22m[32mConstituentsOfRepresentation[0m  returns  [[m,  S],  [n,  T]] where S and T are
+  [10XConstituentsOfRepresentation[0m  returns  [[m,  S],  [n,  T]] where S and T are
   irreducible  representations  of  G  affording  Y  and Z, respectively. This
   function call can be quite expensive when G is a large group.
   
-  [1m[4m[31m3.1-2 IsReducibleRepresentation[0m
+  [1X3.1-2 IsReducibleRepresentation[0m
   
-  [1m[34m> IsReducibleRepresentation( [0m[22m[34mrep[0m[1m[34m ) _________________________________[0mfunction
+  [2X> IsReducibleRepresentation( [0X[3Xrep[0X[2X ) _________________________________[0Xfunction
   
-  If  [22m[34mrep[0m  is  a  representation  of  a group G then [22m[32mIsReducibleRepresentation[0m
-  returns [22m[32mtrue[0m if [22m[34mrep[0m is a reducible representation of G.
+  If  [3Xrep[0m  is  a  representation  of  a group G then [10XIsReducibleRepresentation[0m
+  returns [10Xtrue[0m if [3Xrep[0m is a reducible representation of G.
   
   
-  [1m[4m[31m3.2 Block Representations[0m
+  [1X3.2 Block Representations[0X
   
-  [1m[4m[31m3.2-1 EquivalentBlockRepresentation[0m
+  [1X3.2-1 EquivalentBlockRepresentation[0m
   
-  [1m[34m> EquivalentBlockRepresentation( [0m[22m[34mrep[0m[1m[34m ) _____________________________[0mfunction
-  [1m[34m> EquivalentBlockRepresentation( [0m[22m[34mlist[0m[1m[34m ) ____________________________[0mfunction
+  [2X> EquivalentBlockRepresentation( [0X[3Xrep[0X[2X ) _____________________________[0Xfunction
+  [2X> EquivalentBlockRepresentation( [0X[3Xlist[0X[2X ) ____________________________[0Xfunction
   
-  If  [22m[34mrep[0m  is a reducible representation of a group G, this function returns a
-  block diagonal representation of G equivalent to [22m[34mrep[0m. If [22m[34m list [0m = [[m1, R1],
+  If  [3Xrep[0m  is a reducible representation of a group G, this function returns a
+  block diagonal representation of G equivalent to [3Xrep[0m. If [3X list [0m = [[m1, R1],
   [m2,  R2],  ... , [mt, Rt]] is a list of irreducible representations R1, R2,
   ...   ,   Rt   of   G   with   multiplicities   m1,   m2,  ...  ,  mt,  then
-  [22m[32mEquivalentBlockRepresentation[0m  returns  a block diagonal representation of G
+  [10XEquivalentBlockRepresentation[0m  returns  a block diagonal representation of G
   containing the blocks R1, R2, ... , Rt.
   
-  [22m[35m---------------------------  Example  ----------------------------[0m
-    [22m[35mgap> G := AlternatingGroup( 5 );;
-[0m
-    [22m[35mgap> H := SylowSubgroup( G, 2 );;
-[0m
-    [22m[35mgap> chi := TrivialCharacter( H );;
-[0m
-    [22m[35mgap> Hrep := IrreducibleAffordingRepresentation( chi );;
-[0m
-    [22m[35mgap> rep := InducedSubgroupRepresentation( G, Hrep );;
-[0m
-    [22m[35mgap> IsReducibleRepresentation( rep );
-[0m
-    [22m[35mtrue
-[0m
-    [22m[35mgap> con := ConstituentsOfRepresentation( rep );
-[0m
-    [22m[35m[ [ 1, [ (1,2,3,4,5), (3,4,5) ] -> [ [ [ 1 ] ], [ [ 1 ] ] ] ],
-[0m
-    [22m[35m  [ 1, [ (1,2,3,4,5), (3,4,5) ] ->
-[0m
-    [22m[35m        [ [ [ E(3), -1/3*E(3)-2/3*E(3)^2, 0, 1/3*E(3)-1/3*E(3)^2 ],
-[0m
-    [22m[35m            [ 1, -4/3*E(3)+1/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2 ],
-[0m
-    [22m[35m            [ 1, -E(3), E(3), 0 ],
-[0m
-    [22m[35m            [ 1, -1/3*E(3)+1/3*E(3)^2, 1, 1/3*E(3)+2/3*E(3)^2 ] ],
-[0m
-    [22m[35m          [ [ 1, -2/3*E(3)-1/3*E(3)^2, 0, 2/3*E(3)+1/3*E(3)^2 ],
-[0m
-    [22m[35m            [ 0, -E(3), E(3), 1 ],
-[0m
-    [22m[35m            [ 0, -4/3*E(3)-2/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2 ],
-[0m
-    [22m[35m            [ 0, 0, 1, 0 ] ] ] ],
-[0m
-    [22m[35m  [ 2, [ (1,2,3,4,5), (3,4,5) ] -> 
-[0m
-    [22m[35m        [ [ [ -1, 1, 1, 1, -1 ], 
-[0m
-    [22m[35m            [ 0, 0, 0, 0, 1 ],
-[0m
-    [22m[35m            [ -1, 0, 0, 1, -1 ],
-[0m
-    [22m[35m            [ 0, 0, 1, 0, 0 ], 
-[0m
-    [22m[35m            [ 0, -1, 0, -1, 1 ] ],
-[0m
-    [22m[35m          [ [ 0, 0, 0, 0, 1 ],
-[0m
-    [22m[35m            [ 0, -1, -1, -1, 0 ],
-[0m
-    [22m[35m            [ 0, 1, 0, 0, 0 ],
-[0m
-    [22m[35m            [ 0, 0, 0, 1, 0 ],
-[0m
-    [22m[35m            [ -1, 0, 0, 1, -1 ] ] ] ] ]
-[0m
-    [22m[35mgap> EquivalentBlockRepresentation( con );
-[0m
-    [22m[35m[ (1,2,3,4,5), (3,4,5) ] ->
-[0m
-    [22m[35m[ [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, E(3), -1/3*E(3)-2/3*E(3)^2, 0, 1/3*E(3)-1/3*E(3)^2, 0, 
-[0m
-    [22m[35m      0, 0, 0, 0,  0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 1, -4/3*E(3)+1/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2, 0, 
-[0m
-    [22m[35m      0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 1, -E(3), E(3), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 1, -1/3*E(3)+1/3*E(3)^2, 1, 1/3*E(3)+2/3*E(3)^2, 0, 0, 
-[0m
-    [22m[35m      0, 0, 0, 0, 0, 0, 0, 0 ], 
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, -1, 1, 1, 1, -1, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, -1, 0, -1, 1, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1, 1, 1, -1 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 1 ] ],
-[0m
-    [22m[35m  [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 1, -2/3*E(3)-1/3*E(3)^2, 0, 2/3*E(3)+1/3*E(3)^2, 0, 0, 
-[0m
-    [22m[35m      0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, -E(3), E(3), 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, -4/3*E(3)-2/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2, 0, 
-[0m
-    [22m[35m      0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, -1, -1, -1, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
-[0m
-    [22m[35m    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1 ] ] ]
-[0m
-    [22m[35m [0m
-  [22m[35m------------------------------------------------------------------[0m
+  [4X---------------------------  Example  ----------------------------[0X
+    [4Xgap> G := AlternatingGroup( 5 );;
+[0X
+    [4Xgap> H := SylowSubgroup( G, 2 );;
+[0X
+    [4Xgap> chi := TrivialCharacter( H );;
+[0X
+    [4Xgap> Hrep := IrreducibleAffordingRepresentation( chi );;
+[0X
+    [4Xgap> rep := InducedSubgroupRepresentation( G, Hrep );;
+[0X
+    [4Xgap> IsReducibleRepresentation( rep );
+[0X
+    [4Xtrue
+[0X
+    [4Xgap> con := ConstituentsOfRepresentation( rep );
+[0X
+    [4X[ [ 1, [ (1,2,3,4,5), (3,4,5) ] -> [ [ [ 1 ] ], [ [ 1 ] ] ] ],
+[0X
+    [4X  [ 1, [ (1,2,3,4,5), (3,4,5) ] ->
+[0X
+    [4X        [ [ [ E(3), -1/3*E(3)-2/3*E(3)^2, 0, 1/3*E(3)-1/3*E(3)^2 ],
+[0X
+    [4X            [ 1, -4/3*E(3)+1/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2 ],
+[0X
+    [4X            [ 1, -E(3), E(3), 0 ],
+[0X
+    [4X            [ 1, -1/3*E(3)+1/3*E(3)^2, 1, 1/3*E(3)+2/3*E(3)^2 ] ],
+[0X
+    [4X          [ [ 1, -2/3*E(3)-1/3*E(3)^2, 0, 2/3*E(3)+1/3*E(3)^2 ],
+[0X
+    [4X            [ 0, -E(3), E(3), 1 ],
+[0X
+    [4X            [ 0, -4/3*E(3)-2/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2 ],
+[0X
+    [4X            [ 0, 0, 1, 0 ] ] ] ],
+[0X
+    [4X  [ 2, [ (1,2,3,4,5), (3,4,5) ] -> 
+[0X
+    [4X        [ [ [ -1, 1, 1, 1, -1 ], 
+[0X
+    [4X            [ 0, 0, 0, 0, 1 ],
+[0X
+    [4X            [ -1, 0, 0, 1, -1 ],
+[0X
+    [4X            [ 0, 0, 1, 0, 0 ], 
+[0X
+    [4X            [ 0, -1, 0, -1, 1 ] ],
+[0X
+    [4X          [ [ 0, 0, 0, 0, 1 ],
+[0X
+    [4X            [ 0, -1, -1, -1, 0 ],
+[0X
+    [4X            [ 0, 1, 0, 0, 0 ],
+[0X
+    [4X            [ 0, 0, 0, 1, 0 ],
+[0X
+    [4X            [ -1, 0, 0, 1, -1 ] ] ] ] ]
+[0X
+    [4Xgap> EquivalentBlockRepresentation( con );
+[0X
+    [4X[ (1,2,3,4,5), (3,4,5) ] ->
+[0X
+    [4X[ [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, E(3), -1/3*E(3)-2/3*E(3)^2, 0, 1/3*E(3)-1/3*E(3)^2, 0, 
+[0X
+    [4X      0, 0, 0, 0,  0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 1, -4/3*E(3)+1/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2, 0, 
+[0X
+    [4X      0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 1, -E(3), E(3), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 1, -1/3*E(3)+1/3*E(3)^2, 1, 1/3*E(3)+2/3*E(3)^2, 0, 0, 
+[0X
+    [4X      0, 0, 0, 0, 0, 0, 0, 0 ], 
+[0X
+    [4X    [ 0, 0, 0, 0, 0, -1, 1, 1, 1, -1, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, -1, 0, -1, 1, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1, 1, 1, -1 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 1 ] ],
+[0X
+    [4X  [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 1, -2/3*E(3)-1/3*E(3)^2, 0, 2/3*E(3)+1/3*E(3)^2, 0, 0, 
+[0X
+    [4X      0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, -E(3), E(3), 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, -4/3*E(3)-2/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2, 0, 
+[0X
+    [4X      0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, -1, -1, -1, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+[0X
+    [4X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1 ] ] ]
+[0X
+    [4X [0X
+  [4X------------------------------------------------------------------[0X
   
