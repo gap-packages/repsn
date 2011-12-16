@@ -6,7 +6,7 @@
       [1m[4m[31mA [1mGAP[1m[4m[31m4 Package for constructing representations of finite groups  [0m
   
   
-                                  Version 1.0
+                                  Version 1.1
   
   
                                     May 2004

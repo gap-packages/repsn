@@ -9,11 +9,11 @@ repsn/doc/chap1.txt
 repsn/doc/chap2.txt
 repsn/doc/chapInd.txt
 repsn/doc/repsn.xml
-repsn/doc/manual.css
 repsn/htm/chap0.html
 repsn/htm/chap2.html
 repsn/htm/chapBib.html
 repsn/htm/chapInd.html
+repsn/htm/manual.css
 repsn/htm/chap1.html
 repsn/gap/data.g
 repsn/gap/func.g

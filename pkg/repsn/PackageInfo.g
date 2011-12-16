@@ -6,15 +6,15 @@
 
 SetPackageInfo( rec(
  PackageName    := "Repsn",
- MyVersion      := "1r0p0",
+ MyVersion      := "1r1p0",
  MyWWWHome      := "http://www.math.carleton.ca/~vdabbagh",
  Subtitle       := "A GAP4 Package for constructing representations of finite groups",
  Version        := JoinStringsWithSeparator( SplitString( ~.MyVersion, "rp" ), "." ),
  Autoload       := false,
  Date           := "25/04/2004",
  PackageWWWHome := "http://www.math.carleton.ca/~vdabbagh/gap/repsn.html",
- ArchiveURL     := Concatenation( ~.PackageWWWHome, "/", LowercaseString( ~.PackageName ),~.MyVersion ),
- ArchiveFormats := ".zip, .tar.gz, .tar.bz2, .zoo",
+ ArchiveURL     := Concatenation( ~.MyWWWHome, "/gap/", LowercaseString( ~.PackageName ),~.MyVersion ),
+ ArchiveFormats := "-win.zip",
 
 
 Persons := [rec(
@@ -35,7 +35,7 @@ Persons := [rec(
 
 
  Status         := "accepted",
- CommunicatedBy := "Charles Wright",
+ CommunicatedBy := "Charles Wright (Eugene)",
  AcceptDate     := "05/2004",
  README_URL     := "http://www.math.carleton.ca/~vdabbagh/gap/README.repsn",
  PackageInfoURL := "http://www.math.carleton.ca/~vdabbagh/gap/PackageInfo.g",
@@ -59,7 +59,7 @@ Dependencies := rec(
  ExternalConditions     := [ ] ),
 
  AvailabilityTest := ReturnTrue,
- TestFile         := "", # "tst/testall.g",
+# TestFile         := "", # "tst/testall.g",
  Keywords         := ["group representations", "matrix representations", "Dixon's method"],
 
 BannerString := Concatenation(

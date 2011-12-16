@@ -1,7 +1,7 @@
 %!PS-Adobe-2.0
 %%Creator: dvips(k) 5.90a Copyright 2002 Radical Eye Software
 %%Title: manual.dvi
-%%CreationDate: Tue May 11 18:13:38 2004
+%%CreationDate: Fri Nov 26 16:45:10 2004
 %%Pages: 12
 %%PageOrder: Ascend
 %%BoundingBox: 0 0 596 842
@@ -11,7 +11,7 @@
 %DVIPSWebPage: (www.radicaleye.com)
 %DVIPSCommandLine: dvips -o manual.ps manual.dvi
 %DVIPSParameters: dpi=600, compressed
-%DVIPSSource:  TeX output 2004.05.11:1812
+%DVIPSSource:  TeX output 2004.11.26:1644
 %%BeginProcSet: texc.pro
 %!
 /TeXDict 300 dict def TeXDict begin/N{def}def/B{bind def}N/S{exch}N/X{S
@@ -71,19 +71,24 @@ rmoveto}B/y{3 2 roll p a}B/bos{/SS save N}B/eos{SS restore}B end
 
 %%EndProcSet
 %%BeginProcSet: 8r.enc
+% File 8r.enc  TeX Base 1 Encoding  Revision 2.0pre  2002-10-30
+%
 % @@psencodingfile@{
-%   author = "S. Rahtz, P. MacKay, Alan Jeffrey, B. Horn, K. Berry",
-%   version = "0.6",
-%   date = "1 July 1998",
-%   filename = "8r.enc",
-%   email = "tex-fonts@@tug.org",
-%   docstring = "Encoding for TrueType or Type 1 fonts
-%                to be used with TeX."
+%   author    = "S. Rahtz, P. MacKay, Alan Jeffrey, B. Horn, K. Berry,
+%                W. Schmidt, P. Lehman",
+%   version   = "2.0pre",
+%   date      = "30 October 2002",
+%   filename  = "8r.enc",
+%   email     = "tex-fonts@@tug.org",
+%   docstring = "This is the encoding vector for Type1 and TrueType
+%                fonts to be used with TeX.  This file is part of the
+%                PSNFSS bundle, version 9"
 % @}
 % 
-% Idea is to have all the characters normally included in Type 1 fonts
+% The idea is to have all the characters normally included in Type 1 fonts
 % available for typesetting. This is effectively the characters in Adobe
-% Standard Encoding + ISO Latin 1 + extra characters from Lucida.
+% Standard encoding, ISO Latin 1, Windows ANSI including the euro symbol,
+% MacRoman, and some extra characters from Lucida.
 % 
 % Character code assignments were made as follows:
 % 
@@ -101,76 +106,95 @@ rmoveto}B/y{3 2 roll p a}B/bos{/SS save N}B/eos{SS restore}B end
 % (3) Y&Y Lucida Bright includes some extra text characters; in the
 % hopes that other PostScript fonts, perhaps created for public
 % consumption, will include them, they are included starting at 0x12.
+% These are /dotlessj /ff /ffi /ffl.
 % 
-% (4) Remaining positions left undefined are for use in (hopefully)
-% upward-compatible revisions, if someday more characters are generally
-% available.
-% 
-% (5) hyphen appears twice for compatibility with both 
-% ASCII and Windows.
-% 
+% (4) hyphen appears twice for compatibility with both ASCII and Windows.
+%
+% (5) /Euro was assigned to 128, as in Windows ANSI
+%
+% (6) Missing characters from MacRoman encoding incorporated as follows:
+%
+%     PostScript      MacRoman        TeXBase1
+%     --------------  --------------  --------------
+%     /notequal       173             0x16
+%     /infinity       176             0x17
+%     /lessequal      178             0x18
+%     /greaterequal   179             0x19
+%     /partialdiff    182             0x1A
+%     /summation      183             0x1B
+%     /product        184             0x1C
+%     /pi             185             0x1D
+%     /integral       186             0x81
+%     /Omega          189             0x8D
+%     /radical        195             0x8E
+%     /approxequal    197             0x8F
+%     /Delta          198             0x9D
+%     /lozenge        215             0x9E
+%
 /TeXBase1Encoding [
-% 0x00 (encoded characters from Adobe Standard not in Windows 3.1)
-  /.notdef /dotaccent /fi /fl
-  /fraction /hungarumlaut /Lslash /lslash
-  /ogonek /ring /.notdef
-  /breve /minus /.notdef 
-% These are the only two remaining unencoded characters, so may as
-% well include them.
-  /Zcaron /zcaron 
+% 0x00
+ /.notdef /dotaccent /fi /fl
+ /fraction /hungarumlaut /Lslash /lslash
+ /ogonek /ring /.notdef /breve
+ /minus /.notdef /Zcaron /zcaron
 % 0x10
- /caron /dotlessi 
-% (unusual TeX characters available in, e.g., Lucida Bright)
- /dotlessj /ff /ffi /ffl 
- /.notdef /.notdef /.notdef /.notdef
- /.notdef /.notdef /.notdef /.notdef
- % very contentious; it's so painful not having quoteleft and quoteright
- % at 96 and 145 that we move the things normally found there to here.
- /grave /quotesingle 
-% 0x20 (ASCII begins)
+ /caron /dotlessi /dotlessj /ff
+ /ffi /ffl /notequal /infinity
+ /lessequal /greaterequal /partialdiff /summation
+ /product /pi /grave /quotesingle
+% 0x20
  /space /exclam /quotedbl /numbersign
  /dollar /percent /ampersand /quoteright
- /parenleft /parenright /asterisk /plus /comma /hyphen /period /slash
+ /parenleft /parenright /asterisk /plus
+ /comma /hyphen /period /slash
 % 0x30
- /zero /one /two /three /four /five /six /seven
- /eight /nine /colon /semicolon /less /equal /greater /question
+ /zero /one /two /three
+ /four /five /six /seven
+ /eight /nine /colon /semicolon
+ /less /equal /greater /question
 % 0x40
- /at /A /B /C /D /E /F /G /H /I /J /K /L /M /N /O
+ /at /A /B /C
+ /D /E /F /G
+ /H /I /J /K
+ /L /M /N /O
 % 0x50
- /P /Q /R /S /T /U /V /W
- /X /Y /Z /bracketleft /backslash /bracketright /asciicircum /underscore
+ /P /Q /R /S
+ /T /U /V /W
+ /X /Y /Z /bracketleft
+ /backslash /bracketright /asciicircum /underscore
 % 0x60
- /quoteleft /a /b /c /d /e /f /g /h /i /j /k /l /m /n /o
+ /quoteleft /a /b /c
+ /d /e /f /g
+ /h /i /j /k
+ /l /m /n /o
 % 0x70
- /p /q /r /s /t /u /v /w
- /x /y /z /braceleft /bar /braceright /asciitilde
- /.notdef % rubout; ASCII ends
+ /p /q /r /s
+ /t /u /v /w
+ /x /y /z /braceleft
+ /bar /braceright /asciitilde /.notdef
 % 0x80
- /.notdef /.notdef /quotesinglbase /florin
+ /Euro /integral /quotesinglbase /florin
  /quotedblbase /ellipsis /dagger /daggerdbl
  /circumflex /perthousand /Scaron /guilsinglleft
- /OE /.notdef /.notdef /.notdef
+ /OE /Omega /radical /approxequal
 % 0x90
  /.notdef /.notdef /.notdef /quotedblleft
  /quotedblright /bullet /endash /emdash
  /tilde /trademark /scaron /guilsinglright
- /oe /.notdef /.notdef /Ydieresis
+ /oe /Delta /lozenge /Ydieresis
 % 0xA0
- /.notdef % nobreakspace
- /exclamdown /cent /sterling
+ /.notdef /exclamdown /cent /sterling
  /currency /yen /brokenbar /section
  /dieresis /copyright /ordfeminine /guillemotleft
- /logicalnot
- /hyphen % Y&Y (also at 45); Windows' softhyphen
- /registered
- /macron
+ /logicalnot /hyphen /registered /macron
 % 0xD0
  /degree /plusminus /twosuperior /threesuperior
  /acute /mu /paragraph /periodcentered
  /cedilla /onesuperior /ordmasculine /guillemotright
  /onequarter /onehalf /threequarters /questiondown
 % 0xC0
- /Agrave /Aacute /Acircumflex /Atilde /Adieresis /Aring /AE /Ccedilla
+ /Agrave /Aacute /Acircumflex /Atilde
+ /Adieresis /Aring /AE /Ccedilla
  /Egrave /Eacute /Ecircumflex /Edieresis
  /Igrave /Iacute /Icircumflex /Idieresis
 % 0xD0
@@ -189,6 +213,7 @@ rmoveto}B/y{3 2 roll p a}B/bos{/SS save N}B/eos{SS restore}B end
  /oslash /ugrave /uacute /ucircumflex
  /udieresis /yacute /thorn /ydieresis
 ] def
+
 
 %%EndProcSet
 %%BeginProcSet: texps.pro
@@ -596,7 +621,7 @@ TeXDict begin 1 0 bop Black 0 TeXcolorgray Black Black
 Black Black 1654 440 a Fx(Repsn)1496 826 y Fw(A)30 b
 Fv(GAP)p Fw(4)f(P)o(ackage)682 939 y(f)m(or)h(constructing)g(r)n(epr)n
 (esentations)g(of)f(\002nite)i(gr)n(oups)1705 1288 y
-Fu(V)-10 b(ersion)25 b(1.0)1727 1637 y(May)e(2004)1356
+Fu(V)-10 b(ersion)25 b(1.1)1727 1637 y(May)e(2004)1356
 2575 y Ft(V)-9 b(ahid)25 b(Dab)o(baghian-Abdoly)75 4945
 y Fs(V)-8 b(ahid)21 b(Dab)o(baghian-Abdoly)75 5058 y
 Fr(\227)g(Email:)p 0.6179 0.0236 0.0894 TeXcolorrgb 110
