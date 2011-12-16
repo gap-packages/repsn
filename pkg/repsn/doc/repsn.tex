@@ -25,6 +25,7 @@
 
 \usepackage[
         a4paper=true,bookmarks=false,pdftitle={Written with GAPDoc},
+        pdfcreator={LaTeX with hyperref package / GAPDoc},
         colorlinks=true,backref=page,breaklinks=true,linkcolor=RoyalBlue,
         citecolor=RoyalGreen,filecolor=RoyalRed,
         urlcolor=RoyalRed,pagecolor=RoyalBlue]{hyperref}
@@ -52,26 +53,29 @@
 \logpage{[ 0, 0, 0 ]}
 \begin{titlepage}
 \begin{center}{\Huge \textbf{ \textsf{Repsn} }}\\[1cm]
+\hypersetup{pdftitle= \textsf{Repsn} }
 \markright{\scriptsize \mbox{}\hfill  \textsf{Repsn}  \hfill\mbox{}}
 {\Large \textbf{  A \textsf{GAP}4 Package\\
  for constructing representations of finite groups ~ }}\\[1cm]
-{Version 2.0}\\[1cm]
-{January 2006}\\[1cm]
+{Version 2.1}\\[1cm]
+{February 2007}\\[1cm]
 \mbox{}\\[2cm]
 {\large \textbf{ Vahid Dabbaghian-Abdoly\\
   ~    }}\\
+\hypersetup{pdfauthor= Vahid Dabbaghian-Abdoly\\
+  ~    }
 \end{center}\vfill
 
 \mbox{}\\
 {\mbox{}\\
 \small \noindent \textbf{ Vahid Dabbaghian-Abdoly\\
-  ~    } --- Email: \href{mailto:// vdabbagh@math.carleton.ca}{\texttt{ vdabbagh@math.carleton.ca}}\\
- --- Homepage: \href{http://www.math.carleton.ca/~vdabbagh}{\texttt{http://www.math.carleton.ca/\~{}vdabbagh}}\\
+  ~    } --- Email: \href{mailto:// vdabbagh@sfu.ca}{\texttt{ vdabbagh@sfu.ca}}\\
+ --- Homepage: \href{http://www.sfu.ca/~vdabbagh}{\texttt{http://www.sfu.ca/\~{}vdabbagh}}\\
  --- Address: \begin{minipage}[t]{8cm}\noindent
- School of Mathematics and Statistics,\\
- Carleton University,\\
- Ottawa, Ontario,\\
- K1S 5B6 Canada. \end{minipage}
+ Department of Mathematics,\\
+ Simon Fraser University,\\
+ Burnaby, British Columbia,\\
+ V5A 1S6 Canada. \end{minipage}
 }\\
 \end{titlepage}
 
@@ -129,11 +133,11 @@ degree $d$ is proportional to $d^6$.
 
  \textsf{Repsn} has been developed by\\
  Vahid Dabbaghian-Abdoly \\
- School of Mathematics and Statistics\\
- Carleton University\\
- Ottawa, Ontario,\\
- K1S 5B6 Canada.\\
- e-mail: vdabbagh@math.carleton.ca\\
+ Department of Mathematics\\
+ Simon Fraser University\\
+ Burnaby, British Columbia,\\
+ V5A 1S6 Canada.\\
+ e-mail: vdabbagh@sfu.ca\\
  
 
  Please send bug reports, suggestions and other comments to this e-mail
@@ -523,7 +527,7 @@ reducible representation $R$ of a finite group $G$.
 \begin{Verbatim}[fontsize=\small,frame=single,label=Example]
   gap> G := AlternatingGroup( 5 );;
   gap> H := SylowSubgroup( G, 2 );;
-  gap> chi := TrivialCharacter( H );
+  gap> chi := TrivialCharacter( H );;
   gap> Hrep := IrreducibleAffordingRepresentation( chi );;
   gap> rep := InducedSubgroupRepresentation( G, Hrep );;
   gap> IsReducibleRepresentation( rep );

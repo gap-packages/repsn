@@ -6,10 +6,10 @@
       [1m[4m[31mA [1mGAP[1m[4m[31m4 Package for constructing representations of finite groups  [0m
   
   
-                                  Version 2.0
+                                  Version 2.1
   
   
-                                  January 2006
+                                 February 2007
   
   
                            Vahid Dabbaghian-Abdoly  
@@ -17,12 +17,12 @@
   
   
   Vahid Dabbaghian-Abdoly  
-      Email:    [34mmailto: vdabbagh@math.carleton.ca[0m
-      Homepage: [34mhttp://www.math.carleton.ca/~vdabbagh[0m
-      Address:  School of Mathematics and Statistics,
-                Carleton University,
-                Ottawa, Ontario,
-                K1S 5B6 Canada.
+      Email:    [34mmailto: vdabbagh@sfu.ca[0m
+      Homepage: [34mhttp://www.sfu.ca/~vdabbagh[0m
+      Address:  Department of Mathematics,
+                Simon Fraser University,
+                Burnaby, British Columbia,
+                V5A 1S6 Canada.
   
   
   

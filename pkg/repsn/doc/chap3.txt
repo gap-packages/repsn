@@ -47,7 +47,7 @@
 [0m
     [22m[35mgap> H := SylowSubgroup( G, 2 );;
 [0m
-    [22m[35mgap> chi := TrivialCharacter( H );
+    [22m[35mgap> chi := TrivialCharacter( H );;
 [0m
     [22m[35mgap> Hrep := IrreducibleAffordingRepresentation( chi );;
 [0m

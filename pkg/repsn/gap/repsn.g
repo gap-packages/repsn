@@ -247,7 +247,11 @@
     U := GeneratorsOfGroup( G );
     if chi[1] = 1 then 
         if Length( U ) = 0 then 
-           return GroupHomomorphismByImagesNC( G, G, U, U );
+           if IsPermGroup(G) then 
+              return GroupHomomorphismByImagesNC( Group(()), Group([[1]]), [()], [[[1]]] );
+           else 
+              return GroupHomomorphismByImagesNC( G, G, U, U );
+           fi;
         fi;
         r := List( [ 1..Length( U ) ],i -> [ [ U[ i ] ^ arg[ 1 ] ] ] );
         return GroupHomomorphismByImagesNC( G, Group( r ), U, r );
