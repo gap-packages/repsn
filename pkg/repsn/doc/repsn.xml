@@ -19,7 +19,7 @@
        &nbsp;
     </Subtitle>
 
-    <Version>Version 3.0.1</Version> 
+    <Version>Version 3.0.2</Version> 
     <!-- OPTIONAL -->
     <Author> 
 	    Vahid Dabbaghian<Br/>                 <!-- REQUIRED -->
@@ -34,7 +34,7 @@
      <Homepage>http://www.sfu.ca/~vdabbagh</Homepage>
    </Author> 
    
-   <Date>December 2008</Date> 
+   <Date>August 2011</Date> 
    <!-- OPTIONAL -->
    
     <Copyright> 
@@ -73,7 +73,7 @@
  <P/>This manual describes the <Package>Repsn</Package> package for computing matrix representations in 
 characteristic zero of finite groups. Most of the functions in <Package>Repsn</Package>
  have been written according to the algorithm described in the author's
- Ph.D thesis <Cite Key="Dab-03"/> and <Cite Key="DD-08"/> (see <Cite Key="Dab-05"/>).
+ Ph.D thesis <Cite Key="Dab-03"/> and <Cite Key="DD-10"/> (see <Cite Key="Dab-05"/>).
 
  <P/>For constructing representations of simple groups and their covers
   we use the algorithm described in <Cite Key="Dix-93"/>. To use this
@@ -87,7 +87,7 @@ characteristic zero of finite groups. Most of the functions in <Package>Repsn</P
  listed in <Cite Key="Dab-06"/> and <Cite Key="Dab-07"/>.
   
  <P/>All <Package>Repsn</Package> functions are written entirely in the &GAP; language. It
- is proved in <Cite Key="Dab-05"/> and <Cite Key="DD-08"/> that the algorithm is correct for any
+ is proved in <Cite Key="Dab-05"/> and <Cite Key="DD-10"/> that the algorithm is correct for any
  group with a character of degree less than 100. Indeed, if the group is
  solvable, there is no restriction on the character degree. In
  practice the program is quite fast when the degree is small, but
@@ -396,7 +396,7 @@ gap> chi := Irr( G )[ 2 ];;
 gap> H := AlternatingGroup( 3 );;
 gap> IsCharacterSubgroup( chi, H );
 true
-gap> rep := CharacterSubgroupRepresentation( G, chi, H );
+gap> rep := CharacterSubgroupRepresentation( chi, H );
 [ (1,2,3,4,5,6,7), (6,7,8) ] -> [ [ [
  1/3*E(3)+2/3*E(3)^2, 0, 0, -E(3), 0, -1/3*E(3)-2/3*E(3)^2, 1 ],
    [ 2/3*E(3)+4/3*E(3)^2, 0, 1, 0, 0, 1/3*E(3)-1/3*E(3)^2, 0 ],
@@ -473,7 +473,7 @@ then <Code>EquivalentRepresentation</Code> does not return any mapping. In this 
 	<Example>
 gap> G := SymmetricGroup( 7 );;
 gap> chi := Irr( G )[ 2 ];;
-gap> rep := CharacterSubgroupRepresentation( G, chi );;
+gap> rep := CharacterSubgroupRepresentation( chi );;
 gap> equ := EquivalentRepresentation( rep );
 [ (1,2,3,4,5,6,7), (1,2) ] ->
 [ [ [ 0, 0, 0, E(5)+E(5)^2+E(5)^3+2*E(5)^4, -1, -E(5)-E(5)^2-E(5)^3-2*E(5)^4 ],

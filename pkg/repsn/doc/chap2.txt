@@ -356,7 +356,7 @@
 [0X
     [4Xtrue
 [0X
-    [4Xgap> rep := CharacterSubgroupRepresentation( G, chi, H );
+    [4Xgap> rep := CharacterSubgroupRepresentation( chi, H );
 [0X
     [4X[ (1,2,3,4,5,6,7), (6,7,8) ] -> [ [ [
 [0X
@@ -428,7 +428,7 @@
 [0X
     [4Xgap> chi := Irr( G )[ 2 ];;
 [0X
-    [4Xgap> rep := CharacterSubgroupRepresentation( G, chi );;
+    [4Xgap> rep := CharacterSubgroupRepresentation( chi );;
 [0X
     [4Xgap> equ := EquivalentRepresentation( rep );
 [0X

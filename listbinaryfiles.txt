@@ -1,2 +1,1 @@
 repsn/doc/manual.pdf
-repsn/doc/manual.dvi

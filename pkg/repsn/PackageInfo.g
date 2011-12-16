@@ -6,12 +6,12 @@
 
 SetPackageInfo( rec(
  PackageName    := "Repsn",
- MyVersion      := "3r0p1",
+ MyVersion      := "3r0p2",
  MyWWWHome      := "http://www.sfu.ca/~vdabbagh",
  Subtitle       := "A GAP4 Package for constructing representations of finite groups",
  Version        := JoinStringsWithSeparator( SplitString( ~.MyVersion, "rp" ), "." ),
  Autoload       := false,
- Date           := "10/12/2008",
+ Date           := "25/08/2011",
  PackageWWWHome := "http://www.sfu.ca/~vdabbagh/gap/repsn.html",
  ArchiveURL     := Concatenation( ~.MyWWWHome, "/gap/", LowercaseString( ~.PackageName ),~.MyVersion ),
  ArchiveFormats := "-win.zip",
@@ -45,7 +45,7 @@ Persons := [rec(
 
 PackageDoc := rec(
  BookName         := "Repsn",
- ArchiveURLSubset := [ "doc", "html" ],
+ ArchiveURLSubset := [ "doc" ],
  HTMLStart        := "doc/chap0.html",
  PDFFile          := "doc/manual.pdf",
  SixFile          := "doc/manual.six",
@@ -65,7 +65,7 @@ Dependencies := rec(
 BannerString := Concatenation(
    "-------------------------------------------------------\n",
    "Repsn for Constructing Representations of Finite Groups\n",
-   "                  Version 3.0.1                        \n",
+   "                  Version 3.0.2                        \n",
    "                                                       \n",
    "                    Written by                         \n",
    "                 Vahid Dabbaghian                      \n",
