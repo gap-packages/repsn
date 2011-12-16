@@ -1,4 +1,4 @@
- <?xml version="1.0" encoding="ISO-8859-1"?>
+ <?xml version="2.0" encoding="ISO-8859-1"?>
 
  <!DOCTYPE Book SYSTEM "gapdoc.dtd">
 
@@ -19,7 +19,7 @@
        &nbsp;
     </Subtitle>
 
-    <Version>Version 1.1</Version> 
+    <Version>Version 2.0</Version> 
     <!-- OPTIONAL -->
     <Author> 
 	    Vahid Dabbaghian-Abdoly<Br/>                 <!-- REQUIRED -->
@@ -34,7 +34,7 @@
      <Homepage>http://www.math.carleton.ca/~vdabbagh</Homepage>
    </Author> 
    
-   <Date>May 2004</Date> 
+   <Date>January 2006</Date> 
    <!-- OPTIONAL -->
    
     <Copyright> 
@@ -73,10 +73,10 @@
  <P/>This manual describes the <Package>Repsn</Package> package for computing matrix representations in 
 characteristic zero of finite groups. Most of the functions in <Package>Repsn</Package>
  have been written according to the algorithm described in the author's
- Ph.D thesis <Cite Key="Dab"/>.
+ Ph.D thesis <Cite Key="Dab-03"/> (see <Cite Key="Dab-05"/>).
 
  <P/>For constructing representations of simple groups and their covers
-  we use the algorithm described in <Cite Key="Dix93"/>. To use this
+  we use the algorithm described in <Cite Key="Dix-93"/>. To use this
   algorithm for constructing a representation of a group <M>G</M>
   affording an irreducible character <M>chi</M> of <M>G</M>, we need to have
   a subgroup <M>H</M> of <M>G</M> such that the restriction of <M>chi</M> to <M>H</M>
@@ -84,10 +84,10 @@ characteristic zero of finite groups. Most of the functions in <Package>Repsn</P
   say <M>H</M> is a <E>character subgroup</E> relative to <M>chi</M> (or a
  <M>chi</M>-subgroup). A <M>chi</M>-subgroup for each irreducible character
  <M>chi</M> of degree less than 32 of simple groups and their covers are
- listed in <Cite Key="Dab"/>.
+ listed in <Cite Key="Dab-03"/>.
   
  <P/>All <Package>Repsn</Package> functions are written entirely in the &GAP; language. It
- is proved in <Cite Key="Dab"/> that the algorithm is correct for any
+ is proved in <Cite Key="Dab-05"/> that the algorithm is correct for any
  group with a character of degree less than 32. Indeed, if the group is
  solvable, there is no restriction on the character degree. In
  practice the program is quite fast when the degree is small, but
@@ -358,13 +358,13 @@ true
   a character subgroup relative to <M>chi</M> or a <M>chi</M>-subgroup.
    <ManSection>
    
-           <Func Name="CharacterSubgroupRepresentation" Arg=" G, chi "/>
-           <Func Name="CharacterSubgroupRepresentation" Arg=" G, chi, H "/>		   
+           <Func Name="CharacterSubgroupRepresentation" Arg=" chi "/>
+           <Func Name="CharacterSubgroupRepresentation" Arg=" chi, H "/>		   
      <Description>
 	 
-	 returns a representation of <A>G</A> affording <A>chi</A> by finding a <A>chi</A>-subgroup and using 
-  the method described in <Cite Key="Dix93"/>. If the third argument is a <A>chi</A>-subgroup then 
-  it returns a representation of <A>G</A> affording <A>chi</A> without searching for a <A>chi</A>-subgroup. 
+	 returns a representation affording <A>chi</A> by finding a <A>chi</A>-subgroup and using 
+  the method described in <Cite Key="Dix-93"/>. If the second argument is a <A>chi</A>-subgroup then 
+  it returns a representation  affording <A>chi</A> without searching for a <A>chi</A>-subgroup. 
   In this case an error is signalled if no <A>chi</A>-subgroup exists.
 	 </Description>
 	 
@@ -415,6 +415,17 @@ The subgroups are chosen up to conjugacy in <A>G</A>.
 			
 	</Description>
    </ManSection>
+
+<ManSection>
+
+  <Func Name="AllCharacterStandardSubgroups" Arg=" G, chi "/>
+		
+	<Description>
+
+	returns a list containing well described subgroups of <A>G</A> which are <A>chi</A>-subgroups. 
+This list may contain Sylow subgroups and their derived subgroups, normalizers and centralzers in <A>G</A>.
+	</Description>
+   </ManSection>
 	 
 <ManSection>
   <Func Name="AllCharacterSubgroups" Arg=" G, chi "/>
@@ -442,8 +453,8 @@ This function call can be quite expensive for larger groups. The call is expensi
 	computes an equivalent representation to an irreducible representation <A>rep</A> by 
 transforming <A>rep</A> to a new basis by spinning up one vector (i.e. getting the other
 basis vectors as images under the first one under words in the generators). If the input representation, <A>rep</A>, 
-is not irreducible
-then <Code>EquivalentRepresentation</Code> does not return any mapping.
+is reducible
+then <Code>EquivalentRepresentation</Code> does not return any mapping. In this case see section 3.
 
 	<Example>
 gap> G := SymmetricGroup( 7 );;
@@ -473,6 +484,134 @@ true
   </Section>
 </Chapter>
   
+<Chapter><Heading>Reducible Representations</Heading>
+
+In this chapter we introduce some functions which deal with a complex reducible representation
+<M>R</M> of a finite group <M>G</M>. 
+
+  <Section>
+  <Heading>Constituents of Representations</Heading>
+
+  <ManSection>
+           <Func Name="ConstituentsOfRepresentation" Arg=" rep "/>
+		   
+        <Description>
+		called with a representation <A>rep</A> of a group <M>G</M>.
+This function returns a list of irreducible representations of <M>G</M> which are constituents of 
+<A>rep</A>, and their corresponding multiplicities. For example, if <A>rep</A> is a representation of <M>G</M>
+affording a character <M>X</M> such that <M>X = mY + nZ</M>, where <M>Y</M> and <M>Z</M> are irreducible characters of <M>G</M>, 
+and <M>m</M> and <M>n</M> are the corresponding multiplicities, then <Code>ConstituentsOfRepresentation</Code> returns <M>[[m, S]</M>, <M>[n, T]]</M> where
+ <M>S</M> and <M>T</M> are irreducible representations of <M>G</M> affording <M>Y</M> and <M>Z</M>, respectively. This function 
+call can be quite expensive when <M>G</M> is a large group.
+
+        </Description>
+      </ManSection>
+
+
+     <ManSection>
+
+           <Func Name="IsReducibleRepresentation" Arg=" rep "/>
+		   
+        <Description>
+
+If <A>rep</A> is a representation of a group <M>G</M> 
+then <Code>IsReducibleRepresentation</Code> returns <Code>true</Code> if <A>rep</A> is a reducible 
+representation of <M>G</M>.
+        </Description>
+      </ManSection>
+  </Section>
+
+
+ <Section>
+  <Heading>Block Representations</Heading>
+
+  <ManSection>
+           <Func Name="EquivalentBlockRepresentation" Arg=" rep "/>
+           <Func Name="EquivalentBlockRepresentation" Arg=" list "/>		   
+
+        <Description>
+If <A>rep</A> is a reducible representation of a group <M>G</M>,
+this function returns a block diagonal representation of <M>G</M> equivalent to 
+<A>rep</A>. If <A> list </A> <M>= [[m1, R1]</M>, <M>[m2, R2]</M>, ... , <M>[mt, Rt]]</M> is a list of irreducible representations
+<M>R1</M>, <M>R2</M>, ... , <M>Rt</M> of <M>G</M> with multiplicities <M>m1</M>, <M>m2</M>, ... , <M>mt</M>, then <Code>EquivalentBlockRepresentation</Code>
+returns a block diagonal representation of <M>G</M> containing the blocks <M>R1</M>, <M>R2</M>, ... , <M>Rt</M>.
+
+
+ <Example>
+gap> G := AlternatingGroup( 5 );;
+gap> H := SylowSubgroup( G, 2 );;
+gap> chi := TrivialCharacter( H );
+gap> Hrep := IrreducibleAffordingRepresentation( chi );;
+gap> rep := InducedSubgroupRepresentation( G, Hrep );;
+gap> IsReducibleRepresentation( rep );
+true
+gap> con := ConstituentsOfRepresentation( rep );
+[ [ 1, [ (1,2,3,4,5), (3,4,5) ] -> [ [ [ 1 ] ], [ [ 1 ] ] ] ],
+  [ 1, [ (1,2,3,4,5), (3,4,5) ] ->
+        [ [ [ E(3), -1/3*E(3)-2/3*E(3)^2, 0, 1/3*E(3)-1/3*E(3)^2 ],
+            [ 1, -4/3*E(3)+1/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2 ],
+            [ 1, -E(3), E(3), 0 ],
+            [ 1, -1/3*E(3)+1/3*E(3)^2, 1, 1/3*E(3)+2/3*E(3)^2 ] ],
+          [ [ 1, -2/3*E(3)-1/3*E(3)^2, 0, 2/3*E(3)+1/3*E(3)^2 ],
+            [ 0, -E(3), E(3), 1 ],
+            [ 0, -4/3*E(3)-2/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2 ],
+            [ 0, 0, 1, 0 ] ] ] ],
+  [ 2, [ (1,2,3,4,5), (3,4,5) ] -> 
+        [ [ [ -1, 1, 1, 1, -1 ], 
+            [ 0, 0, 0, 0, 1 ],
+            [ -1, 0, 0, 1, -1 ],
+            [ 0, 0, 1, 0, 0 ], 
+            [ 0, -1, 0, -1, 1 ] ],
+          [ [ 0, 0, 0, 0, 1 ],
+            [ 0, -1, -1, -1, 0 ],
+            [ 0, 1, 0, 0, 0 ],
+            [ 0, 0, 0, 1, 0 ],
+            [ -1, 0, 0, 1, -1 ] ] ] ] ]
+gap> EquivalentBlockRepresentation( con );
+[ (1,2,3,4,5), (3,4,5) ] ->
+[ [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, E(3), -1/3*E(3)-2/3*E(3)^2, 0, 1/3*E(3)-1/3*E(3)^2, 0, 
+      0, 0, 0, 0,  0, 0, 0, 0, 0 ],
+    [ 0, 1, -4/3*E(3)+1/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2, 0, 
+      0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 1, -E(3), E(3), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 1, -1/3*E(3)+1/3*E(3)^2, 1, 1/3*E(3)+2/3*E(3)^2, 0, 0, 
+      0, 0, 0, 0, 0, 0, 0, 0 ], 
+    [ 0, 0, 0, 0, 0, -1, 1, 1, 1, -1, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, -1, 0, -1, 1, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1, 1, 1, -1 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 1 ] ],
+  [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 1, -2/3*E(3)-1/3*E(3)^2, 0, 2/3*E(3)+1/3*E(3)^2, 0, 0, 
+      0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, -E(3), E(3), 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, -4/3*E(3)-2/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2, 0, 
+      0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, -1, -1, -1, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],
+    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1 ] ] ]
+ </Example>
+
+        </Description>
+      </ManSection>
+  </Section>
+
+</Chapter>
+
 </Body>
   <Bibliography Databases="repsn"/>
   <TheIndex/>                                               

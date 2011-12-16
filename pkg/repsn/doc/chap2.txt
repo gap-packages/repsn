@@ -308,12 +308,12 @@
   
   [1m[4m[31m2.4-1 CharacterSubgroupRepresentation[0m
   
-  [1m[34m> CharacterSubgroupRepresentation( [0m[22m[34mG, chi[0m[1m[34m ) ________________________[0mfunction
-  [1m[34m> CharacterSubgroupRepresentation( [0m[22m[34mG, chi, H[0m[1m[34m ) _____________________[0mfunction
+  [1m[34m> CharacterSubgroupRepresentation( [0m[22m[34mchi[0m[1m[34m ) ___________________________[0mfunction
+  [1m[34m> CharacterSubgroupRepresentation( [0m[22m[34mchi, H[0m[1m[34m ) ________________________[0mfunction
   
-  returns  a  representation  of [22m[34mG[0m affording [22m[34mchi[0m by finding a [22m[34mchi[0m-subgroup and
-  using the method described in [D93]. If the third argument is a [22m[34mchi[0m-subgroup
-  then  it returns a representation of [22m[34mG[0m affording [22m[34mchi[0m without searching for a
+  returns  a  representation affording [22m[34mchi[0m by finding a [22m[34mchi[0m-subgroup and using
+  the  method  described in [Dix-93]. If the second argument is a [22m[34mchi[0m-subgroup
+  then  it  returns  a  representation  affording  [22m[34mchi[0m without searching for a
   [22m[34mchi[0m-subgroup. In this case an error is signalled if no [22m[34mchi[0m-subgroup exists.
   
   [1m[4m[31m2.4-2 IsCharacterSubgroup[0m
@@ -369,7 +369,15 @@
   returns  a  list  of  all  p-subgroups  of  [22m[34mG[0m  which  are [22m[34mchi[0m-subgroups. The
   subgroups are chosen up to conjugacy in [22m[34mG[0m.
   
-  [1m[4m[31m2.4-4 AllCharacterSubgroups[0m
+  [1m[4m[31m2.4-4 AllCharacterStandardSubgroups[0m
+  
+  [1m[34m> AllCharacterStandardSubgroups( [0m[22m[34mG, chi[0m[1m[34m ) __________________________[0mfunction
+  
+  returns   a  list  containing  well  described  subgroups  of  [22m[34mG[0m  which  are
+  [22m[34mchi[0m-subgroups.  This  list  may  contain  Sylow  subgroups and their derived
+  subgroups, normalizers and centralzers in [22m[34mG[0m.
+  
+  [1m[4m[31m2.4-5 AllCharacterSubgroups[0m
   
   [1m[34m> AllCharacterSubgroups( [0m[22m[34mG, chi[0m[1m[34m ) __________________________________[0mfunction
   
@@ -388,8 +396,9 @@
   computes  an  equivalent representation to an irreducible representation [22m[34mrep[0m
   by  transforming  [22m[34mrep[0m to a new basis by spinning up one vector (i.e. getting
   the  other  basis  vectors  as images under the first one under words in the
-  generators).  If  the  input  representation,  [22m[34mrep[0m,  is not irreducible then
-  [22m[32mEquivalentRepresentation[0m does not return any mapping.
+  generators).   If   the   input   representation,  [22m[34mrep[0m,  is  reducible  then
+  [22m[32mEquivalentRepresentation[0m  does  not  return  any  mapping.  In this case see
+  section 3.
   
   [22m[35m---------------------------  Example  ----------------------------[0m
     [22m[35mgap> G := SymmetricGroup( 7 );;

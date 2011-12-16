@@ -13,7 +13,7 @@
 <body>
 
 
-<div class="pcenter"><table class="chlink"><tr><td class="chlink1">Goto Chapter: </td><td><a href="chap0.html">Top</a></td><td><a href="chap1.html">1</a></td><td><a href="chap2.html">2</a></td><td><a href="chapBib.html">Bib</a></td><td><a href="chapInd.html">Ind</a></td></tr></table><br /></div>
+<div class="pcenter"><table class="chlink"><tr><td class="chlink1">Goto Chapter: </td><td><a href="chap0.html">Top</a></td><td><a href="chap1.html">1</a></td><td><a href="chap2.html">2</a></td><td><a href="chap3.html">3</a></td><td><a href="chapBib.html">Bib</a></td><td><a href="chapInd.html">Ind</a></td></tr></table><br /></div>
 <p><a id="s0ss0" name="s0ss0"></a></p>
 
 <h3>2. Irreducible Representations</h3>
@@ -209,9 +209,9 @@ true
 
 <h5>2.4-1 CharacterSubgroupRepresentation</h5>
 
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&gt; CharacterSubgroupRepresentation</code>( <var>G, chi</var> )</td><td class="tdright">( function )</td></tr></table></div>
-<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&gt; CharacterSubgroupRepresentation</code>( <var>G, chi, H</var> )</td><td class="tdright">( function )</td></tr></table></div>
-<p>returns a representation of <var>G</var> affording <var>chi</var> by finding a <var>chi</var>-subgroup and using the method described in <a href="chapBib.html#biBDix93">[D93]</a>. If the third argument is a <var>chi</var>-subgroup then it returns a representation of <var>G</var> affording <var>chi</var> without searching for a <var>chi</var>-subgroup. In this case an error is signalled if no <var>chi</var>-subgroup exists.</p>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&gt; CharacterSubgroupRepresentation</code>( <var>chi</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&gt; CharacterSubgroupRepresentation</code>( <var>chi, H</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>returns a representation affording <var>chi</var> by finding a <var>chi</var>-subgroup and using the method described in <a href="chapBib.html#biBDix-93">[Dix-93]</a>. If the second argument is a <var>chi</var>-subgroup then it returns a representation affording <var>chi</var> without searching for a <var>chi</var>-subgroup. In this case an error is signalled if no <var>chi</var>-subgroup exists.</p>
 
 <p><a id="s4ss2" name="s4ss2"></a></p>
 
@@ -254,7 +254,14 @@ gap&gt; rep := CharacterSubgroupRepresentation( G, chi, H );
 
 <p><a id="s4ss4" name="s4ss4"></a></p>
 
-<h5>2.4-4 AllCharacterSubgroups</h5>
+<h5>2.4-4 AllCharacterStandardSubgroups</h5>
+
+<div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&gt; AllCharacterStandardSubgroups</code>( <var>G, chi</var> )</td><td class="tdright">( function )</td></tr></table></div>
+<p>returns a list containing well described subgroups of <var>G</var> which are <var>chi</var>-subgroups. This list may contain Sylow subgroups and their derived subgroups, normalizers and centralzers in <var>G</var>.</p>
+
+<p><a id="s4ss5" name="s4ss5"></a></p>
+
+<h5>2.4-5 AllCharacterSubgroups</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&gt; AllCharacterSubgroups</code>( <var>G, chi</var> )</td><td class="tdright">( function )</td></tr></table></div>
 <p>returns a list of all <var>chi</var>-subgroups of <var>G</var> among the lattice of subgroups. This function call can be quite expensive for larger groups. The call is expensive in particular if the lattice of subgroups of the given group is not yet known.</p>
@@ -268,7 +275,7 @@ gap&gt; rep := CharacterSubgroupRepresentation( G, chi, H );
 <h5>2.5-1 EquivalentRepresentation</h5>
 
 <div class="func"><table class="func" width="100%"><tr><td class="tdleft"><code class="func">&gt; EquivalentRepresentation</code>( <var>rep</var> )</td><td class="tdright">( function )</td></tr></table></div>
-<p>computes an equivalent representation to an irreducible representation <var>rep</var> by transforming <var>rep</var> to a new basis by spinning up one vector (i.e. getting the other basis vectors as images under the first one under words in the generators). If the input representation, <var>rep</var>, is not irreducible then <code class="code">EquivalentRepresentation</code> does not return any mapping.</p>
+<p>computes an equivalent representation to an irreducible representation <var>rep</var> by transforming <var>rep</var> to a new basis by spinning up one vector (i.e. getting the other basis vectors as images under the first one under words in the generators). If the input representation, <var>rep</var>, is reducible then <code class="code">EquivalentRepresentation</code> does not return any mapping. In this case see section 3.</p>
 
 
 <table class="example">
@@ -300,11 +307,11 @@ true
 
 
 <div class="pcenter">
-<table class="chlink"><tr><td><a href="chap0.html">Top of Book</a></td><td><a href="chap1.html">Previous Chapter</a></td><td><a href="chapBib.html">Next Chapter</a></td></tr></table>
+<table class="chlink"><tr><td><a href="chap0.html">Top of Book</a></td><td><a href="chap1.html">Previous Chapter</a></td><td><a href="chap3.html">Next Chapter</a></td></tr></table>
 <br />
 
 
-<div class="pcenter"><table class="chlink"><tr><td class="chlink1">Goto Chapter: </td><td><a href="chap0.html">Top</a></td><td><a href="chap1.html">1</a></td><td><a href="chap2.html">2</a></td><td><a href="chapBib.html">Bib</a></td><td><a href="chapInd.html">Ind</a></td></tr></table><br /></div>
+<div class="pcenter"><table class="chlink"><tr><td class="chlink1">Goto Chapter: </td><td><a href="chap0.html">Top</a></td><td><a href="chap1.html">1</a></td><td><a href="chap2.html">2</a></td><td><a href="chap3.html">3</a></td><td><a href="chapBib.html">Bib</a></td><td><a href="chapInd.html">Ind</a></td></tr></table><br /></div>
 
 </div>
 

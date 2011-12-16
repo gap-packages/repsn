@@ -16,6 +16,8 @@
  DeclareGlobalFunction( "ReducedSubgroupCharacter" );
  DeclareGlobalFunction( "EquivalentRepresentation" );
  DeclareGlobalFunction( "PSubgroups" );
+ DeclareGlobalFunction( "StandardSubgroups" );
+ DeclareGlobalFunction( "AllCharacterStandardSubgroups" );
  DeclareGlobalFunction( "AllCharacterPSubgroups" );
  DeclareGlobalFunction( "AllCharacterSubgroups" );
  DeclareGlobalFunction( "CoversOfAlternatingGroupsRepresentation" );
@@ -28,7 +30,10 @@
  DeclareGlobalFunction( "PerfectRepresentation" ); 
  DeclareGlobalFunction( "IrreducibleAffordingRepresentation" );
  DeclareGlobalFunction( "IsAffordingRepresentation" );
-
+ DeclareGlobalFunction( "DiagonalBlockMatrix" );
+ DeclareGlobalFunction( "ConstituentsOfRepresentation" );
+ DeclareGlobalFunction( "EquivalentBlockRepresentation" );
+ DeclareGlobalFunction( "IsReducibleRepresentation" );
 
 
 

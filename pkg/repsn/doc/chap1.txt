@@ -4,19 +4,19 @@
   This manual describes the [1mRepsn[0m package for computing matrix representations
   in characteristic zero of finite groups. Most of the functions in [1mRepsn[0m have
   been  written  according  to  the  algorithm  described in the author's Ph.D
-  thesis [D03].
+  thesis [Dab-03] (see [Dab-05]).
   
   For  constructing  representations  of simple groups and their covers we use
-  the  algorithm  described in [D93]. To use this algorithm for constructing a
-  representation  of a group G affording an irreducible character chi of G, we
-  need  to  have a subgroup H of G such that the restriction of chi to H has a
-  linear  constituent  with  multiplicity  one.  In  this  case  we say H is a
+  the  algorithm described in [Dix-93]. To use this algorithm for constructing
+  a  representation  of a group G affording an irreducible character chi of G,
+  we  need to have a subgroup H of G such that the restriction of chi to H has
+  a  linear  constituent  with  multiplicity  one.  In this case we say H is a
   [22m[36mcharacter  subgroup[0m  relative to chi (or a chi-subgroup). A chi-subgroup for
   each  irreducible  character chi of degree less than 32 of simple groups and
-  their covers are listed in [D03].
+  their covers are listed in [Dab-03].
   
   All  [1mRepsn[0m  functions are written entirely in the [1mGAP[0m language. It is proved
-  in  [D03]  that  the  algorithm is correct for any group with a character of
+  in  [Dab-05] that the algorithm is correct for any group with a character of
   degree  less  than  32.  Indeed,  if  the  group  is  solvable,  there is no
   restriction  on  the character degree. In practice the program is quite fast
   when  the degree is small, but can be very slow when it is necessary to call

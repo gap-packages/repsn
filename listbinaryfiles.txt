@@ -2,4 +2,4 @@ repsn/doc/manual.pdf
 repsn/doc/manual.ps
 repsn/doc/Makefile
 repsn/doc/manual.dvi
-repsn/doc/repsn.blg
+repsn/gap/.DS_Store

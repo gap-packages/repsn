@@ -2,6 +2,7 @@ repsn/init.g
 repsn/README.repsn
 repsn/PackageInfo.g
 repsn/doc/repsn.bib
+repsn/doc/repsn.tex
 repsn/doc/chapBib.txt
 repsn/doc/chap0.txt
 repsn/doc/manual.six
@@ -9,9 +10,12 @@ repsn/doc/chap1.txt
 repsn/doc/chap2.txt
 repsn/doc/chapInd.txt
 repsn/doc/repsn.xml
+repsn/doc/manual.css
+repsn/doc/chap3.txt
 repsn/htm/chap0.html
 repsn/htm/chap2.html
 repsn/htm/chapBib.html
+repsn/htm/chap3.html
 repsn/htm/chapInd.html
 repsn/htm/manual.css
 repsn/htm/chap1.html

@@ -6,10 +6,10 @@
       [1m[4m[31mA [1mGAP[1m[4m[31m4 Package for constructing representations of finite groups  [0m
   
   
-                                  Version 1.1
+                                  Version 2.0
   
   
-                                    May 2004
+                                  January 2006
   
   
                            Vahid Dabbaghian-Abdoly  
@@ -62,9 +62,16 @@
       2.4-1 CharacterSubgroupRepresentation
       2.4-2 IsCharacterSubgroup
       2.4-3 AllCharacterPSubgroups
-      2.4-4 AllCharacterSubgroups
+      2.4-4 AllCharacterStandardSubgroups
+      2.4-5 AllCharacterSubgroups
     2.5 Equivalent Representation
       2.5-1 EquivalentRepresentation
+  3. Reducible Representations
+    3.1 Constituents of Representations
+      3.1-1 ConstituentsOfRepresentation
+      3.1-2 IsReducibleRepresentation
+    3.2 Block Representations
+      3.2-1 EquivalentBlockRepresentation
   
   
   -------------------------------------------------------

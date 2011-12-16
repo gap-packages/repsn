@@ -6,7 +6,7 @@
 ##                                                                                         #
 ##                                     A GAP4 Packege                                      #
 ##                      for Constructing Representations of Finite Groups                  #
-##                                                                                         #
+##                                       Version 2.0                                       #
 ##                                                                                         #
 ##                Developed by: Vahid Dabbaghian-Abdoly                                    #
 ##                              School of Mathematics and Statistics,                      #
@@ -36,7 +36,7 @@
  function( chi )
  local n, k, g, c, rep, G;
  G := UnderlyingGroup( chi );
- if chi[1] = 1 then return CharacterSubgroupRepresentation( G, chi ); 
+ if chi[1] = 1 then return CharacterSubgroupRepresentation( chi ); 
  fi;
  k := NaturalHomomorphismByNormalSubgroupNC( G, Kernel( chi ) );
  if Size(Kernel(chi)) > 1 then
@@ -54,14 +54,13 @@
     fi;
     if n[2][1] = c[1][1] then 
       if IsPerfect(n[1]) and PerfectRepresentation( n[1], n[2], 1 ) = true then 
-        return CharacterSubgroupRepresentation( G, chi );
+        return CharacterSubgroupRepresentation( chi );
       fi;
       rep := ExtendedRepresentationNormal( c[1], IrreducibleAffordingRepresentation( n[2] ) ); 
     fi;
  fi;
  return CompositionMapping( rep, k );
  end );
-
 
 
 ############################################################################################
@@ -87,7 +86,6 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ####################################### A main Function ####################################
@@ -110,6 +108,29 @@
  return psub;
  end );
 
+
+############################################################################################
+############################################################################################
+####################################### A main Function ####################################
+## This program finds standard subgroups (Sylow subgroups and their normalizers, centralizers 
+## and derived subgroups) of a group $G$ which are $\chi$-subgroups.
+## In this program the following programs and subroutines are called,
+## 1. LinearConstituentWithMultiplicityOne
+## 2. StandardSubgroups
+############################################################################################
+
+ InstallGlobalFunction( AllCharacterStandardSubgroups,
+ function( G, chi )         
+ local i, lin, P, psub, L;
+ psub := [ ]; 
+ L := StandardSubgroups( G );
+ for P in L do
+    lin := LinearConstituentWithMultiplicityOne( chi, P );
+    if lin <> fail then Add( psub, P );
+    fi;
+ od;
+ return psub;
+ end );
 
 
 ############################################################################################
@@ -134,7 +155,6 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Main Function ######################################
@@ -152,7 +172,6 @@
  else return true;
  fi;
  end );
-
 
 
 ############################################################################################
@@ -206,7 +225,6 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ################################### A Main Function ########################################
@@ -224,39 +242,35 @@
  InstallGlobalFunction( CharacterSubgroupRepresentation,
  function ( arg )        
     local  G, U, r, chi, s, S, H, f, M, m1, Y, rep;
-    G := arg[1];
-    chi := arg[2];
-    if UnderlyingGroup( chi ) <> G then
-       return  Error (  "second argument is not a character of given group " );
-    fi;
+    chi := arg[1];
+    G := UnderlyingGroup( chi );
     U := GeneratorsOfGroup( G );
     if chi[1] = 1 then 
-        if Length(U) = 0 then 
+        if Length( U ) = 0 then 
            return GroupHomomorphismByImagesNC( G, G, U, U );
         fi;
-        r := List( [ 1..Length( U ) ],i -> [ [ U[ i ] ^ arg[ 2 ] ] ] );
+        r := List( [ 1..Length( U ) ],i -> [ [ U[ i ] ^ arg[ 1 ] ] ] );
         return GroupHomomorphismByImagesNC( G, Group( r ), U, r );
     fi;
-    if Length( arg ) = 2  then
+    if Length( arg ) = 1  then
         if IsClassFunction( chi ) and IsCharacter( chi )  then
           s := CharacterSubgroup( G, chi );
           H := s[1];
           f := s[2];
-        else  Error( "second argument must be ordinary character");
+        else  Error( "first argument must be an ordinary character");
        fi; 
     fi;
-    if Length( arg ) = 3  then
-        if IsSubgroup (G, arg[3] ) and IsClassFunction( chi ) and IsCharacter( chi ) then
-        H := arg[3];
-        S := List( ConjugacyClassesSubgroups( H ), Representative );;
-        s := CharacterSubgroupLinearConstituent( chi, S );
-        if s = fail then Error( "given group does not contain any chi-subgroup"); fi;
+    if Length( arg ) = 2  then
+        if IsSubgroup ( G, arg[2] ) and IsClassFunction( chi ) and IsCharacter( chi ) then
+        H := arg[2];
+        s := CharacterSubgroupLinearConstituent( chi, [ H ] );
+        if s = fail then Error( "the given group is not a chi-subgroup"); fi;
         H := s[1];
         f := s[2];
-        else Error (  "second argument is not a character or third argument is not a subgroup of given group " );
+        else Error (  "first argument is not a character or second argument is not a subgroup of the given group " );
     fi; fi; 
     if Index( G, H ) = chi[1] then 
-    rep := CharacterSubgroupRepresentation( H, f );
+    rep := CharacterSubgroupRepresentation( f );
     return InducedSubgroupRepresentation ( G, rep );
     fi;
     M := MatrixRepsn( chi, G, H, f);
@@ -265,7 +279,6 @@
     r := RepresentationMatrixGenerators( U, Y, m1, f, chi, H );
     return GroupHomomorphismByImagesNC( G, Group( r ), U, r );
  end );
-
 
 
 ############################################################################################
@@ -326,7 +339,6 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 #################################### A Main Function #######################################
@@ -349,10 +361,10 @@
  if Size(h) = 1 then 
     B := [ [ [ [ 1 ] ] ], [ Identity( h ) ] ];
     else
-    B := ModuleBasis( h, rep );
     Mat := GeneratorsOfGroup(Image(rep));
     dim := DimensionsMat( Mat[1] )[1];
     Info( InfoWarning, 1, "Need to extend a representation of degree ", dim, ". This may take a while." );
+    B := ModuleBasis( h, rep );
  fi;
  G := UnderlyingGroup( chi );
  U := GeneratorsOfGroup( G );
@@ -373,7 +385,6 @@
  od;
  return  GroupHomomorphismByImagesNC( G, Group( S ), U, S );
  end );
-
 
 
 ############################################################################################
@@ -425,6 +436,110 @@
  end );
 
 
+############################################################################################
+############################################################################################
+################################### A Main Function ########################################
+## This program returns constituents and multiplicities a representation $rep$.
+## In this program the following program is called.
+## 1. IrreducibleAffordingRepresentation
+############################################################################################
+
+ InstallGlobalFunction( ConstituentsOfRepresentation,
+ function( rep )
+   local D, G, ctb, chi, con, R, C, m, i, r, UG, l;
+   D := [ ];
+   G := PreImagesRange( rep );
+   UG := GeneratorsOfGroup( G );
+   ctb := CharacterTable( G );
+   con := ConjugacyClasses( ctb );
+   chi := ClassFunction( ctb, List( con , i -> TraceMat( Image( rep, Representative( i )))));
+   R := RestrictedClassFunction( chi, G );
+   C := ConstituentsOfCharacter( R );
+   m := MatScalarProducts( C, [ R ] );
+   for i in [1..Length( C )] do
+      r := IrreducibleAffordingRepresentation( C[i] );
+      l := List( UG, i -> i^r );
+      Add( D, [ m[1][i], GroupHomomorphismByImagesNC( G, Group( l ), UG, l ) ] );
+   od;
+   return D;
+ end ); 
+
+
+############################################################################################
+############################################################################################
+################################### A Main Function ########################################
+## This program computes an equivalnet block diagonal representation to a given 
+## representation, or computes a block diagonal representation of the given list of 
+## irreducible representations.
+## In this program the following program is called.
+## 1. DiagonalBlockMatrix
+############################################################################################
+
+ InstallGlobalFunction( EquivalentBlockRepresentation,
+ function( reps )
+   local G, UG, U, i, j, k, matlist, mat, Mat;
+   Mat := [ ]; U := [ ];
+   if not IsList( reps ) then 
+      reps := ConstituentsOfRepresentation( reps ) ; 
+   fi;
+   if Length( reps ) = 1 and reps[1][1] = 1 then return reps[1][2]; fi;
+   G := PreImagesRange( reps[1][2] );
+   UG := GeneratorsOfGroup( G );
+   for k in [1..Length( reps )] do
+       for j in [1..reps[k][1]] do
+            Add( U, GeneratorsOfGroup( Image( reps[k][2] ) ) );
+       od;
+   od;
+   for i in [1..Length( U[1] )] do
+      matlist := List( U, j-> j[i] );
+      mat := DiagonalBlockMatrix( matlist );
+      Add( Mat, mat );
+   od;
+   return GroupHomomorphismByImagesNC( G, Group( Mat ), UG, Mat );;  
+ end );
+
+
+############################################################################################
+############################################################################################
+################################### A Main Function ########################################
+## This program returns true if the representation $rep$ is reducible.
+############################################################################################
+
+ InstallGlobalFunction( IsReducibleRepresentation,
+ function( rep )
+   local G, ctb, chi, con;
+   G := PreImagesRange( rep );
+   ctb := CharacterTable( G );
+   con := ConjugacyClasses( ctb );
+   chi := ClassFunction( ctb, List( con , i -> TraceMat( Image( rep, Representative( i )))));
+   if IsIrreducibleCharacter( chi ) = false then return true;
+   else return true;
+   fi;
+ end );
+
+
+############################################################################################
+############################################################################################
+##################################### A Utility Function ###################################
+##
+##
+
+ InstallGlobalFunction( DiagonalBlockMatrix,
+ function( matrices )
+   local dimension,  partialSum,  totalLength,  result,  m,  i,  range;
+   dimension := List( matrices, Length );
+   partialSum := List([0..Length( matrices )], x -> Sum( dimension{[1..x]} ));
+   range := List( [1..Length( matrices )], x -> [ partialSum[x]+1..partialSum[x+1] ] );
+   totalLength := Sum( dimension );
+   result := NullMat( totalLength, totalLength, Field(matrices[1][1][1]) );
+   for m in [1..Length( matrices )] do
+     for i in [1..dimension[m]] do
+       result[ range[m][i] ]{range[m]} := matrices[m][i];
+     od;
+   od;
+   return result;
+ end );
+
 
 ############################################################################################
 ############################################################################################
@@ -439,7 +554,7 @@
     C := ConjugacyClasses(H);
     l := List(C, Representative);
     for i in [1..Length(l)] do
-        a := (l[i] ^ -1) ^ f;
+        a := ( l[i] ^ -1 ) ^ f;
         for z in C[i] do
           t := t +  (z * x ) ^ chi;
         od;
@@ -449,7 +564,6 @@
     od;
     return sum;
  end );
-
 
 
 ############################################################################################
@@ -465,7 +579,6 @@
  rest:= RestrictedClassFunction( chi, H );
  return First( LinearCharacters( H ), lambda -> ScalarProduct( rest, lambda ) = 1 );
  end );
-
 
 
 ############################################################################################
@@ -488,13 +601,11 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
 ## This Program constructs the matrix A discribed in Dixon's paper.
 ##
-
 
  InstallGlobalFunction( MatrixRepsn,
  function ( chi, G, H, f )
@@ -504,10 +615,10 @@
     X := [ Identity( G ) ];
     Xinv:= [ Identity( G ) ];
     d := DegreeOfCharacter( chi );
-    while Length(X) < d  do
+    while Length( X ) < d  do
         matn := [  ];
-        n := Length( X );
-        x := PseudoRandom(G);
+        n := Length( X ); 
+        x := PseudoRandom( G );
         for j  in [ 1 .. n ]  do
             Y := x * Xinv[j];
             matn[j] := AlphaRepsn( Y, f, chi, H );
@@ -515,14 +626,13 @@
         od;
         matn[n + 1] := h;
         mat[n + 1] := matn;
-        if RankMat( mat ) = Length(mat) then
+        if RankMat( mat ) = Length( mat) then
             X[n + 1] := x;
             Xinv[n + 1] := x^-1;
         fi;
     od;
     return [ mat, X ];
  end );
-
 
 
 ############################################################################################
@@ -546,7 +656,6 @@
  od;
  return fail;
  end );
-
 
 
 ############################################################################################
@@ -578,47 +687,50 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
 ## This program finds the smallest possible $\chi$-subgroup of $G$. At the first
-## it checks among the lattice of subgroups of the Sylow subgroups. If there is 
-## no $p$-subgroup as a $\chi$-subgroup then it tries among the lattice of 
-## subgroups of $G$.
+## it checks among the standard subgroups of $G$ and then the lattice of subgroups of the 
+## Sylow subgroups. If there is no subgroup as a $\chi$-subgroup then it searches among
+## the lattice of subgroups of $G$.
 ##
 
  InstallGlobalFunction( CharacterSubgroup,
  function( G, chi )
- local N, s, S, pi, i, L;
-      N := CharacterSylowSubgroup( G, chi );
-      if N <> fail  then
-         S := List( ConjugacyClassesSubgroups( N ), Representative );;
-         s := CharacterSubgroupLinearConstituent( chi, S );
-         else
+ local N, s, S, pi, i, L, reps, sp, l;
+      reps := [  ];
+      N := StandardSubgroups( G );
+      s := CharacterSubgroupLinearConstituent( chi, N );
+  #   if s <> fail the return s; fi;
+      if s = fail then 
          pi := Set(FactorsInt( Size(G) ) );
          for i in [1..Length(pi)] do
              S := SylowSubgroup( G, pi[i] );
-             L := List( ConjugacyClassesSubgroups( S ), Representative ) ;;
-             s := CharacterSubgroupLinearConstituent( chi, L );
-             if s <> fail  then
-             break;
-             fi;
-         od;
-         if s = fail  then
+             sp := List(ConjugacyClassesSubgroups(S),Representative);
+             L := sp[1];
+             repeat 
+                 Add( reps, L );
+                 L := First( sp, g -> not ForAny( reps, rep -> IsConjugate( G, g, rep ) ) );
+                 until L = fail;
+             reps := Set( reps );
+             l := List( reps, Size );
+             SortParallel( l , reps );
+             s := CharacterSubgroupLinearConstituent( chi, reps );
+        od;
+      fi;
+      if s = fail  then
              if not ( HasConjugacyClassesSubgroups( G ) or HasTableOfMarks( G ) ) then
-             Info( InfoWarning, 1, "need to compute subgroup lattice of a group of order ", Size( G ) );
-         fi;
+                  Info( InfoWarning, 1, "need to compute subgroup lattice of a group of order ", Size( G ) );
+             fi;
             S := List( ConjugacyClassesSubgroups( G ), Representative );
             s := CharacterSubgroupLinearConstituent( chi, S );
             if s = fail  then
-               Error ( "Dixon's method does not work for given character ");
+               Error ( "Dixon's method does not work for the given character ");
             fi;
-         fi;
       fi;
  return s;
  end );
-
 
 
 ############################################################################################
@@ -663,11 +775,10 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
-##This is a subprogram for the function ``MinimalNormalSubgps".
+## This is a subprogram for the function ``MinimalNormalSubgps".
 ##
 
  InstallGlobalFunction( AddToSubgpList,
@@ -689,11 +800,10 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
-##This function finds the minimal normal subgroups of a group $G$.
+## This function finds the minimal normal subgroups of a group $G$.
 ##
 
  InstallGlobalFunction( MinimalNormalSubgps,
@@ -710,7 +820,6 @@
  od;
  return nt;
  end );
-
 
 
 ############################################################################################
@@ -768,7 +877,6 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
@@ -795,6 +903,36 @@
  end );
 
 
+############################################################################################
+############################################################################################
+##################################### A Utility Function ###################################
+## For all Sylow $p$-subgroups $P$ of $G$ of order $p^a$, this program lists $P$, the 
+## normalizer of $P$ in $G$ if $a <= 2$, and the derived subgroup $P'$ of $P$ and the 
+## centralizer of $P'$ in $G$ if $a > 2$.
+##  
+
+ InstallGlobalFunction( StandardSubgroups,
+ function( G )
+ local reps, S, P, D, l, i, col;
+ col := Collected( FactorsInt( Size ( G ) ) );
+ S := List(col, i-> SylowSubgroup( G, i[1] ) );
+ reps := S;
+ for i in [1..Length(col)] do
+   if col[i][2] <= 2 then 
+            Add( reps, Normalizer( G, S[i] ) ); 
+   else if not IsAbelian( S[i] ) then
+                D := DerivedSubgroup( S[i] ); 
+                Add( reps, D );
+                Add( reps, Centralizer( G, D ) );
+        fi;
+   fi;
+ od;
+ reps := Set( reps );
+ l := List( reps, Size );
+ SortParallel( l , reps );
+ return reps;
+ end );
+
 
 ############################################################################################
 ############################################################################################
@@ -818,9 +956,8 @@
      fi;
  od;
  H := CharacterSubgroupLinearConstituent( chi, L )[1];
- return CharacterSubgroupRepresentation( G, chi, H );
+ return CharacterSubgroupRepresentation( chi, H );
  end );
-
 
 
 ############################################################################################
@@ -849,7 +986,6 @@
  R := RestrictedClassFunction( chi, max );
  return ExtendedRepresentation( chi, IrreducibleAffordingRepresentation( R ) );  
  end );
-
 
 
 ############################################################################################
@@ -881,7 +1017,6 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
@@ -902,7 +1037,6 @@
  R := RestrictedClassFunction( chi, m );
  return ExtendedRepresentation( chi, IrreducibleAffordingRepresentation( R ) );  
  end );
-
 
 
 ############################################################################################
@@ -931,7 +1065,6 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
@@ -951,9 +1084,8 @@
  fi;
  od;
  H := CharacterSubgroupLinearConstituent( chi, L )[1];
- return CharacterSubgroupRepresentation( G, chi, H );
+ return CharacterSubgroupRepresentation( chi, H );
  end );
-
 
 
 ############################################################################################
@@ -1027,7 +1159,6 @@
  end );
 
 
-
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
@@ -1079,7 +1210,7 @@
       for i in [ 1..Length( S ) ] do
         R := RestrictedClassFunction( chi, S[i] );
         C := ConstituentsOfCharacter( R );
-        r := CharacterSubgroupRepresentation( S[i], C[1] );
+        r := CharacterSubgroupRepresentation( C[1] );
         Add( L, GeneratorsOfGroup( Image( r ) ) );
         Co := Concatenation(List( Co, u->u*GeneratorsOfGroup( S[i] ) ) );
       od;
