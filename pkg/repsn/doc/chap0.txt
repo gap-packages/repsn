@@ -1,0 +1,70 @@
+  
+  
+                                     [1m[4m[31m[1mRepsn[1m[4m[31m[0m
+  
+  
+      [1m[4m[31mA [1mGAP[1m[4m[31m4 Package for constructing representations of finite groups  [0m
+  
+  
+                                  Version 1.0
+  
+  
+                                    May 2004
+  
+  
+                           Vahid Dabbaghian-Abdoly  
+  
+  
+  
+  Vahid Dabbaghian-Abdoly  
+      Email:    [34mmailto: vdabbagh@math.carleton.ca[0m
+      Homepage: [34mhttp://www.math.carleton.ca/~vdabbagh[0m
+      Address:  School of Mathematics and Statistics,
+                Carleton University,
+                Ottawa, Ontario,
+                K1S 5B6 Canada.
+  
+  
+  
+  -------------------------------------------------------
+  [1m[4m[31mCopyright[0m
+  (C) 2004 Vahid Dabbaghian-Abdoly.
+  
+  
+  -------------------------------------------------------
+  [1m[4m[31mAcknowledgements[0m
+  This  package was obtained during my Ph.D. studies at Carleton University. I
+  would  like  to  express  deep  gratitude to my supervisor Professor John D.
+  Dixon  whose guidance and support were crucial for the successful completion
+  of  this  project.  I  also  thank Professor Charles Wright and referees for
+  pointing out some important comments to improve [1mRepsn[0m.
+  
+  This  documentation was prepared with the [1mGAPDoc[0m package by Frank Lübeck and
+  Max Neunhöffer.
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1m[4m[31mContent (repsn)[0m
+  
+  1. Introduction
+  2. Irreducible Representations
+    2.1 Constructing Representations
+      2.1-1 IrreducibleAffordingRepresentation
+      2.1-2 IsAffordingRepresentation
+    2.2 Induction
+      2.2-1 InducedSubgroupRepresentation
+    2.3 Extension
+      2.3-1 ExtendedRepresentation
+      2.3-2 ExtendedRepresentationNormal
+    2.4 Character Subgroups
+      2.4-1 CharacterSubgroupRepresentation
+      2.4-2 IsCharacterSubgroup
+      2.4-3 AllCharacterPSubgroups
+      2.4-4 AllCharacterSubgroups
+    2.5 Equivalent Representation
+      2.5-1 EquivalentRepresentation
+  
+  
+  -------------------------------------------------------

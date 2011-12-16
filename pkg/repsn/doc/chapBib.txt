@@ -1,0 +1,14 @@
+  
+  
+  [1m[4m[31mReferences[0m
+  
+  [33m[D03]  [0m[1m[31mDabbaghian-Abdoly, V. [0m, [34mAn algorithm to construct representations
+  of finite groups[0m, Ph.D. thesis, Dept. Mathematics, Univ. Carleton (2003)
+  
+  [33m[D93]  [0m[1m[31mDixon,  J. D. [0m, [34mConstructing representations of finite groups[0m, in
+  [34mGroups  and  Computation[0m,  Dimacs  Series  in  Discrete  Mathematics and
+  Theoretical Computer Science, [34m11[0m (1993), 105--112
+  
+  
+  
+  -------------------------------------------------------
