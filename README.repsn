@@ -1,0 +1,64 @@
+
+                   README file for REPSN - A GAP4 package - version 3.0.2
+                   ======================================================
+
+This is the README file for the GAP package ``REPSN''.
+
+This package is for computing matrix representations in characteristic zero of finite groups.
+
+This package only works with GAP4.3 (and higher versions).
+
+The REPSN package is distributed with the accepted GAP packages.
+
+============================================================================
+
+Documentation:
+
+The manual of REPSN is contained in /pkg/repsn/doc. There are the
+following files (among others):
+
+     * manual.dvi       dvi version of the manual
+     * manual.pdf       pdf version of the manual
+
+REMARKS.
+
+    * The documentation of REPSN was made using the GAPDoc package.
+      Therefore, in order to be able to use the online help you must 
+      install the GAPDoc package, see
+
+      http://www.math.rwth-aachen.de/~Frank.Luebeck/GAPDoc/index.html
+
+
+============================================================================
+
+Installing `REPSN':
+
+1) unpack `repsn.zip' in the `pkg' subdirectory of the GAP root
+   directory.
+
+2) From within GAP load the package with:
+
+gap> LoadPackage("repsn");
+
+
+===========================================================================
+
+E-mail me if there are any questions, remarks, suggestions. Also, I
+would like to hear about applications of this package.
+
+Author
+======
+ 
+The REPSN package was written by:
+ 
+Vahid Dabbaghian,
+Department of Mathematics,
+Simon Fraser University,
+Burnaby, British Columbia,
+Canada V5A 1S6.
+E-mail: vdabbagh@sfu.ca
+
+August 2011
+
+
+
