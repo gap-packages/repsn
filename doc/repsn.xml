@@ -144,7 +144,7 @@ principle the same methods can be extended to characters of larger degree.
 
 The main methods in these functions which are used to construct representations 
 of finite groups are Induction, Extension, Tensor Product and Dixon's method 
-(for constructing representations of simple groups and their covers) <Cite Key="Dab-05"/>, and Projective Representation method <Cite Key="DD-08"/>.
+(for constructing representations of simple groups and their covers) <Cite Key="Dab-05"/>, and Projective Representation method <Cite Key="DD-10"/>.
 
 
   <Section>
@@ -194,7 +194,7 @@ then <Code>IsAffordingRepresentation</Code> returns <Code>true</Code> if the tra
 <A>chi(x)</A> for all elements  <M>x</M> in <M>G</M>.
 
  <Example>
-gap> G := GL(2,7);:
+gap> G := GL(2,7);;
 gap> chi := Irr(G)[ 29 ];;
 gap> rep := IrreducibleAffordingRepresentation( chi );
 CompositionMapping( [(8,15,22,29,36,43)(9,16,23,30,37,44)
@@ -372,8 +372,8 @@ true
   a character subgroup relative to <M>chi</M> or a <M>chi</M>-subgroup.
    <ManSection>
    
-           <Func Name="CharacterSubgroupRepresentation" Arg=" chi "/>
-           <Func Name="CharacterSubgroupRepresentation" Arg=" chi, H "/>		   
+           <Func Name="CharacterSubgroupRepresentation" Arg=" chi " Label="for a character"/>
+           <Func Name="CharacterSubgroupRepresentation" Arg=" chi, H " Label="for a character and a group"/>		   
      <Description>
 	 
 	 returns a representation affording <A>chi</A> by finding a <A>chi</A>-subgroup and using 
@@ -540,8 +540,8 @@ representation of <M>G</M>.
   <Heading>Block Representations</Heading>
 
   <ManSection>
-           <Func Name="EquivalentBlockRepresentation" Arg=" rep "/>
-           <Func Name="EquivalentBlockRepresentation" Arg=" list "/>		   
+           <Func Name="EquivalentBlockRepresentation" Arg=" rep " Label="for a representation"/>
+           <Func Name="EquivalentBlockRepresentation" Arg=" list " Label="for a list"/>
 
         <Description>
 If <A>rep</A> is a reducible representation of a group <M>G</M>,
