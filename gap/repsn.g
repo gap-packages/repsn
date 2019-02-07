@@ -1381,7 +1381,7 @@
    c := Centralizer( Image( hom ), Group( M ) );
    if Size(c) > 1 then Add( S, c ); fi;
    S := List( S, i -> PreImage( hom, i ) );
-   Co := [1];
+   Co := [ () ];
    for i in [ 1..Length( S ) ] do
       R := RestrictedClassFunction( chi, S[i] );
       C := ConstituentsOfCharacter( R );
