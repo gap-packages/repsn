@@ -59,7 +59,7 @@ Dependencies := rec(
  ExternalConditions     := [ ] ),
 
  AvailabilityTest := ReturnTrue,
-# TestFile         := "", # "tst/testall.g",
+ TestFile         := "tst/testall.g",
  Keywords         := ["group representations", "matrix representations", "Dixon's method"],
 
 BannerString := Concatenation(
