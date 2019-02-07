@@ -81,5 +81,21 @@ SetPackageInfo( rec(
   TestFile         := "tst/testall.g",
   Keywords         := ["group representations", "matrix representations", "Dixon's method"],
 
+  AutoDoc := rec(
+      TitlePage := rec(
+          Acknowledgements := """
+<P/>The first version of this package was obtained during my Ph.D.
+studies at Carleton University. I would like to express deep gratitude
+to my supervisor Professor John D. Dixon whose guidance and support were
+crucial for the successful completion of this project. I also thank
+Professor Charles Wright and referees for pointing out some important
+comments to improve <Package>Repsn</Package>.
+
+<P/>This documentation was prepared with the <Package>GAPDoc</Package>
+package by Frank Lübeck and Max Neunhöffer.
+""",
+      ),
+  ),
+
 ) );
 

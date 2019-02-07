@@ -1,70 +1,12 @@
- <?xml version="3.0" encoding="ISO-8859-1"?>
+<?xml version="3.0" encoding="utf-8"?>
 
- <!DOCTYPE Book SYSTEM "gapdoc.dtd">
+<!DOCTYPE Book SYSTEM "gapdoc.dtd">
 
- <Book Name="repsn">                                        <!-- REQUIRED -->
+<Book Name="repsn">
 
-  <!--
-                          The title page
-                                                                      -->
-  <TitlePage>    
-                                         <!-- REQUIRED -->
-    <Title>                                             
-        <Package>Repsn</Package>
-    </Title>
-	
-    <Subtitle>     	                                     <!-- OPTIONAL -->
-       A &GAP;4 Package<Br/>
-       for constructing representations of finite groups
-       &nbsp;
-    </Subtitle>
-
-    <Version>Version 3.0.2</Version> 
-    <!-- OPTIONAL -->
-    <Author> 
-	    Vahid Dabbaghian<Br/>                 <!-- REQUIRED -->
-        &nbsp;
-         <Address>
-	 Department of Mathematics,<Br/>
-	 Simon Fraser University,<Br/>
-	 Burnaby, British Columbia,<Br/>
-         V5A 1S6 Canada.
-	 </Address>
-      <Email> vdabbagh@sfu.ca</Email> 
-     <Homepage>http://www.sfu.ca/~vdabbagh</Homepage>
-   </Author> 
-   
-   <Date>August 2011</Date> 
-   <!-- OPTIONAL -->
-   
-    <Copyright> 
-    <!-- OPTIONAL -->
-    &copyright; 2004 Vahid Dabbaghian.
-	</Copyright> 
-	
-	<Acknowledgements> 
-   <!-- OPTIONAL -->
-   <P/>The first version of this package was obtained during my Ph.D. studies at Carleton University. I would like to
- express deep gratitude to my supervisor Professor John D. Dixon whose guidance and
- support were crucial for the successful completion of this project. I also thank Professor 
- Charles Wright and referees for pointing out some important comments to improve <Package>Repsn</Package>.
-
-      <P/>This documentation was prepared with the <Package>GAPDoc</Package> package 
-        by Frank Lübeck and Max Neunhöffer. 
-   </Acknowledgements>
-   
- </TitlePage>
-
-
-
-  <TableOfContents/>                                    <!-- OPTIONAL -->
-
-
-
-  <!--
-                            The document
-                                                                      -->
-  <Body>                                                <!-- REQUIRED -->
+<#Include SYSTEM "title.xml">
+<TableOfContents/>
+<Body>
 
 
 <Chapter><Heading>Introduction</Heading>
@@ -627,9 +569,7 @@ gap> EquivalentBlockRepresentation( con );
 </Chapter>
 
 </Body>
-  <Bibliography Databases="repsn"/>
-  <TheIndex/>                                               
-  </Book>
 
-
-
+<Bibliography Databases="repsn"/>
+<TheIndex/>
+</Book>
