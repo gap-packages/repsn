@@ -44,7 +44,7 @@ SetPackageInfo( rec(
   AcceptDate     := "05/2004",
 
   PackageWWWHome  := "https://gap-packages.github.io/repsn/",
-  README_URL      := Concatenation( ~.PackageWWWHome, "README" ),
+  README_URL      := Concatenation( ~.PackageWWWHome, "README.md" ),
   PackageInfoURL  := Concatenation( ~.PackageWWWHome, "PackageInfo.g" ),
   SourceRepository := rec(
       Type := "git",
