@@ -1,0 +1,24 @@
+  
+  
+  [1XReferences[101X
+  
+  [[20XDA03[120X]  [16XDabbaghian-Abdoly,  V.[116X,  [17XAn algorithm to construct representations of finite groups[117X, Ph.D. thesis, Dept.
+  Mathematics, Univ. Carleton (2003).
+  
+  [[20XDA05[120X]  [16XDabbaghian-Abdoly,  V.[116X,  [17XAn  algorithm  for  constructing  representations of finite groups[117X, [18XJ. Symbolic
+  Comput.[118X, [19X39[119X (2005), 671-- 688.
+  
+  [[20XDA06[120X] [16XDabbaghian-Abdoly, V.[116X, [17XConstructing representations of finite simple groups and central covers[117X, [18XCanad. J.
+  Math.[118X, [19X58[119X (2006), 23 -- 38.
+  
+  [[20XDA07[120X] [16XDabbaghian-Abdoly, V.[116X, [17XConstructing representations of higher degrees of finite simple groups and covers[117X,
+  [18XMath. Comp.[118X, [19X76[119X (2007), 1661 -- 1668.
+  
+  [[20XDD10[120X] [16XDabbaghian, V. and Dixon, J. D.[116X, [17XComputing matrix representations[117X, [18XMath. Comp.[118X, [19X79[119X (2010), 1801 -- 1810.
+  
+  [[20XDix93[120X] [16XDixon, J. D.[116X, [17XConstructing representations of finite groups[117X, in Groups and Computation, Dimacs Series in
+  Discrete Mathematics and Theoretical Computer Science, [19X11[119X (1993), 105--112.
+  
+  
+  
+  [32X

@@ -1,1 +1,77 @@
-Placeholder
+  
+  
+                                    [1X Repsn [101X
+  
+  
+                [1X Constructing representations of finite groups [101X
+  
+  
+                                    3.0.2dev
+  
+  
+                                 25 August 2011
+  
+  
+                                Vahid Dabbaghian
+  
+                                  The GAP Team
+  
+  
+  
+  Vahid Dabbaghian
+      Email:    [7Xmailto:vdabbagh@sfu.ca[107X
+      Homepage: [7Xhttp://www.sfu.ca/~vdabbagh[107X
+      Address:  [33X[0;14YVahid Dabbaghian[133X
+                [33X[0;14YDepartment of Mathematics[133X
+                [33X[0;14YSimon Fraser University[133X
+                [33X[0;14YBurnaby, British Columbia[133X
+                [33X[0;14YV5A 1S6 Canada[133X
+  
+  
+  The GAP Team
+      Email:    [7Xmailto:support@gap-system.org[107X
+  
+  -------------------------------------------------------
+  [1XAcknowledgements[101X
+  [33X[0;0YThe  first  version  of this package was obtained during my Ph.D. studies at
+  Carleton University. I would like to express deep gratitude to my supervisor
+  Professor  John  D.  Dixon  whose  guidance and support were crucial for the
+  successful completion of this project. I also thank Professor Charles Wright
+  and referees for pointing out some important comments to improve [5XRepsn[105X.[133X
+  
+  [33X[0;0YThis  documentation was prepared with the [5XGAPDoc[105X package by Frank Lübeck and
+  Max Neunhöffer.[133X
+  
+  
+  -------------------------------------------------------
+  
+  
+  [1XContents (repsn)[101X
+  
+  1 [33X[0;0YIntroduction[133X
+  2 [33X[0;0YIrreducible Representations[133X
+    2.1 [33X[0;0YConstructing Representations[133X
+      2.1-1 IrreducibleAffordingRepresentation
+      2.1-2 IsAffordingRepresentation
+    2.2 [33X[0;0YInduction[133X
+      2.2-1 InducedSubgroupRepresentation
+    2.3 [33X[0;0YExtension[133X
+      2.3-1 ExtendedRepresentation
+      2.3-2 ExtendedRepresentationNormal
+    2.4 [33X[0;0YCharacter Subgroups[133X
+      2.4-1 CharacterSubgroupRepresentation
+      2.4-2 IsCharacterSubgroup
+      2.4-3 AllCharacterPSubgroups
+      2.4-4 AllCharacterStandardSubgroups
+      2.4-5 AllCharacterSubgroups
+    2.5 [33X[0;0YEquivalent Representation[133X
+      2.5-1 EquivalentRepresentation
+  3 [33X[0;0YReducible Representations[133X
+    3.1 [33X[0;0YConstituents of Representations[133X
+      3.1-1 ConstituentsOfRepresentation
+      3.1-2 IsReducibleRepresentation
+    3.2 [33X[0;0YBlock Representations[133X
+      3.2-1 EquivalentBlockRepresentation
+  
+  
+  [32X

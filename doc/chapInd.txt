@@ -1,0 +1,23 @@
+  
+  
+  [1XIndex[101X
+  
+  [2XAllCharacterPSubgroups[102X 2.4-3 
+  [2XAllCharacterStandardSubgroups[102X 2.4-4 
+  [2XAllCharacterSubgroups[102X 2.4-5 
+  [2XCharacterSubgroupRepresentation[102X, for a character 2.4-1 
+      for a character and a group 2.4-1 
+  [2XConstituentsOfRepresentation[102X 3.1-1 
+  [2XEquivalentBlockRepresentation[102X, for a list 3.2-1 
+      for a representation 3.2-1 
+  [2XEquivalentRepresentation[102X 2.5-1 
+  [2XExtendedRepresentation[102X 2.3-1 
+  [2XExtendedRepresentationNormal[102X 2.3-2 
+  [2XInducedSubgroupRepresentation[102X 2.2-1 
+  [2XIrreducibleAffordingRepresentation[102X 2.1-1 
+  [2XIsAffordingRepresentation[102X 2.1-2 
+  [2XIsCharacterSubgroup[102X 2.4-2 
+  [2XIsReducibleRepresentation[102X 3.1-2 
+  
+  
+  -------------------------------------------------------

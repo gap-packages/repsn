@@ -1,0 +1,114 @@
+  
+  [1X3 [33X[0;0YReducible Representations[133X[101X
+  
+  [33X[0;0YIn  this  chapter  we  introduce  some  functions  which deal with a complex
+  reducible representation [22XR[122X of a finite group [22XG[122X.[133X
+  
+  
+  [1X3.1 [33X[0;0YConstituents of Representations[133X[101X
+  
+  [1X3.1-1 ConstituentsOfRepresentation[101X
+  
+  [33X[1;0Y[29X[2XConstituentsOfRepresentation[102X( [3Xrep[103X ) [32X function[133X
+  
+  [33X[0;0Ycalled  with a representation [3Xrep[103X of a group [22XG[122X. This function returns a list
+  of irreducible representations of [22XG[122X which are constituents of [3Xrep[103X, and their
+  corresponding  multiplicities.  For example, if [3Xrep[103X is a representation of [22XG[122X
+  affording a character [22XX[122X such that [22XX = mY + nZ[122X, where [22XY[122X and [22XZ[122X are irreducible
+  characters  of  [22XG[122X,  and  [22Xm[122X  and [22Xn[122X are the corresponding multiplicities, then
+  [10XConstituentsOfRepresentation[110X  returns  [22X[[m,  S][122X,  [22X[n,  T]][122X where [22XS[122X and [22XT[122X are
+  irreducible  representations  of  [22XG[122X  affording  [22XY[122X  and [22XZ[122X, respectively. This
+  function call can be quite expensive when [22XG[122X is a large group.[133X
+  
+  [1X3.1-2 IsReducibleRepresentation[101X
+  
+  [33X[1;0Y[29X[2XIsReducibleRepresentation[102X( [3Xrep[103X ) [32X function[133X
+  
+  [33X[0;0YIf  [3Xrep[103X  is  a  representation  of  a group [22XG[122X then [10XIsReducibleRepresentation[110X
+  returns [10Xtrue[110X if [3Xrep[103X is a reducible representation of [22XG[122X.[133X
+  
+  
+  [1X3.2 [33X[0;0YBlock Representations[133X[101X
+  
+  [1X3.2-1 EquivalentBlockRepresentation[101X
+  
+  [33X[1;0Y[29X[2XEquivalentBlockRepresentation[102X( [3Xrep[103X ) [32X function[133X
+  [33X[1;0Y[29X[2XEquivalentBlockRepresentation[102X( [3Xlist[103X ) [32X function[133X
+  
+  [33X[0;0YIf  [3Xrep[103X  is a reducible representation of a group [22XG[122X, this function returns a
+  block diagonal representation of [22XG[122X equivalent to [3Xrep[103X. If [3X list [103X [22X= [[m1, R1][122X,
+  [22X[m2,  R2][122X,  ... , [22X[mt, Rt]][122X is a list of irreducible representations [22XR1[122X, [22XR2[122X,
+  ...   ,   [22XRt[122X   of   [22XG[122X   with   multiplicities   [22Xm1[122X,   [22Xm2[122X,  ...  ,  [22Xmt[122X,  then
+  [10XEquivalentBlockRepresentation[110X  returns  a block diagonal representation of [22XG[122X
+  containing the blocks [22XR1[122X, [22XR2[122X, ... , [22XRt[122X.[133X
+  
+  [4X[32X  Example  [32X[104X
+    [4X[25Xgap>[125X [27XG := AlternatingGroup( 5 );;[127X[104X
+    [4X[25Xgap>[125X [27XH := SylowSubgroup( G, 2 );;[127X[104X
+    [4X[25Xgap>[125X [27Xchi := TrivialCharacter( H );;[127X[104X
+    [4X[25Xgap>[125X [27XHrep := IrreducibleAffordingRepresentation( chi );;[127X[104X
+    [4X[25Xgap>[125X [27Xrep := InducedSubgroupRepresentation( G, Hrep );;[127X[104X
+    [4X[25Xgap>[125X [27XIsReducibleRepresentation( rep );[127X[104X
+    [4X[28Xtrue[128X[104X
+    [4X[25Xgap>[125X [27Xcon := ConstituentsOfRepresentation( rep );[127X[104X
+    [4X[28X[ [ 1, [ (1,2,3,4,5), (3,4,5) ] -> [ [ [ 1 ] ], [ [ 1 ] ] ] ],[128X[104X
+    [4X[28X  [ 1, [ (1,2,3,4,5), (3,4,5) ] ->[128X[104X
+    [4X[28X        [ [ [ E(3), -1/3*E(3)-2/3*E(3)^2, 0, 1/3*E(3)-1/3*E(3)^2 ],[128X[104X
+    [4X[28X            [ 1, -4/3*E(3)+1/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2 ],[128X[104X
+    [4X[28X            [ 1, -E(3), E(3), 0 ],[128X[104X
+    [4X[28X            [ 1, -1/3*E(3)+1/3*E(3)^2, 1, 1/3*E(3)+2/3*E(3)^2 ] ],[128X[104X
+    [4X[28X          [ [ 1, -2/3*E(3)-1/3*E(3)^2, 0, 2/3*E(3)+1/3*E(3)^2 ],[128X[104X
+    [4X[28X            [ 0, -E(3), E(3), 1 ],[128X[104X
+    [4X[28X            [ 0, -4/3*E(3)-2/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2 ],[128X[104X
+    [4X[28X            [ 0, 0, 1, 0 ] ] ] ],[128X[104X
+    [4X[28X  [ 2, [ (1,2,3,4,5), (3,4,5) ] -> [128X[104X
+    [4X[28X        [ [ [ -1, 1, 1, 1, -1 ], [128X[104X
+    [4X[28X            [ 0, 0, 0, 0, 1 ],[128X[104X
+    [4X[28X            [ -1, 0, 0, 1, -1 ],[128X[104X
+    [4X[28X            [ 0, 0, 1, 0, 0 ], [128X[104X
+    [4X[28X            [ 0, -1, 0, -1, 1 ] ],[128X[104X
+    [4X[28X          [ [ 0, 0, 0, 0, 1 ],[128X[104X
+    [4X[28X            [ 0, -1, -1, -1, 0 ],[128X[104X
+    [4X[28X            [ 0, 1, 0, 0, 0 ],[128X[104X
+    [4X[28X            [ 0, 0, 0, 1, 0 ],[128X[104X
+    [4X[28X            [ -1, 0, 0, 1, -1 ] ] ] ] ][128X[104X
+    [4X[25Xgap>[125X [27XEquivalentBlockRepresentation( con );[127X[104X
+    [4X[28X[ (1,2,3,4,5), (3,4,5) ] ->[128X[104X
+    [4X[28X[ [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, E(3), -1/3*E(3)-2/3*E(3)^2, 0, 1/3*E(3)-1/3*E(3)^2, 0, [128X[104X
+    [4X[28X      0, 0, 0, 0,  0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 1, -4/3*E(3)+1/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2, 0, [128X[104X
+    [4X[28X      0, 0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 1, -E(3), E(3), 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 1, -1/3*E(3)+1/3*E(3)^2, 1, 1/3*E(3)+2/3*E(3)^2, 0, 0, [128X[104X
+    [4X[28X      0, 0, 0, 0, 0, 0, 0, 0 ], [128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, -1, 1, 1, 1, -1, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, -1, 0, -1, 1, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 1, 1, 1, -1 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, -1, 1 ] ],[128X[104X
+    [4X[28X  [ [ 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 1, -2/3*E(3)-1/3*E(3)^2, 0, 2/3*E(3)+1/3*E(3)^2, 0, 0, [128X[104X
+    [4X[28X      0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, -E(3), E(3), 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, -4/3*E(3)-2/3*E(3)^2, E(3), -2/3*E(3)-1/3*E(3)^2, 0, [128X[104X
+    [4X[28X      0, 0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, -1, -1, -1, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, -1, 0, 0, 1, -1, 0, 0, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -1, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0 ],[128X[104X
+    [4X[28X    [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, -1 ] ] ][128X[104X
+    [4X[28X [128X[104X
+  [4X[32X[104X
+  
