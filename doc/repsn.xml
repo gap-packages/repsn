@@ -44,22 +44,12 @@ characteristic zero of finite groups. Most of the functions in <Package>Repsn</P
    <Verb> gap> LoadPackage( "repsn" ); </Verb>
 
  (see section <E>Loading a GAP Package</E> in the &GAP; Reference Manual).
-<P/> 
-<Package>Repsn</Package> has been developed by<Br/>
 
 <P/>
 
-Vahid Dabbaghian<Br/>
-Department of Mathematics<Br/>
-Simon Fraser University<Br/>
-Burnaby, British Columbia,<Br/>
-V5A 1S6 Canada.<Br/>
-e-mail: vdabbagh@sfu.ca<Br/>
-
-<P/>
-
-Please send bug reports, suggestions and other comments to this
-e-mail address.
+Please report any bugs or other issues you might encounter via the
+<Package>Repsn</Package> issue tracker at
+<URL>https://github.com/gap-packages/repsn/issues</URL>.
 
  
 </Chapter>
