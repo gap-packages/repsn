@@ -20,12 +20,12 @@ characteristic zero of finite groups. Most of the functions in <Package>Repsn</P
  <P/>For constructing representations of simple groups and their covers
   we use the algorithm described in <Cite Key="Dix-93"/>. To use this
   algorithm for constructing a representation of a group <M>G</M>
-  affording an irreducible character <M>chi</M> of <M>G</M>, we need to have
-  a subgroup <M>H</M> of <M>G</M> such that the restriction of <M>chi</M> to <M>H</M>
+  affording an irreducible character <M>\chi</M> of <M>G</M>, we need to have
+  a subgroup <M>H</M> of <M>G</M> such that the restriction of <M>\chi</M> to <M>H</M>
   has a linear constituent with multiplicity one. In this case we
-  say <M>H</M> is a <E>character subgroup</E> relative to <M>chi</M> (or a
- <M>chi</M>-subgroup). A <M>chi</M>-subgroup for each irreducible character
- <M>chi</M> of degree less than 100 of simple groups and their covers are
+  say <M>H</M> is a <E>character subgroup</E> relative to <M>\chi</M> (or a
+ <M>\chi</M>-subgroup). A <M>\chi</M>-subgroup for each irreducible character
+ <M>\chi</M> of degree less than 100 of simple groups and their covers are
  listed in <Cite Key="Dab-06"/> and <Cite Key="Dab-07"/>.
   
  <P/>All <Package>Repsn</Package> functions are written entirely in the &GAP; language. It
@@ -67,16 +67,16 @@ e-mail address.
 
 <Chapter><Heading>Irreducible Representations</Heading>
 
-Let <M>G</M> be a finite group and <M>chi</M> be an ordinary irreducible character of
+Let <M>G</M> be a finite group and <M>\chi</M> be an ordinary irreducible character of
 <M>G</M>.  In this chapter we introduce some functions to construct a complex representation
-<M>R</M> of <M>G</M> affording <M>chi</M>. We proceed recursively, reducing the problem to smaller
+<M>R</M> of <M>G</M> affording <M>\chi</M>. We proceed recursively, reducing the problem to smaller
 subgroups of <M>G</M> or characters of smaller degree until we obtain a problem which we
 can deal with directly.
 
 Inputs of most of the functions are a given group <M>G</M>, and an irreducible character
-<M>chi</M>. The output is a mapping (representation) which assigns to each generator <M>x</M>
+<M>\chi</M>. The output is a mapping (representation) which assigns to each generator <M>x</M>
 of <M>G</M> a matrix <M>R(x)</M>. We can use these functions for
-all groups and all irreducible characters <M>chi</M> of degree less than 100 although in
+all groups and all irreducible characters <M>\chi</M> of degree less than 100 although in
 principle the same methods can be extended to characters of larger degree.
 
 The main methods in these functions which are used to construct representations 
@@ -88,7 +88,7 @@ of finite groups are Induction, Extension, Tensor Product and Dixon's method
   <Heading>Constructing Representations</Heading>
   
    This section introduces the main function to compute a representation of a finite group 
- <M>G</M> affording an irreducible character <M>chi</M> of <M>G</M>.  
+ <M>G</M> affording an irreducible character <M>\chi</M> of <M>G</M>.  
     
   <ManSection>
            <Func Name="IrreducibleAffordingRepresentation" Arg=" chi "/>
@@ -304,9 +304,9 @@ true
 
   <Section>
   <Heading>Character Subgroups</Heading>
-  If <M>chi</M> is an irreducible character of a group <M>G</M> and <M>H</M> is a subgroup of <M>G</M> such that 
-  the restriction of <M>chi</M> to <M>H</M> has a linear constituent with multiplicity one, then we call <M>H</M>
-  a character subgroup relative to <M>chi</M> or a <M>chi</M>-subgroup.
+  If <M>\chi</M> is an irreducible character of a group <M>G</M> and <M>H</M> is a subgroup of <M>G</M> such that 
+  the restriction of <M>\chi</M> to <M>H</M> has a linear constituent with multiplicity one, then we call <M>H</M>
+  a character subgroup relative to <M>\chi</M> or a <M>\chi</M>-subgroup.
    <ManSection>
    
            <Func Name="CharacterSubgroupRepresentation" Arg=" chi " Label="for a character"/>
