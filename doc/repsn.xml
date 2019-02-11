@@ -43,12 +43,7 @@ characteristic zero of finite groups. Most of the functions in <Package>Repsn</P
 
    <Verb> gap> LoadPackage( "repsn" ); </Verb>
 
- (see section <E>Loading a GAP Package</E> in the &GAP; Reference Manual). One could install 
-the <Package>Repsn</Package> package on &GAP;4.3. In this case it is loaded with the command
-
-
-  <Verb> gap> RequirePackage( "repsn" ); </Verb>
-
+ (see section <E>Loading a GAP Package</E> in the &GAP; Reference Manual).
 <P/> 
 <Package>Repsn</Package> has been developed by<Br/>
 
