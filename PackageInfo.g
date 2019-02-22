@@ -8,8 +8,9 @@ SetPackageInfo( rec(
 
   PackageName    := "Repsn",
   Subtitle       := "Constructing representations of finite groups",
-  Version        := "3.0.2dev",
-  Date           := "25/08/2011",
+  Version        := "3.1.0",
+  Date           := "22/02/2019", # dd/mm/yyyy format
+  License        := "GPL-2.0-or-later",
 
  Persons := [
    rec(
