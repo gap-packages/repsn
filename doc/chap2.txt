@@ -1,26 +1,26 @@
   
   [1X2 [33X[0;0YIrreducible Representations[133X[101X
   
-  [33X[0;0YLet  [22XG[122X  be a finite group and [22Xchi[122X be an ordinary irreducible character of [22XG[122X.
-  In  this  chapter  we  introduce  some  functions  to  construct  a  complex
-  representation  [22XR[122X  of  [22XG[122X affording [22Xchi[122X. We proceed recursively, reducing the
+  [33X[0;0YLet  [22XG[122X be a finite group and [22Xχ[122X be an ordinary irreducible character of [22XG[122X. In
+  this   chapter   we   introduce   some  functions  to  construct  a  complex
+  representation  [22XR[122X  of  [22XG[122X  affording  [22Xχ[122X. We proceed recursively, reducing the
   problem  to  smaller subgroups of [22XG[122X or characters of smaller degree until we
   obtain  a  problem  which  we  can deal with directly. Inputs of most of the
-  functions  are a given group [22XG[122X, and an irreducible character [22Xchi[122X. The output
-  is  a  mapping  (representation)  which  assigns  to each generator [22Xx[122X of [22XG[122X a
-  matrix  [22XR(x)[122X.  We can use these functions for all groups and all irreducible
-  characters  [22Xchi[122X  of  degree  less  than  100  although in principle the same
-  methods  can be extended to characters of larger degree. The main methods in
-  these functions which are used to construct representations of finite groups
-  are   Induction,   Extension,   Tensor   Product  and  Dixon's  method  (for
-  constructing  representations of simple groups and their covers) [DA05], and
-  Projective Representation method [DD10].[133X
+  functions are a given group [22XG[122X, and an irreducible character [22Xχ[122X. The output is
+  a  mapping  (representation) which assigns to each generator [22Xx[122X of [22XG[122X a matrix
+  [22XR(x)[122X.  We  can  use  these  functions  for  all  groups  and all irreducible
+  characters  [22Xχ[122X of degree less than 100 although in principle the same methods
+  can  be  extended  to characters of larger degree. The main methods in these
+  functions  which  are used to construct representations of finite groups are
+  Induction,  Extension,  Tensor  Product and Dixon's method (for constructing
+  representations  of  simple  groups and their covers) [DA05], and Projective
+  Representation method [DD10].[133X
   
   
   [1X2.1 [33X[0;0YConstructing Representations[133X[101X
   
   [33X[0;0YThis  section  introduces the main function to compute a representation of a
-  finite group [22XG[122X affording an irreducible character [22Xchi[122X of [22XG[122X.[133X
+  finite group [22XG[122X affording an irreducible character [22Xχ[122X of [22XG[122X.[133X
   
   [1X2.1-1 IrreducibleAffordingRepresentation[101X
   
@@ -217,10 +217,9 @@
   
   [1X2.4 [33X[0;0YCharacter Subgroups[133X[101X
   
-  [33X[0;0YIf  [22Xchi[122X  is  an  irreducible character of a group [22XG[122X and [22XH[122X is a subgroup of [22XG[122X
-  such  that  the  restriction  of  [22Xchi[122X  to  [22XH[122X  has  a linear constituent with
-  multiplicity  one,  then we call [22XH[122X a character subgroup relative to [22Xchi[122X or a
-  [22Xchi[122X-subgroup.[133X
+  [33X[0;0YIf  [22Xχ[122X is an irreducible character of a group [22XG[122X and [22XH[122X is a subgroup of [22XG[122X such
+  that  the  restriction  of [22Xχ[122X to [22XH[122X has a linear constituent with multiplicity
+  one, then we call [22XH[122X a character subgroup relative to [22Xχ[122X or a [22Xχ[122X-subgroup.[133X
   
   [1X2.4-1 CharacterSubgroupRepresentation[101X
   

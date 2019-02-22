@@ -31,7 +31,7 @@
 
 <p>This manual describes the <strong class="pkg">Repsn</strong> package for computing matrix representations in characteristic zero of finite groups. Most of the functions in <strong class="pkg">Repsn</strong> have been written according to the algorithm described in the author's Ph.D thesis <a href="chapBib_mj.html#biBDab-03">[DA03]</a> and <a href="chapBib_mj.html#biBDD-10">[DD10]</a> (see <a href="chapBib_mj.html#biBDab-05">[DA05]</a>).</p>
 
-<p>For constructing representations of simple groups and their covers we use the algorithm described in <a href="chapBib_mj.html#biBDix-93">[Dix93]</a>. To use this algorithm for constructing a representation of a group <span class="SimpleMath">\(G\)</span> affording an irreducible character <span class="SimpleMath">\(chi\)</span> of <span class="SimpleMath">\(G\)</span>, we need to have a subgroup <span class="SimpleMath">\(H\)</span> of <span class="SimpleMath">\(G\)</span> such that the restriction of <span class="SimpleMath">\(chi\)</span> to <span class="SimpleMath">\(H\)</span> has a linear constituent with multiplicity one. In this case we say <span class="SimpleMath">\(H\)</span> is a <em>character subgroup</em> relative to <span class="SimpleMath">\(chi\)</span> (or a <span class="SimpleMath">\(chi\)</span>-subgroup). A <span class="SimpleMath">\(chi\)</span>-subgroup for each irreducible character <span class="SimpleMath">\(chi\)</span> of degree less than 100 of simple groups and their covers are listed in <a href="chapBib_mj.html#biBDab-06">[DA06]</a> and <a href="chapBib_mj.html#biBDab-07">[DA07]</a>.</p>
+<p>For constructing representations of simple groups and their covers we use the algorithm described in <a href="chapBib_mj.html#biBDix-93">[Dix93]</a>. To use this algorithm for constructing a representation of a group <span class="SimpleMath">\(G\)</span> affording an irreducible character <span class="SimpleMath">\(\chi\)</span> of <span class="SimpleMath">\(G\)</span>, we need to have a subgroup <span class="SimpleMath">\(H\)</span> of <span class="SimpleMath">\(G\)</span> such that the restriction of <span class="SimpleMath">\(\chi\)</span> to <span class="SimpleMath">\(H\)</span> has a linear constituent with multiplicity one. In this case we say <span class="SimpleMath">\(H\)</span> is a <em>character subgroup</em> relative to <span class="SimpleMath">\(\chi\)</span> (or a <span class="SimpleMath">\(\chi\)</span>-subgroup). A <span class="SimpleMath">\(\chi\)</span>-subgroup for each irreducible character <span class="SimpleMath">\(\chi\)</span> of degree less than 100 of simple groups and their covers are listed in <a href="chapBib_mj.html#biBDab-06">[DA06]</a> and <a href="chapBib_mj.html#biBDab-07">[DA07]</a>.</p>
 
 <p>All <strong class="pkg">Repsn</strong> functions are written entirely in the <strong class="pkg">GAP</strong> language. It is proved in <a href="chapBib_mj.html#biBDab-05">[DA05]</a> and <a href="chapBib_mj.html#biBDD-10">[DD10]</a> that the algorithm is correct for any group with a character of degree less than 100. Indeed, if the group is solvable, there is no restriction on the character degree. In practice the program is quite fast when the degree is small, but can be very slow when it is necessary to call one of the subprograms which extend irreducible representations. In the latter case the number of element wise operations required to extend a representation of degree <span class="SimpleMath">\(d\)</span> is proportional to <span class="SimpleMath">\(d^6\)</span>.</p>
 
@@ -42,18 +42,9 @@
  gap&gt; LoadPackage( "repsn" ); 
 </pre>
 
-<p>(see section <em>Loading a GAP Package</em> in the <strong class="pkg">GAP</strong> Reference Manual). One could install the <strong class="pkg">Repsn</strong> package on <strong class="pkg">GAP</strong>4.3. In this case it is loaded with the command</p>
+<p>(see section <em>Loading a GAP Package</em> in the <strong class="pkg">GAP</strong> Reference Manual).</p>
 
-
-<pre class="normal">
- gap&gt; RequirePackage( "repsn" ); 
-</pre>
-
-<p><strong class="pkg">Repsn</strong> has been developed by<br /></p>
-
-<p>Vahid Dabbaghian<br /> Department of Mathematics<br /> Simon Fraser University<br /> Burnaby, British Columbia,<br /> V5A 1S6 Canada.<br /> e-mail: vdabbagh@sfu.ca<br /></p>
-
-<p>Please send bug reports, suggestions and other comments to this e-mail address.</p>
+<p>Please report any bugs or other issues you might encounter via the <strong class="pkg">Repsn</strong> issue tracker at <span class="URL"><a href="https://github.com/gap-packages/repsn/issues">https://github.com/gap-packages/repsn/issues</a></span>.</p>
 
 
 <div class="chlinkprevnextbot">&nbsp;<a href="chap0_mj.html">[Top of Book]</a>&nbsp;  <a href="chap0_mj.html#contents">[Contents]</a>&nbsp;  &nbsp;<a href="chap0_mj.html">[Previous Chapter]</a>&nbsp;  &nbsp;<a href="chap2_mj.html">[Next Chapter]</a>&nbsp;  </div>

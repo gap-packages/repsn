@@ -57,13 +57,13 @@
 
 <h3>2 <span class="Heading">Irreducible Representations</span></h3>
 
-<p>Let <span class="SimpleMath">G</span> be a finite group and <span class="SimpleMath">chi</span> be an ordinary irreducible character of <span class="SimpleMath">G</span>. In this chapter we introduce some functions to construct a complex representation <span class="SimpleMath">R</span> of <span class="SimpleMath">G</span> affording <span class="SimpleMath">chi</span>. We proceed recursively, reducing the problem to smaller subgroups of <span class="SimpleMath">G</span> or characters of smaller degree until we obtain a problem which we can deal with directly. Inputs of most of the functions are a given group <span class="SimpleMath">G</span>, and an irreducible character <span class="SimpleMath">chi</span>. The output is a mapping (representation) which assigns to each generator <span class="SimpleMath">x</span> of <span class="SimpleMath">G</span> a matrix <span class="SimpleMath">R(x)</span>. We can use these functions for all groups and all irreducible characters <span class="SimpleMath">chi</span> of degree less than 100 although in principle the same methods can be extended to characters of larger degree. The main methods in these functions which are used to construct representations of finite groups are Induction, Extension, Tensor Product and Dixon's method (for constructing representations of simple groups and their covers) <a href="chapBib.html#biBDab-05">[DA05]</a>, and Projective Representation method <a href="chapBib.html#biBDD-10">[DD10]</a>.</p>
+<p>Let <span class="SimpleMath">G</span> be a finite group and <span class="SimpleMath">χ</span> be an ordinary irreducible character of <span class="SimpleMath">G</span>. In this chapter we introduce some functions to construct a complex representation <span class="SimpleMath">R</span> of <span class="SimpleMath">G</span> affording <span class="SimpleMath">χ</span>. We proceed recursively, reducing the problem to smaller subgroups of <span class="SimpleMath">G</span> or characters of smaller degree until we obtain a problem which we can deal with directly. Inputs of most of the functions are a given group <span class="SimpleMath">G</span>, and an irreducible character <span class="SimpleMath">χ</span>. The output is a mapping (representation) which assigns to each generator <span class="SimpleMath">x</span> of <span class="SimpleMath">G</span> a matrix <span class="SimpleMath">R(x)</span>. We can use these functions for all groups and all irreducible characters <span class="SimpleMath">χ</span> of degree less than 100 although in principle the same methods can be extended to characters of larger degree. The main methods in these functions which are used to construct representations of finite groups are Induction, Extension, Tensor Product and Dixon's method (for constructing representations of simple groups and their covers) <a href="chapBib.html#biBDab-05">[DA05]</a>, and Projective Representation method <a href="chapBib.html#biBDD-10">[DD10]</a>.</p>
 
 <p><a id="X812E7C8E7FA7BE4E" name="X812E7C8E7FA7BE4E"></a></p>
 
 <h4>2.1 <span class="Heading">Constructing Representations</span></h4>
 
-<p>This section introduces the main function to compute a representation of a finite group <span class="SimpleMath">G</span> affording an irreducible character <span class="SimpleMath">chi</span> of <span class="SimpleMath">G</span>.</p>
+<p>This section introduces the main function to compute a representation of a finite group <span class="SimpleMath">G</span> affording an irreducible character <span class="SimpleMath">χ</span> of <span class="SimpleMath">G</span>.</p>
 
 <p><a id="X7A3ACAC179C15393" name="X7A3ACAC179C15393"></a></p>
 
@@ -243,7 +243,7 @@ true
 
 <h4>2.4 <span class="Heading">Character Subgroups</span></h4>
 
-<p>If <span class="SimpleMath">chi</span> is an irreducible character of a group <span class="SimpleMath">G</span> and <span class="SimpleMath">H</span> is a subgroup of <span class="SimpleMath">G</span> such that the restriction of <span class="SimpleMath">chi</span> to <span class="SimpleMath">H</span> has a linear constituent with multiplicity one, then we call <span class="SimpleMath">H</span> a character subgroup relative to <span class="SimpleMath">chi</span> or a <span class="SimpleMath">chi</span>-subgroup.</p>
+<p>If <span class="SimpleMath">χ</span> is an irreducible character of a group <span class="SimpleMath">G</span> and <span class="SimpleMath">H</span> is a subgroup of <span class="SimpleMath">G</span> such that the restriction of <span class="SimpleMath">χ</span> to <span class="SimpleMath">H</span> has a linear constituent with multiplicity one, then we call <span class="SimpleMath">H</span> a character subgroup relative to <span class="SimpleMath">χ</span> or a <span class="SimpleMath">χ</span>-subgroup.</p>
 
 <p><a id="X875FD501825F7AB8" name="X875FD501825F7AB8"></a></p>
 

@@ -8,12 +8,12 @@
   
   [33X[0;0YFor  constructing  representations  of simple groups and their covers we use
   the algorithm described in [Dix93]. To use this algorithm for constructing a
-  representation  of a group [22XG[122X affording an irreducible character [22Xchi[122X of [22XG[122X, we
-  need  to  have a subgroup [22XH[122X of [22XG[122X such that the restriction of [22Xchi[122X to [22XH[122X has a
+  representation  of  a  group [22XG[122X affording an irreducible character [22Xχ[122X of [22XG[122X, we
+  need  to  have  a  subgroup [22XH[122X of [22XG[122X such that the restriction of [22Xχ[122X to [22XH[122X has a
   linear  constituent  with  multiplicity  one.  In  this  case  we say [22XH[122X is a
-  [13Xcharacter  subgroup[113X  relative to [22Xchi[122X (or a [22Xchi[122X-subgroup). A [22Xchi[122X-subgroup for
-  each  irreducible character [22Xchi[122X of degree less than 100 of simple groups and
-  their covers are listed in [DA06] and [DA07].[133X
+  [13Xcharacter  subgroup[113X  relative  to [22Xχ[122X (or a [22Xχ[122X-subgroup). A [22Xχ[122X-subgroup for each
+  irreducible  character  [22Xχ[122X of degree less than 100 of simple groups and their
+  covers are listed in [DA06] and [DA07].[133X
   
   [33X[0;0YAll  [5XRepsn[105X  functions are written entirely in the [5XGAP[105X language. It is proved
   in  [DA05]  and  [DD10]  that  the algorithm is correct for any group with a
@@ -30,21 +30,8 @@
   
    gap> LoadPackage( "repsn" ); 
   
-  [33X[0;0Y(see  section  [13XLoading a GAP Package[113X in the [5XGAP[105X Reference Manual). One could
-  install  the  [5XRepsn[105X  package  on  [5XGAP[105X4.3. In this case it is loaded with the
-  command[133X
+  [33X[0;0Y(see section [13XLoading a GAP Package[113X in the [5XGAP[105X Reference Manual).[133X
   
-   gap> RequirePackage( "repsn" ); 
-  
-  [33X[0;0Y[5XRepsn[105X has been developed by[133X
-  
-  [33X[0;0YVahid Dabbaghian[133X
-  [33X[0;0YDepartment of Mathematics[133X
-  [33X[0;0YSimon Fraser University[133X
-  [33X[0;0YBurnaby, British Columbia,[133X
-  [33X[0;0YV5A 1S6 Canada.[133X
-  [33X[0;0Ye-mail: vdabbagh@sfu.ca[133X
-  
-  [33X[0;0YPlease  send  bug  reports,  suggestions  and  other comments to this e-mail
-  address.[133X
+  [33X[0;0YPlease  report  any  bugs  or other issues you might encounter via the [5XRepsn[105X
+  issue tracker at [7Xhttps://github.com/gap-packages/repsn/issues[107X.[133X
   
