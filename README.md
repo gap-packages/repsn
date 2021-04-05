@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gap-packages/repsn.svg)](https://travis-ci.org/gap-packages/repsn)
+[![Build Status](https://travis-ci.com/gap-packages/repsn.svg)](https://travis-ci.com/gap-packages/repsn)
 [![Code Coverage](https://codecov.io/github/gap-packages/repsn/coverage.svg)](https://codecov.io/gh/gap-packages/repsn)
 
 # The REPSN GAP package
