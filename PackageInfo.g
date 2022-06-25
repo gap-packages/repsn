@@ -19,7 +19,7 @@ SetPackageInfo( rec(
      IsAuthor       := true,
      IsMaintainer   := false,
      Email          := "vdabbagh@sfu.ca",
-     WWWHome        := "http://www.sfu.ca/~vdabbagh",
+     WWWHome        := "https://www.sfu.ca/~vdabbagh",
      Place          := "Burnaby, Canada",
      Institution    := "Department of Mathematics, Simon Fraser University",
      PostalAddress  := Concatenation( [
