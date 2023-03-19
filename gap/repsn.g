@@ -37,15 +37,16 @@
  G := UnderlyingGroup( chi );
  if chi[1] = 1 then return CharacterSubgroupRepresentation( chi ); 
  fi;
- k := NaturalHomomorphismByNormalSubgroupNC( G, Kernel( chi ) );
  if Size(Kernel(chi)) > 1 then
- g := Image(k);
- c := Filtered(Irr(Image(k)), x-> chi=RestrictedClassFunction( x, k ) );
+    k := NaturalHomomorphismByNormalSubgroupNC( G, Kernel( chi ) );
+    g := Image(k);
+    c := Filtered(Irr(Image(k)), x-> chi=RestrictedClassFunction( x, k ) );
  else
- g := G;
- c := [chi];
+    g := G;
+    c := [chi];
  fi;
- if IsPerfect( g ) then rep := PerfectRepresentation( g, c[1], SpecialCoversData );
+ if IsPerfect( g ) then
+    rep := PerfectRepresentation( g, c[1], SpecialCoversData );
  else
     n := ReducedSubgroupCharacter( c[1] );
     if n[2][1] < c[1][1] then 
@@ -58,7 +59,11 @@
       rep := ExtendedRepresentationNormal( c[1], IrreducibleAffordingRepresentation( n[2] ) ); 
     fi;
  fi;
- return CompositionMapping( rep, k );
+ if IsBound( k ) then
+   return CompositionMapping( rep, k );
+ else
+   return rep;
+ fi;
  end );
 
 
@@ -1380,7 +1385,7 @@
    c := Centralizer( Image( hom ), Group( M ) );
    if Size(c) > 1 then Add( S, c ); fi;
    S := List( S, i -> PreImage( hom, i ) );
-   Co := [ () ];
+   Co := [ One( Source( hom ) ) ];
    for i in [ 1..Length( S ) ] do
       R := RestrictedClassFunction( chi, S[i] );
       C := ConstituentsOfCharacter( R );
