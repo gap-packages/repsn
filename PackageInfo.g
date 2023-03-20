@@ -8,8 +8,8 @@ SetPackageInfo( rec(
 
   PackageName    := "Repsn",
   Subtitle       := "Constructing representations of finite groups",
-  Version        := "3.1.0",
-  Date           := "22/02/2019", # dd/mm/yyyy format
+  Version        := "3.1.1",
+  Date           := "20/03/2023", # dd/mm/yyyy format
   License        := "GPL-2.0-or-later",
 
  Persons := [
@@ -19,7 +19,7 @@ SetPackageInfo( rec(
      IsAuthor       := true,
      IsMaintainer   := false,
      Email          := "vdabbagh@sfu.ca",
-     WWWHome        := "http://www.sfu.ca/~vdabbagh",
+     WWWHome        := "https://www.sfu.ca/~vdabbagh",
      Place          := "Burnaby, Canada",
      Institution    := "Department of Mathematics, Simon Fraser University",
      PostalAddress  := Concatenation( [
@@ -64,7 +64,7 @@ SetPackageInfo( rec(
   PackageDoc := rec(
     BookName         := "Repsn",
     ArchiveURLSubset := [ "doc" ],
-    HTMLStart        := "doc/chap0.html",
+    HTMLStart        := "doc/chap0_mj.html",
     PDFFile          := "doc/manual.pdf",
     SixFile          := "doc/manual.six",
     LongTitle        := "Constructing representations of finite groups",

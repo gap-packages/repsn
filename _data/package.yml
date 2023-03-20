@@ -1,12 +1,12 @@
 name: Repsn
-version: 3.1.0
-date: 2019-02-22
+version: 3.1.1
+date: 2023-03-20
 description: |
     Constructing representations of finite groups
 
 authors:
     - name: Vahid Dabbaghian
-      url: http://www.sfu.ca/~vdabbagh
+      url: https://www.sfu.ca/~vdabbagh
 
 maintainers:
     - name: The GAP Team
@@ -20,40 +20,40 @@ packageinfo: https://gap-packages.github.io/repsn/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/repsn/releases/download/v3.1.0/repsn-3.1.0.tar.gz
+      url: https://github.com/gap-packages/repsn/releases/download/v3.1.1/repsn-3.1.1.tar.gz
 
 abstract: |
     The package provides <span class="pkgname">GAP</span> functions for computing characteristic zero matrix representations of finite groups.
 
 status: accepted
-doc-html: doc/chap0.html
+doc-html: doc/chap0_mj.html
 doc-pdf: doc/manual.pdf
 keywords: |
     group representations, matrix representations, Dixon's method.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>DT19</span>]   <b class='BibAuthor'>Dabbaghian, V. and GAP Team, T.</b>,
+    [<span class='BibKey'>DT23</span>]   <b class='BibAuthor'>Dabbaghian, V. and GAP Team, T.</b>,
      <i class='BibTitle'>Repsn, Constructing representations of finite groups,
-             Version 3.1.0</i>
-     (<span class='BibYear'>2019</span>)<br />
+             Version 3.1.1</i>
+     (<span class='BibYear'>2023</span>)<br />
     (<span class='BibNote'>Refereed GAP package</span>),
     <span class='BibHowpublished'><a href="https://gap-packages.github.io/repsn/">https://gap-packages.github.io/repsn/</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ Repsn3.1.0,
+    @misc{ Repsn3.1.1,
       author =           {Dabbaghian, V. and GAP Team, T.},
       title =            {{Repsn},   Constructing   representations   of  finite
-                          groups, {V}ersion 3.1.0},
-      month =            {Feb},
-      year =             {2019},
+                          groups, {V}ersion 3.1.1},
+      month =            {Mar},
+      year =             {2023},
       note =             {Refereed GAP package},
       howpublished =     {\href          {https://gap-packages.github.io/repsn/}
                           {\texttt{https://gap-packages.github.io/}\discretionary
                           {}{}{}\texttt{repsn/}}},
       keywords =         {group representations; matrix representations; Dixon's
                           method},
-      printedkey =       {DT19}
+      printedkey =       {DT23}
     }
 

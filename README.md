@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/gap-packages/repsn.svg)](https://travis-ci.org/gap-packages/repsn)
+[![Build Status](https://travis-ci.com/gap-packages/repsn.svg)](https://travis-ci.com/gap-packages/repsn)
 [![Code Coverage](https://codecov.io/github/gap-packages/repsn/coverage.svg)](https://codecov.io/gh/gap-packages/repsn)
 
 # The REPSN GAP package
@@ -12,7 +12,7 @@ This package is for computing matrix representations in characteristic zero of f
 
 Full information and documentation can be found in the manual, available
 as PDF `doc/manual.pdf` or as HTML `doc/chap0.html`, or on the package
-homepage at <http://gap-packages.github.io/repsn/>.
+homepage at <https://gap-packages.github.io/repsn/>.
 
 
 ## Support

@@ -6,21 +6,19 @@
                 [1X Constructing representations of finite groups [101X
   
   
-                                     3.1.0
+                                     3.1.1
   
   
-                                22 February 2019
+                                 20 March 2023
   
   
                                 Vahid Dabbaghian
-  
-                                  The GAP Team
   
   
   
   Vahid Dabbaghian
       Email:    [7Xmailto:vdabbagh@sfu.ca[107X
-      Homepage: [7Xhttp://www.sfu.ca/~vdabbagh[107X
+      Homepage: [7Xhttps://www.sfu.ca/~vdabbagh[107X
       Address:  [33X[0;14YVahid Dabbaghian[133X
                 [33X[0;14YDepartment of Mathematics[133X
                 [33X[0;14YSimon Fraser University[133X
@@ -28,8 +26,6 @@
                 [33X[0;14YV5A 1S6 Canada[133X
   
   
-  The GAP Team
-      Email:    [7Xmailto:support@gap-system.org[107X
   
   -------------------------------------------------------
   [1XAcknowledgements[101X
