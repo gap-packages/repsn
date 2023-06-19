@@ -4,7 +4,7 @@
 ##                                                                                         #
 ##                                         REPSN                                           #
 ##                                                                                         #
-##                                     A GAP4 Packege                                      #
+##                                     A GAP4 Package                                      #
 ##                      for Constructing Representations of Finite Groups                  #
 ##                                                                                         #
 ##                Developed by: Vahid Dabbaghian                                           #
@@ -476,7 +476,7 @@
 ############################################################################################
 ############################################################################################
 ################################### A Main Function ########################################
-## This program computes an equivalnet block diagonal representation to a given 
+## This program computes an equivalent block diagonal representation to a given
 ## representation, or computes a block diagonal representation of the given list of 
 ## irreducible representations.
 ## In this program the following program is called.
@@ -612,7 +612,7 @@
 ############################################################################################
 ############################################################################################
 ##################################### A Utility Function ###################################
-## This Program constructs the matrix A discribed in Dixon's paper.
+## This Program constructs the matrix A described in Dixon's paper.
 ##
 
  InstallGlobalFunction( MatrixRepsn,
@@ -833,7 +833,7 @@
 ############################################################################################
 ############################################################################################
 ###################################### A Utility Function ##################################
-## If $\chi$ is an irreducible chracter of $G$, this program reduces the problem of 
+## If $\chi$ is an irreducible character of $G$, this program reduces the problem of 
 ## constructing a representation of $G$ affording $\chi$ to a perfect subgroup of $G$. 
 ## It finds either a subgroup $H$ and an irreducible character $\phi$ of $H$ such that 
 ## $\chi=\phi^G$ or a subgroup $H$ such that $\chi_H$ is irreducible. The input of this 

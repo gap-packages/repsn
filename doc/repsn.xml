@@ -364,7 +364,7 @@ The subgroups are chosen up to conjugacy in <A>G</A>.
 	<Description>
 
 	returns a list containing well described subgroups of <A>G</A> which are <A>chi</A>-subgroups. 
-This list may contain Sylow subgroups and their derived subgroups, normalizers and centralzers in <A>G</A>.
+This list may contain Sylow subgroups and their derived subgroups, normalizers and centralizers in <A>G</A>.
 	</Description>
    </ManSection>
 	 
