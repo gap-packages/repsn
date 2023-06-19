@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.com/gap-packages/repsn.svg)](https://travis-ci.com/gap-packages/repsn)
+[![Build Status](https://github.com/gap-packages/repsn/workflows/CI/badge.svg?branch=master)](https://github.com/gap-packages/repsn/actions?query=workflow%3ACI+branch%3Amaster)
 [![Code Coverage](https://codecov.io/github/gap-packages/repsn/coverage.svg)](https://codecov.io/gh/gap-packages/repsn)
 
 # The REPSN GAP package
 
-This is the README file for the GAP 4 package `REPSN'.
+This is the README file for the GAP 4 package `REPSN`.
 
 This package is for computing matrix representations in characteristic zero of finite groups.
 
@@ -36,4 +36,3 @@ Free Software Foundation; either version 2 of the License, or (at your
 option) any later version.
 
 For details, please refer to the file `LICENSE`.
-
