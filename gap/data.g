@@ -26,9 +26,3 @@
                        [3*4585351680,  3   ,  27  ,  CoversOfO73Representation],
                        [3*9196830720,  3   ,  22  ,  CoversOfU62Representation],
                        [3*9196830720,  3   ,  21  ,  CoversOfU62Representation]];;
-
-
-
-
-
-
