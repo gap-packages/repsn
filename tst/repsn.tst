@@ -31,6 +31,24 @@ true
 gap> IsTrivial( Kernel( chi ) );
 true
 
+# perfect group, abelian normal subgroup N not < Z(G), nonlinear character with nontrivial kernel
+gap> G:= PerfectGroup(960, 1);;
+gap> chi:= First( Irr( G ), x -> x[1] = 3 );;
+gap> rep:= IrreducibleAffordingRepresentation( chi );;
+gap> IsOne( Image( rep, One( G ) ) );
+true
+gap> IsTrivial( Kernel( chi ) );
+false
+
+# perfect group, abelian normal subgroup N not < Z(G), nonlinear character with trivial kernel
+gap> G:= PerfectGroup(960, 1);;
+gap> chi:= First( Irr( G ), x -> x[1] = 15 );;
+gap> rep:= IrreducibleAffordingRepresentation( chi );;
+gap> IsOne( Image( rep, One( G ) ) );
+true
+gap> IsTrivial( Kernel( chi ) );
+true
+
 # not perfect group, nontrivial kernel, induced
 gap> G:= DihedralGroup( 12 );;
 gap> chi:= First( Irr( G ), x -> x[1] = 2 and Size( Kernel( x ) ) > 1 );;
