@@ -1166,7 +1166,7 @@
 ## The following 2 lines is for computing a projective representation of G of degree \theta(1)
 ## Here it computes the matrices V(x) for generators x in U
    U := GeneratorsProjective( chi, Vf );
-   lVG := List( [1..Length(U)], i->ProjectiveReps( chi, Vf, U[i] ) );
+   lVG := List( U, x->ProjectiveReps( chi, Vf, x ) );
 ## The program "FilteringCharacters" checks to find the suitable representation of 
 ## the central cover of G/F 
    SGfReps := FilteringCharacters( chi, Vf, U, chiSGf, h, EpiGf, IsoGf, SGf );
@@ -1192,7 +1192,7 @@
     if R = C[1] then 
        psi := IrrG[i]; 
        e1 := IrreducibleAffordingRepresentation( psi );
-       r1 := List( [1..Length(U)], i->ImagesRepresentative( e1, U[i] ) );
+       r1 := List( U, x->ImagesRepresentative( e1, x ) );
        break;
     fi;
  od;
@@ -1204,8 +1204,8 @@
         R := RestrictedClassFunction( Irrim[i], h );
         if chi = psi*R then 
            e2 := IrreducibleAffordingRepresentation( Irrim[i] );
-           l := List( [1..Length(U)], i->ImagesRepresentative( h, U[i] ) );
-           r2 := List( [1..Length(l)], i->ImagesRepresentative( e2, l[i] ) );
+           l := List( U, x->ImagesRepresentative( h, x ) );
+           r2 := List( l, x->ImagesRepresentative( e2, x ) );
            r := List( [1..Length(r1)], i->KroneckerProduct( r1[i], r2[i] ) ); 
            return GroupHomomorphismByImagesNC( G, Group( r ), U, r ); 
         fi;
@@ -1391,13 +1391,13 @@
       C := ConstituentsOfCharacter( R );
       r := CharacterSubgroupRepresentation( C[1] );
       Add( L, GeneratorsOfGroup( Image( r ) ) );
-      Co := Concatenation(List( Co, u->u*GeneratorsOfGroup( S[i] ) ) );
+      Co := ListX(Co, GeneratorsOfGroup( S[i] ), \*);
    od;
    if Length(L) = 1 then return r;
    fi;
    r := L[1];
    for i in [ 2..Length( L ) ] do 
-     r := Concatenation( List( r, u -> List( L[i] , v -> KroneckerProduct( u, v ) ) ) );
+     r := ListX( r, L[i], KroneckerProduct );
    od;
  fi;
  if arg[3] <> 1 then
