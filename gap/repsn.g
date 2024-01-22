@@ -35,7 +35,8 @@
  function( chi )
  local n, k, g, c, rep, G;
  G := UnderlyingGroup( chi );
- if chi[1] = 1 then return CharacterSubgroupRepresentation( chi );
+ if chi[1] = 1 then
+    return CharacterSubgroupRepresentation( chi );
  fi;
  if Size(Kernel(chi)) > 1 then
     k := NaturalHomomorphismByNormalSubgroupNC( G, Kernel( chi ) );
@@ -106,7 +107,8 @@
  L := PSubgroups( G );
  for P in L do
     lin := LinearConstituentWithMultiplicityOne( chi, P );
-    if lin <> fail then Add( psub, P );
+    if lin <> fail then
+       Add( psub, P );
     fi;
  od;
  return psub;
@@ -130,7 +132,8 @@
  L := StandardSubgroups( G );
  for P in L do
     lin := LinearConstituentWithMultiplicityOne( chi, P );
-    if lin <> fail then Add( psub, P );
+    if lin <> fail then
+       Add( psub, P );
     fi;
  od;
  return psub;
@@ -152,7 +155,8 @@
  l := List( ConjugacyClassesSubgroups( G ), Representative );
  for H in l do
    lin := LinearConstituentWithMultiplicityOne( chi, H );
-   if lin <> fail then Add( S, H );
+   if lin <> fail then
+      Add( S, H );
    fi;
  od;
  return S;
@@ -172,8 +176,10 @@
  function( chi, H )
  local l;
  l := LinearConstituentWithMultiplicityOne( chi, H );
- if  l = fail then return false;
- else return true;
+ if  l = fail then
+    return false;
+ else
+    return true;
  fi;
  end );
 
@@ -243,7 +249,7 @@
 ## 5. CharacterSubgroupRepresentation
 ############################################################################################
 
-    InstallGlobalFunction( CharacterSubgroupRepresentation,
+InstallGlobalFunction( CharacterSubgroupRepresentation,
  function( arg )
     local  G, U, r, chi, s, S, H, f, M, m1, Y, rep;
     chi := arg[1];
@@ -261,21 +267,25 @@
         return GroupHomomorphismByImagesNC( G, Group( r ), U, r );
     fi;
     if Length( arg ) = 1  then
-        if IsClassFunction( chi ) and IsCharacter( chi )  then
+       if IsClassFunction( chi ) and IsCharacter( chi ) then
           s := CharacterSubgroup( G, chi );
           H := s[1];
           f := s[2];
-        else  Error( "first argument must be an ordinary character");
+       else
+          Error("first argument must be an ordinary character");
        fi;
     fi;
     if Length( arg ) = 2  then
         if IsSubgroup ( G, arg[2] ) and IsClassFunction( chi ) and IsCharacter( chi ) then
         H := arg[2];
         s := CharacterSubgroupLinearConstituent( chi, [ H ] );
-        if s = fail then Error( "the given group is not a chi-subgroup"); fi;
+        if s = fail then
+           Error( "the given group is not a chi-subgroup");
+        fi;
         H := s[1];
         f := s[2];
-        else Error (  "first argument is not a character or second argument is not a subgroup of the given group " );
+        else
+           Error("first argument is not a character or second argument is not a subgroup of the given group");
     fi; fi;
     if Index( G, H ) = chi[1] then
     rep := CharacterSubgroupRepresentation( f );
@@ -296,15 +306,16 @@
 ## returns an induced representation of rep of group $G$.
 ############################################################################################
 
- InstallGlobalFunction( InducedSubgroupRepresentation,
+InstallGlobalFunction( InducedSubgroupRepresentation,
  function( G, rep )
  local M, M1, mat, u, U, rt, i, j, k, LL, L, m, Ls, Lr, l, d, h, r, t, nmat, lrt;
  mat := [ ];
  L := [ ];
  h := PreImagesRange( rep );
- if Size(h) = 1 then d := 1;
+ if Size(h) = 1 then
+   d := 1;
  else
- d := DimensionsMat( GeneratorsOfGroup( Image(rep) )[1] )[1];
+   d := DimensionsMat( GeneratorsOfGroup( Image(rep) )[1] )[1];
  fi;
  U := GeneratorsOfGroup( G );
  rt := RightTransversal( G, h );
@@ -318,8 +329,9 @@
     for j in [1..lrt] do
       r := t*rt[j]^(-1);
       if r in h then
-       Add( M1, r^rep );
-       else Add( M1, nmat );
+        Add( M1, r^rep );
+      else
+        Add( M1, nmat );
       fi;
     od;
    Add( M, M1 );
@@ -368,7 +380,7 @@
  h := PreImagesRange( rep );
  if Size(h) = 1 then
     B := [ [ [ [ 1 ] ] ], [ Identity( h ) ] ];
-    else
+ else
     Mat := GeneratorsOfGroup(Image(rep));
     dim := DimensionsMat( Mat[1] )[1];
     Info( InfoWarning, 1, "Need to extend a representation of degree ", dim, ". This may take a while." );
@@ -413,14 +425,16 @@
  U := ShallowCopy( Uh );
  Mat := List( [1..Length(U)], i -> U[i]^rep );
  Mat := ShallowCopy( Mat );
- if Size( h ) = 1 then dim := 1;
-   else
+ if Size( h ) = 1 then
+   dim := 1;
+ else
    dim := DimensionsMat( Mat[1] )[1];
    Info( InfoWarning, 1, "Need to extend a representation of degree ", dim, ". This may take a while." );
  fi;
  G := UnderlyingGroup( chi );
  repeat
-   repeat x:= PseudoRandom( G );
+   repeat
+     x:= PseudoRandom( G );
    until not x in h and x^chi <> 0;
    for u in Uh do
      R := u^rep;
@@ -490,7 +504,9 @@
    if not IsList( reps ) then
       reps := ConstituentsOfRepresentation( reps ) ;
    fi;
-   if Length( reps ) = 1 and reps[1][1] = 1 then return reps[1][2]; fi;
+   if Length( reps ) = 1 and reps[1][1] = 1 then
+      return reps[1][2];
+   fi;
    G := PreImagesRange( reps[1][2] );
    UG := GeneratorsOfGroup( G );
    for k in [1..Length( reps )] do
@@ -520,8 +536,10 @@
    ctb := CharacterTable( G );
    con := ConjugacyClasses( ctb );
    chi := ClassFunction( ctb, List( con , i -> TraceMat( Image( rep, Representative( i )))));
-   if IsIrreducibleCharacter( chi ) = false then return true;
-   else return true;
+   if IsIrreducibleCharacter( chi ) = false then
+      return true;
+   else
+      return true;
    fi;
  end );
 
@@ -856,14 +874,16 @@
     for c in Ci do
       Rc := RestrictedClassFunction( c, N[i] );
       Cc := ConstituentsOfCharacter( Rc );
-      if C[1] in Cc then return [I,c];
+      if C[1] in Cc then
+        return [I,c];
       fi;
     od;
    elif IsIrreducibleCharacter( R ) then
       k := i; c := R;
    fi;
  od;
- if k > 0 then return [ N[k], c ];
+ if k > 0 then
+   return [ N[k], c ];
  fi;
  L := ChiefSeriesThrough( G, [N[2]] );
  n := Length(L);
@@ -877,7 +897,8 @@
          for c in Ci do
           Rc := RestrictedClassFunction( c, L[i] );
           Cc := ConstituentsOfCharacter( Rc );
-          if C[1] in Cc then return [I,c];
+          if C[1] in Cc then
+            return [I,c];
           fi;
          od;
    fi;
@@ -927,12 +948,11 @@
  reps := S;
  for i in [1..Length(col)] do
    if col[i][2] <= 2 then
-            Add( reps, Normalizer( G, S[i] ) );
-   else if not IsAbelian( S[i] ) then
-                D := DerivedSubgroup( S[i] );
-                Add( reps, D );
-                Add( reps, Centralizer( G, D ) );
-        fi;
+     Add( reps, Normalizer( G, S[i] ) );
+   elif not IsAbelian( S[i] ) then
+     D := DerivedSubgroup( S[i] );
+     Add( reps, D );
+     Add( reps, Centralizer( G, D ) );
    fi;
  od;
  reps := Set( reps );
@@ -1136,7 +1156,8 @@
      od;
      TrA := List( [1..Length(conj)], i->Trace(A[i]) );
      tst:= Filtered( [1..Length(conj)], i->TrA[i]<>0 );
-     if List( tst, i-> WS[i]^phi) = List( tst, i-> S3[i]^chi/TrA[i] ) then return [lUSGf, mu];
+     if List( tst, i-> WS[i]^phi) = List( tst, i-> S3[i]^chi/TrA[i] ) then
+        return [lUSGf, mu];
      fi;
    fi;
  od;
@@ -1356,7 +1377,8 @@
       fi;
    od;
    return PerfectAbelianSocleRepresentation( G, chi );
-   else S := Difference( n, a );
+ else
+   S := Difference( n, a );
  ## S is the non-abelian part of the soc(G/Z) which is the direct product of simple groups
  ## if Length( S ) = 1 then G is a central cover of a simple group and we use Dixon's method
    if Length( arg ) = 3 and Length( S ) = 1 and arg[3] = 1 then
@@ -1383,7 +1405,9 @@
       Append( M, GeneratorsOfGroup( s ) );
    od;
    c := Centralizer( Image( hom ), Group( M ) );
-   if Size(c) > 1 then Add( S, c ); fi;
+   if Size(c) > 1 then
+      Add( S, c );
+   fi;
    S := List( S, i -> PreImage( hom, i ) );
    Co := [ One( Source( hom ) ) ];
    for i in [ 1..Length( S ) ] do
@@ -1393,7 +1417,8 @@
       Add( L, GeneratorsOfGroup( Image( r ) ) );
       Co := ListX(Co, GeneratorsOfGroup( S[i] ), \*);
    od;
-   if Length(L) = 1 then return r;
+   if Length(L) = 1 then
+      return r;
    fi;
    r := L[1];
    for i in [ 2..Length( L ) ] do
@@ -1404,9 +1429,13 @@
  M := arg[3];
  for i in [1..Length(M)] do
     if Size(G) = M[i][1]  and Size(Centre(G)) = M[i][2] and chi[1] = M[i][3] and IsSimple( Image(hom) ) then
-          if Length[ M[i] ] = 5 then run := M[i][4]( G, chi, M[i][5], hom ); fi;
-          if Length[ M[i] ] = 4 then run := M[i][4]( chi, hom ); fi;
-        return run;
+       if Length[ M[i] ] = 5 then
+          run := M[i][4]( G, chi, M[i][5], hom );
+       fi;
+       if Length[ M[i] ] = 4 then
+          run := M[i][4]( chi, hom );
+       fi;
+       return run;
     fi;
  od;
  fi;
