@@ -408,11 +408,11 @@
  local R, S, C, G, x, M1, M2, M, Mat, i, s, u, U, Uh, h, b, w, o, n, dim;
  C := [ ];  
  n := chi[1];
- h := PreImage( rep );;
- Uh:= GeneratorsOfGroup( h );;
- U := ShallowCopy( Uh );;
- Mat := List( [1..Length(U)], i -> U[i]^rep );;
- Mat := ShallowCopy( Mat );;
+ h := PreImage( rep );
+ Uh:= GeneratorsOfGroup( h );
+ U := ShallowCopy( Uh );
+ Mat := List( [1..Length(U)], i -> U[i]^rep );
+ Mat := ShallowCopy( Mat );
  if Size( h ) = 1 then dim := 1;
    else
    dim := DimensionsMat( Mat[1] )[1];
@@ -503,7 +503,7 @@
       mat := DiagonalBlockMatrix( matlist );
       Add( Mat, mat );
    od;
-   return GroupHomomorphismByImagesNC( G, Group( Mat ), UG, Mat );;  
+   return GroupHomomorphismByImagesNC( G, Group( Mat ), UG, Mat );  
  end );
 
 
@@ -1006,14 +1006,14 @@
 
  InstallGlobalFunction( CoversOfO73Representation,
  function( chi, hom )
- local g, P, n, C, f, l, F, t, M, max, R;;
- g := Image( hom );;
- P := SylowSubgroup( g, 3 );;
- n := Normalizer( g, P );;
- C := List( ConjugacyClasses( n ), Representative );;
- f := Filtered( C, i-> i in P );;
- l := List( f, i-> NormalClosure( n, Group( i ) ) );;
- F := Filtered( l, i-> Size( i ) = 243 );;
+ local g, P, n, C, f, l, F, t, M, max, R;
+ g := Image( hom );
+ P := SylowSubgroup( g, 3 );
+ n := Normalizer( g, P );
+ C := List( ConjugacyClasses( n ), Representative );
+ f := Filtered( C, i-> i in P );
+ l := List( f, i-> NormalClosure( n, Group( i ) ) );
+ F := Filtered( l, i-> Size( i ) = 243 );
  for t in F do
    M := Normalizer( g, t );
    if Index( g, M ) = 364 then
@@ -1103,13 +1103,13 @@
  LU := Length(U);
  d := DimensionsMat( GeneratorsOfGroup( Image(rep) )[1] )[1];
  e := chi[1]/d;
- G := Group(U);;                                                                  ###### G=<x1,...,xn> and U={x1...,xn} ######
- Uproj := List( U, i-> ProjectiveReps( chi, rep, i) );;                           ###### [A1,...An] where Ai=V(xi) for a Proj. Reps V of G ######
+ G := Group(U);                                                                  ###### G=<x1,...,xn> and U={x1...,xn} ######
+ Uproj := List( U, i-> ProjectiveReps( chi, rep, i) );                           ###### [A1,...An] where Ai=V(xi) for a Proj. Reps V of G ######
  l  := List( [1..LU], i->ImagesRepresentative( h, U[i] ) );        
  le := List( [1..LU], i->PreImagesRepresentative( EpiGf, l[i] ) );   
  ls := List( [1..LU], i->ImagesRepresentative( IsoGf, le[i] ) );                  ###### \bar{x1},...,\bar{xn} in the cover of G/F ######
  conj := List( ConjugacyClasses(SGf), Representative );    
- Iso := IsomorphismFpGroupByGenerators(G,U);;
+ Iso := IsomorphismFpGroupByGenerators(G,U);
  for phi in Phi do
    Iphi := IrreducibleAffordingRepresentation( phi );
    lUSGf := List( [1..LU], i->ImagesRepresentative( Iphi, ls[i] ) );
@@ -1153,14 +1153,14 @@
  InstallGlobalFunction( IrrRepsNotPrime,
  function(chi,theta,f)
  local G, h, e, Gf, EpiGf, SchurGf, IsoGf, SGf, chiSGf, Vf, U, lVG, SGfReps, r, i;
-    G := UnderlyingGroup( chi );;
-    h := NaturalHomomorphismByNormalSubgroup( G, f );;
-    e:= chi[1]/theta[1];;
-    Gf := Image(h);;
-    EpiGf := EpimorphismSchurCover( Gf, [2,3,5,7,11] );; 
-    SchurGf := PreImage(EpiGf);;
-    IsoGf := IsomorphismPermGroup(SchurGf);;
-    SGf := Image(IsoGf);;                                                   ####### SGf is a perm. reps of a cover of G/F #######
+    G := UnderlyingGroup( chi );
+    h := NaturalHomomorphismByNormalSubgroup( G, f );
+    e:= chi[1]/theta[1];
+    Gf := Image(h);
+    EpiGf := EpimorphismSchurCover( Gf, [2,3,5,7,11] ); 
+    SchurGf := PreImage(EpiGf);
+    IsoGf := IsomorphismPermGroup(SchurGf);
+    SGf := Image(IsoGf);                                                   ####### SGf is a perm. reps of a cover of G/F #######
     chiSGf:= Filtered( Irr(SGf), i->i[1] = e);
     Vf := IrreducibleAffordingRepresentation( theta );
 ## The following 2 lines is for computing a projective representation of G of degree \theta(1)
@@ -1228,11 +1228,11 @@
  InstallGlobalFunction( PerfectAbelianSocleRepresentation,
  function( G, chi )      
  local Ug, U, f, R, C, m, I, t, Rc, Cc, h, P; 
- Ug := GeneratorsOfGroup( G );;
- U := ShallowCopy( Ug );;
- f := FittingSubgroup( G );;
- R := RestrictedClassFunction( chi , f );;
- C := ConstituentsOfCharacter( R );;
+ Ug := GeneratorsOfGroup( G );
+ U := ShallowCopy( Ug );
+ f := FittingSubgroup( G );
+ R := RestrictedClassFunction( chi , f );
+ C := ConstituentsOfCharacter( R );
  m := MatScalarProducts( C, [ R ] );
  ######### if \chi_F is irreducible #########
  if IsIrreducibleCharacter( R ) then 
@@ -1247,7 +1247,7 @@
      Rc := RestrictedClassFunction( t, f );
      Cc := ConstituentsOfCharacter( Rc );
      if C[1] in Cc then 
-        return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t ));; 
+        return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t )); 
      fi;
    od;
  fi;
@@ -1264,7 +1264,7 @@
  fi; 
  ######### if \chi_F=e*\theta for e not prime #########
  if Length( C ) = 1 and IsPrime( m[1][1] ) = false then    
-    return IrrRepsNotPrime( chi, C[1], f );; 
+    return IrrRepsNotPrime( chi, C[1], f ); 
  fi;
  end );
 
@@ -1282,10 +1282,10 @@
  InstallGlobalFunction( SocleMoreComponents,
  function( G, chi, S )      
  local Ug, U, R, C, m, I, t, Rc, Cc, h, P; 
- Ug := GeneratorsOfGroup( G );;
- U := ShallowCopy( Ug );;
- R := RestrictedClassFunction( chi , S );;
- C := ConstituentsOfCharacter( R );;
+ Ug := GeneratorsOfGroup( G );
+ U := ShallowCopy( Ug );
+ R := RestrictedClassFunction( chi , S );
+ C := ConstituentsOfCharacter( R );
  m := MatScalarProducts( C, [ R ] );
  ######### if \chi_S is irreducible #########
  if IsIrreducibleCharacter( R ) then 
@@ -1300,7 +1300,7 @@
      Rc := RestrictedClassFunction( t, S );
      Cc := ConstituentsOfCharacter( Rc );
      if C[1] in Cc then 
-        return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t ));; 
+        return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t )); 
      fi;
    od;
  fi;
@@ -1331,7 +1331,7 @@
  chi := arg[2];
  hom := NaturalHomomorphismByNormalSubgroup( G, Centre( G ) );
  L := [ ]; M := [ ];
- n := MinimalNormalSubgroups( Image(hom) );;
+ n := MinimalNormalSubgroups( Image(hom) );
  a := Filtered( n, IsAbelian );
  ## First program checks to find an abelian normal subgroup N not < Z(G).
  if a=n then 
@@ -1350,7 +1350,7 @@
            Cc := ConstituentsOfCharacter( Rc );
            if C[1] in Cc then 
               Info( InfoWarning, 1, " the given character of degree ", chi[1], " is imprimitive" );
-              return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t ));; 
+              return InducedSubgroupRepresentation( G, IrreducibleAffordingRepresentation( t )); 
            fi;
          od;
       fi;
@@ -1373,7 +1373,7 @@
          j := 0; 
       fi;
       j:=j+1; 
-      if j > 4 then;
+      if j > 4 then
          return  SocleMoreComponents( G, chi, S ); 
       fi;
    od;
