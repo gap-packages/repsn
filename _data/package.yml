@@ -1,6 +1,6 @@
 name: Repsn
-version: 3.1.1
-date: 2023-03-20
+version: 3.1.2
+date: 2024-01-22
 description: |
     Constructing representations of finite groups
 
@@ -20,7 +20,7 @@ packageinfo: https://gap-packages.github.io/repsn/PackageInfo.g
 
 downloads:
     - name: .tar.gz
-      url: https://github.com/gap-packages/repsn/releases/download/v3.1.1/repsn-3.1.1.tar.gz
+      url: https://github.com/gap-packages/repsn/releases/download/v3.1.2/repsn-3.1.2.tar.gz
 
 abstract: |
     The package provides <span class="pkgname">GAP</span> functions for computing characteristic zero matrix representations of finite groups.
@@ -32,28 +32,28 @@ keywords: |
     group representations, matrix representations, Dixon's method.
 citeas: |
     <p class='BibEntry'>
-    [<span class='BibKey'>DT23</span>]   <b class='BibAuthor'>Dabbaghian, V. and GAP Team, T.</b>,
+    [<span class='BibKey'>DT24</span>]   <b class='BibAuthor'>Dabbaghian, V. and GAP Team, T.</b>,
      <i class='BibTitle'>Repsn, Constructing representations of finite groups,
-             Version 3.1.1</i>
-     (<span class='BibYear'>2023</span>)<br />
+             Version 3.1.2</i>
+     (<span class='BibYear'>2024</span>)<br />
     (<span class='BibNote'>Refereed GAP package</span>),
     <span class='BibHowpublished'><a href="https://gap-packages.github.io/repsn/">https://gap-packages.github.io/repsn/</a></span>.
     </p>
     
 
 bibtex: |
-    @misc{ Repsn3.1.1,
+    @misc{ Repsn3.1.2,
       author =           {Dabbaghian, V. and GAP Team, T.},
       title =            {{Repsn},   Constructing   representations   of  finite
-                          groups, {V}ersion 3.1.1},
-      month =            {Mar},
-      year =             {2023},
+                          groups, {V}ersion 3.1.2},
+      month =            {Jan},
+      year =             {2024},
       note =             {Refereed GAP package},
       howpublished =     {\href          {https://gap-packages.github.io/repsn/}
                           {\texttt{https://gap-packages.github.io/}\discretionary
                           {}{}{}\texttt{repsn/}}},
       keywords =         {group representations; matrix representations; Dixon's
                           method},
-      printedkey =       {DT23}
+      printedkey =       {DT24}
     }
 

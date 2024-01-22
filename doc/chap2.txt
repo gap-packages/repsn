@@ -272,7 +272,7 @@
   
   [33X[0;0Yreturns   a  list  containing  well  described  subgroups  of  [3XG[103X  which  are
   [3Xchi[103X-subgroups.  This  list  may  contain  Sylow  subgroups and their derived
-  subgroups, normalizers and centralzers in [3XG[103X.[133X
+  subgroups, normalizers and centralizers in [3XG[103X.[133X
   
   [1X2.4-5 AllCharacterSubgroups[101X
   
