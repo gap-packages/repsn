@@ -1,4 +1,3 @@
-
 #################################################################
 ##          init.g file for the GAP 4 package - Repsn
 ##
@@ -6,7 +5,6 @@
 ##
 
 ## read the actual code.
-ReadPackage( "repsn" , "gap/func.g" );
-ReadPackage( "repsn" , "gap/data.g");
-ReadPackage( "repsn" , "gap/repsn.g" );
-
+ReadPackage( "repsn", "gap/func.g" );
+ReadPackage( "repsn", "gap/data.g" );
+ReadPackage( "repsn", "gap/repsn.g" );
