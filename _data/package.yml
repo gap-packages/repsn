@@ -1,5 +1,6 @@
 name: Repsn
-version: 3.1.2
+version: "3.1.2"
+license: "GPL-2.0-or-later"
 date: 2024-01-22
 description: |
     Constructing representations of finite groups
