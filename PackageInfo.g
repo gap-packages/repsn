@@ -68,7 +68,6 @@ SetPackageInfo( rec(
     PDFFile          := "doc/manual.pdf",
     SixFile          := "doc/manual.six",
     LongTitle        := "Constructing representations of finite groups",
-    Autoload         := true
   ),
 
   Dependencies := rec(
