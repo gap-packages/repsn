@@ -1,4 +1,4 @@
-[![Build Status](https://github.com/gap-packages/repsn/workflows/CI/badge.svg?branch=master)](https://github.com/gap-packages/repsn/actions?query=workflow%3ACI+branch%3Amaster)
+[![CI](https://github.com/gap-packages/repsn/actions/workflows/CI.yml/badge.svg)](https://github.com/gap-packages/repsn/actions/workflows/CI.yml)
 [![Code Coverage](https://codecov.io/github/gap-packages/repsn/coverage.svg)](https://codecov.io/gh/gap-packages/repsn)
 
 # The REPSN GAP package
