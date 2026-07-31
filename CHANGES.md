@@ -1,5 +1,11 @@
 This file describes changes in the Repsn package.
 
+## 3.1.3 (2026-07-31)
+
+  - Remove the SmallGrp package dependency from the test suite
+  - Remove the obsolete `Autoload` flag from the package documentation metadata
+  - Update the CI setup
+
 ## 3.1.2 (2024-01-22)
 
   - Simplify some code using `List` and `ListX`
