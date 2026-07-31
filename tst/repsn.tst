@@ -59,7 +59,7 @@ gap> IsTrivial( Kernel( chi ) );
 false
 
 # not perfect group, nontrivial kernel, extended
-gap> G:= SmallGroup( [ 48, 32 ] );; # 2xSL(2,3);;
+gap> G:= DirectProduct( CyclicGroup( 2 ), SL( 2, 3 ) );;
 gap> chi:= First( Irr( G ), x -> x[1] = 2 );;
 gap> rep:= IrreducibleAffordingRepresentation( chi );;
 gap> IsOne( Image( rep, One( G ) ) );
