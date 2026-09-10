@@ -536,11 +536,7 @@ InstallGlobalFunction( InducedSubgroupRepresentation,
    ctb := CharacterTable( G );
    con := ConjugacyClasses( ctb );
    chi := ClassFunction( ctb, List( con , i -> TraceMat( Image( rep, Representative( i )))));
-   if IsIrreducibleCharacter( chi ) = false then
-      return true;
-   else
-      return true;
-   fi;
+   return not IsIrreducibleCharacter( chi );
  end );
 
 
