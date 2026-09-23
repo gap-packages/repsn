@@ -12,6 +12,8 @@ gap> chi:= TrivialCharacter( G );;
 gap> rep:= IrreducibleAffordingRepresentation( chi );;
 gap> IsOne( Image( rep, One( G ) ) );
 true
+gap> IsReducibleRepresentation( rep );
+false
 
 # perfect group, nonlinear character with nontrivial kernel
 gap> G:= SL( 2, 5 );;
