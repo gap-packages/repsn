@@ -766,13 +766,16 @@ InstallGlobalFunction( InducedSubgroupRepresentation,
 
  InstallGlobalFunction( ModuleBasis,
  function( G, rep )
- local V, f, B, u, x, L, l, d, i, N, P;
+ local V, f, B, u, x, L, l, d, i, N, P, e;
  l := [ ];
+ e := [ ];
  L := [ ];
  B := [ ];
+ P := [ ];
  d := DimensionsMat( GeneratorsOfGroup( Image(rep) )[1] )[1];
  for i in [1..2*d^2] do
    x := PseudoRandom( G );
+   Add( e, x );
    Add( l, x^rep );
  od;
  f := FieldOfMatrixGroup( Image(rep) );
@@ -782,6 +785,7 @@ InstallGlobalFunction( InducedSubgroupRepresentation,
    u := x^rep;
    if IsContainedInSpan( V, u ) = false then
               CloseMutableBasis( V, u );
+              Add( e, x );
               Add( l, u );
    fi;
  od;
@@ -789,10 +793,11 @@ InstallGlobalFunction( InducedSubgroupRepresentation,
    Add( L, Concatenation( l[i] ) );
  od;
  N := LinearIndependentColumns( TransposedMat( L ) );
+ ## e[i] is a preimage of l[i], so no preimage has to be computed here
  for i in N do
    Add( B, l[i] );
+   Add( P, e[i] );
  od;
- P := List( [1..d^2], i->PreImagesRepresentative( rep, B[i] ) );
  return [B,P];
  end );
 
